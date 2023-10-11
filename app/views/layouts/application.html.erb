@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MejiroGymApp</title>
+    <title>MejiroGym</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,8 +9,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
+  <h1>Navbar placeholder</h1>
+  <%= link_to "<- Go back home", root_path %>
     <%= yield %>
   </body>
 </html>

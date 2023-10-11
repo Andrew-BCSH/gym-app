@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+</head>
+<body>
+  <h1>Welcome to the Home Page</h1>
+
+  <!-- Primary buttons for each route -->
+  <div>
+    <%= link_to "Monthly Membership Payment", monthly_membership_payment_path, class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to "Book a Private Class", book_a_private_class_path, class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to "Mejiro Coin", mejiro_coin_path, class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to "Payment Scanner", payment_scanner_path, class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to "Weekly Class Schedule", weekly_class_schedule_path, class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to "Events", events_path, class: "btn btn-primary" %>
+  </div>
+</body>
+</html>
