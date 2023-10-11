@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MejiroGym</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-  <body>
-  <h1>Navbar placeholder</h1>
-  <%= link_to "<- Go back home", root_path %>
-    <%= yield %>
-  </body>
+<head>
+  <title>MejiroGym</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <%= render "shared/navbar" %>
+  <div class="container mt-3 shadow p-3 mb-5 bg-white rounded">
+    <div class="content">
+      <h2>Osssuuu! <%= current_user.email if user_signed_in? %></h2>
+      <%= link_to "<- Go back home", root_path %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
