@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/weekly_class_schedule', to: 'pages#weekly_class_schedule'
   get '/events', to: 'pages#events'
   get 'top_up', to: 'pages#top_up'
+  get '/qr_code_scanner', to: 'pages#qr_code_scanner'
+
 
   #back arrow
   get 'go_back', to: 'pages#go_back'
