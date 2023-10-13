@@ -7,16 +7,23 @@
   <%= csp_meta_tag %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <%= stylesheet_link_tag 'fonts' %>
+  <%= stylesheet_link_tag 'navbar' %>
+  <%= stylesheet_link_tag 'containers' %>
+  <%= stylesheet_link_tag 'buttons' %>
   <%= javascript_importmap_tags %>
 </head>
 <body>
   <%= render "shared/navbar" %>
   <div class="container mt-3 shadow p-3 mb-5 bg-white rounded">
     <div class="content">
-      <h2>Osssuuu! <%= current_user.email if user_signed_in? %></h2>
-      <%= link_to "<- Go back home", root_path %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= link_to "<", root_path %>
+      <!-- Show the "Mejiro Coin Balance" unconditionally -->
+      <% if notice.present? || alert.present? %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
   </div>

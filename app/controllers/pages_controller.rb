@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+
+
   def home
   end
 
@@ -9,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def mejiro_coin
+    # Your existing code for the mejiro_coin action
   end
 
   def payment_scanner
@@ -20,4 +23,8 @@ class PagesController < ApplicationController
   def events
   end
 
+  def top_up
+    # Your top-up logic here
+    # For example, you can update the user's balance here
+  end
 end
