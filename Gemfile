@@ -9,6 +9,8 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.8"
 gem "devise"
 gem 'bootstrap', '~> 4.6'
+gem 'font-awesome-rails'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
