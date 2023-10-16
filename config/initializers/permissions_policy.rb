@@ -2,11 +2,11 @@
 # information see https://developers.google.com/web/updates/2018/06/feature-policy
 #
 Rails.application.config.permissions_policy do |f|
-    new_variable = camera
-    f.new_variable      :self
+
+    f.camera      :self
 #   f.gyroscope   :none
 #   f.microphone  :none
 #   f.usb         :none
-#   f.fullscreen  :self
+ #   f.fullscreen  :self
 #   f.payment     :self, "https://secure.example.com"
 end

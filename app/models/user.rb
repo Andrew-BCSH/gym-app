@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # app/models/user.rb
   has_one :credit, dependent: :destroy
 
+
   after_create :initialize_user_credit
 
   # Other user model code...

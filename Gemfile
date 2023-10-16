@@ -11,6 +11,10 @@ gem "devise"
 gem 'bootstrap', '~> 4.6'
 gem 'font-awesome-rails'
 
+gem 'cloudinary'
+
+gem "sassc-rails"
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
