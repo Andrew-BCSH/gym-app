@@ -2,7 +2,8 @@
 # information see https://developers.google.com/web/updates/2018/06/feature-policy
 #
 Rails.application.config.permissions_policy do |f|
-    f.camera      :self
+    new_variable = camera
+    f.new_variable      :self
 #   f.gyroscope   :none
 #   f.microphone  :none
 #   f.usb         :none

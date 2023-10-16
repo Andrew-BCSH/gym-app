@@ -8,6 +8,6 @@ window.Stimulus   = application
 
 export { application }
 
-//= require qr-code-scanner
+// require qr-code-scanner
 
 import 'qr-code-scanner';
