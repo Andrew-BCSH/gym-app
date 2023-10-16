@@ -4,8 +4,8 @@ class PagesController < ApplicationController
     # Your home action logic
   end
 
-  def monthly_membership_payment
-    # Your monthly_membership_payment action logic
+  def membership_payment
+    @options = Option.all
   end
 
   def book_a_private_class
@@ -33,6 +33,14 @@ class PagesController < ApplicationController
     # For example, you can update the user's balance here
   end
 
+  # In your PagesController's membership_checkout action
+  def membership_checkout
+  @option = Option.find_by(params[:option_sku])
+  # ...
+  end
+
+
+
   def qr_code_scanner
     respond_to do |format|
       format.html
@@ -44,6 +52,8 @@ class PagesController < ApplicationController
       }
     end
   end
+
+
 
   # Define any other actions and private methods if needed
 end

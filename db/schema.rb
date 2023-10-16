@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_12_042058) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_16_163253) do
   create_table "credits", force: :cascade do |t|
     t.integer "user_id", null: false
     t.decimal "balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_credits_on_user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "IDR", null: false
+    t.string "option_sku"
+    t.string "state"
+    t.string "checkout_session_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "sku"
+    t.string "name"
+    t.integer "membership_id", null: false
+    t.string "photo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_cents"
+    t.index ["membership_id"], name: "index_options_on_membership_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_042058) do
   end
 
   add_foreign_key "credits", "users"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "options", "memberships"
 end

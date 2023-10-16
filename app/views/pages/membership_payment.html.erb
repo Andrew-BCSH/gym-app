@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Membership Options</h1>
+  <div class="row">
+    <% @options.each do |option| %>
+      <div class="col-6 col-md-4">
+        <div class="card my-3"> <!-- Add margin to the bottom of the card -->
+          <%= image_tag option.photo_url , class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= option.name %></h5>
+            <p><%= humanized_money_with_symbol(option.price) %></p>
+            <%= link_to "More details", "#", class: "btn btn-custom-small btn-custom-small-font" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

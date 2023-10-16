@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # app/models/user.rb
   # app/models/user.rb
   has_one :credit, dependent: :destroy
+  has_many :orders
 
 
   after_create :initialize_user_credit

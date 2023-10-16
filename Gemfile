@@ -17,6 +17,9 @@ gem "sassc-rails"
 
 gem 'font-awesome-sass', '~> 5.0'
 
+gem 'money-rails'
+
+gem 'stripe'
 
 
 

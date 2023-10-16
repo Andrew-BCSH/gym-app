@@ -60,3 +60,56 @@
 .btn-primary:hover {
   background-color: #a94444; /* Change the background color on hover */
 }
+
+/* Custom Small Button Styles */
+.btn-custom-small {
+  appearance: button;
+  background-color: #BA0D0D;
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 20px 20px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  height: 40px;
+  width: 110px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-custom-small:focus {
+  text-decoration: none;
+}
+
+.btn-custom-small {
+  text-decoration: none;
+}
+
+.btn-custom-small:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.btn-custom-small:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+/* Hover effect */
+.btn-custom-small:hover {
+  background-color: #a94444; /* Change the background color on hover */
+}

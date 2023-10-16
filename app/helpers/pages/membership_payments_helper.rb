@@ -1,0 +1,2 @@
+module Pages::MembershipPaymentsHelper
+end
