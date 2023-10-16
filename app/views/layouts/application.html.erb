@@ -6,10 +6,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-  <%= stylesheet_link_tag 'qr_code_scanner', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'fonts' %>
   <%= stylesheet_link_tag 'navbar' %>
   <%= stylesheet_link_tag 'containers' %>
@@ -20,7 +18,10 @@
   <%= render "shared/navbar" %>
   <div class="container mt-3 shadow p-3 mb-5 bg-white rounded">
     <div class="content">
-      <%= link_to "<", root_path %>
+      <%= link_to root_path do %>
+        <i class="fas fa-arrow-left"></i> <!-- Use 'fas' for solid style, or 'far' for regular style -->
+      <% end %>
+
       <!-- Show the "Mejiro Coin Balance" unconditionally -->
       <% if notice.present? || alert.present? %>
         <p class="notice"><%= notice %></p>

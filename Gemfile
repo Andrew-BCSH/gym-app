@@ -15,6 +15,10 @@ gem 'cloudinary'
 
 gem "sassc-rails"
 
+gem 'font-awesome-sass', '~> 5.0'
+
+
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

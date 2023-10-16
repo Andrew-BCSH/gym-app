@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ // app/assets/stylesheets/application.scss
+@import "font-awesome";
+@import 'font-awesome-sprockets';
+
+.fa-arrow-left {
+  color: black;
+}
