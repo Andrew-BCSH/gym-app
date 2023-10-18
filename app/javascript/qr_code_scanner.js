@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inputStream: {
       name: 'Live',
       type: 'LiveStream',
-      target: document.querySelector('#video'), // The video element
+      target: document.querySelector('#camera'), // The camera element
       constraints: {
         facingMode: 'environment', // or 'user' for the front camera
       },

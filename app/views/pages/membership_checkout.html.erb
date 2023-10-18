@@ -1,6 +1,0 @@
-<h1>Complete your payment</h1>
-
-<%= form_with url: membership_checkout_path do %>
-  <%= hidden_field_tag 'option_sku', @option.sku %>
-  <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
-<% end %>

@@ -2,10 +2,12 @@
 <html>
 <head>
   <title>QR Code Scanner</title>
+
 </head>
 <body>
   <h1>QR Code Scanner</h1>
-  <video id="video" autoplay playsinline></video>
+
+  <camera id="camera"></camera>
 
   <!-- Include Quagga.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
@@ -21,13 +23,15 @@
       }
 
       Quagga.init({
-        inputStream: {
-          name: 'Live',
-          type: 'LiveStream',
-          target: document.querySelector('#video'), // The video element
-          constraints: {
-            facingMode: 'environment', // or 'user' for the front camera
-          },
+  inputStream: {
+    name: 'Live',
+    type: 'LiveStream',
+    target: document.querySelector('#camera'), // The camera element
+    constraints: {
+      facingMode: 'environment', // or 'user' for the front camera
+      width: 350,  // Adjust to match the width you set in the HTML
+      height: 350, // Adjust to match the height you set in the HTML
+    },
         },
         decoder: {
           readers: ['code_128_reader'], // Customize the barcode readers as needed

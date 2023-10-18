@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     # Your home action logic
   end
 
-  def membership_payment
+  def memberships
     @options = Option.all
   end
 
@@ -33,12 +33,13 @@ class PagesController < ApplicationController
     # For example, you can update the user's balance here
   end
 
-  # In your PagesController's membership_checkout action
-  def membership_checkout
-  @option = Option.find_by(params[:option_sku])
-  # ...
+  def membership_details
+    @option = Option.find_by(params[:option_sku])
   end
 
+  def membership_checkout
+  # ...
+  end
 
 
   def qr_code_scanner
