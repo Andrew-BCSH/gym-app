@@ -8,4 +8,4 @@ window.Stimulus = application;
 
 export { application };
 
-import './qr-code-scanner'; // Use the correct relative path
+// import './qr-code-scanner'; // Use the correct relative path

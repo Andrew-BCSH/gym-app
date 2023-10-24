@@ -1,61 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>QR Code Scanner</title>
+  <h1>Payment Scanner</h1>
 
-</head>
-<body>
-  <h1>QR Code Scanner</h1>
 
-  <camera id="camera"></camera>
+  <video id="camera"></video>
 
-  <!-- Include Quagga.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
-  <!-- Include your JavaScript code -->
   <script>
-    // The JavaScript code you provided goes here
 
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        console.error('Camera access not supported in this browser.');
-        return;
+
+  document.addEventListener('DOMContentLoaded', () => {
+   let code = null;
+
+   const qrScanner = new window.QrScanner(
+    document.querySelector('#camera'),
+    result => {
+      if (code) {
+        qrScanner.stop();
+        return
       }
-
-      Quagga.init({
-  inputStream: {
-    name: 'Live',
-    type: 'LiveStream',
-    target: document.querySelector('#camera'), // The camera element
-    constraints: {
-      facingMode: 'environment', // or 'user' for the front camera
-      width: 350,  // Adjust to match the width you set in the HTML
-      height: 350, // Adjust to match the height you set in the HTML
-    },
-        },
-        decoder: {
-          readers: ['code_128_reader'], // Customize the barcode readers as needed
-        },
-      }, (err) => {
-        if (err) {
-          console.error('Quagga initialization error:', err);
-          return;
-        }
-
-        Quagga.start();
-
-        // Add an onProcessed handler to receive processed results
-        Quagga.onProcessed((result) => {
-          // You can perform additional actions with processed results here
-        });
-
-        // Add an onDetected handler to receive detected results
-        Quagga.onDetected((result) => {
-          alert(`QR Code detected: ${result.codeResult.code}`);
-          Quagga.stop();
-        });
-      });
+      console.log('decoded qr code:', result);
+      code = result.data;
+      window.location.href = code;
+    }, {
+      highlightScanRegion:true,
+      highlightCodeOutline:true,
+      returnDetailedScanResult: true
     });
+    qrScanner.start();
+  });
+
   </script>
-</body>
-</html>

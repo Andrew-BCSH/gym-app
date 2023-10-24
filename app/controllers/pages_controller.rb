@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def memberships
-    @options = Option.all
+
   end
 
   def book_a_private_class
@@ -33,13 +33,6 @@ class PagesController < ApplicationController
     # For example, you can update the user's balance here
   end
 
-  def membership_details
-    @option = Option.find_by(params[:option_sku])
-  end
-
-  def membership_checkout
-  # ...
-  end
 
 
   def qr_code_scanner

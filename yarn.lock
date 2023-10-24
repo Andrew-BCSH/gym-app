@@ -2,10 +2,22 @@
 # yarn lockfile v1
 
 
+"@types/offscreencanvas@^2019.6.4":
+  "integrity" "sha512-ujCjOxeA07IbEBQYAkoOI+XFw5sT3nhWJ/xZfPR6reJppDG7iPQPZacQiLTtWH1b3a2NYXWlxvYqa40y/LAixQ=="
+  "resolved" "https://registry.npmjs.org/@types/offscreencanvas/-/offscreencanvas-2019.7.2.tgz"
+  "version" "2019.7.2"
+
 "qr-code-scanner@^1.0.8":
   "integrity" "sha512-R0gh2n7TqihW6XflXC9XmsoEXJKw8qk0OR2yyBe9xQMGnuzjYUK3i1P/oSnDeMbQNS5XJwacvGeFkUdrMtywVg=="
   "resolved" "https://registry.npmjs.org/qr-code-scanner/-/qr-code-scanner-1.0.8.tgz"
   "version" "1.0.8"
+
+"qr-scanner@^1.4.2":
+  "integrity" "sha512-kV1yQUe2FENvn59tMZW6mOVfpq9mGxGf8l6+EGaXUOd4RBOLg7tRC83OrirM5AtDvZRpdjdlXURsHreAOSPOUw=="
+  "resolved" "https://registry.npmjs.org/qr-scanner/-/qr-scanner-1.4.2.tgz"
+  "version" "1.4.2"
+  dependencies:
+    "@types/offscreencanvas" "^2019.6.4"
 
 "quagga@^0.6.16":
   "integrity" "sha512-8JP5ySqRPhUxmoS339Dq3/JYeP0S3+saicCV+MnMhOMB5F8kYsim0KWHmkPVNrNzSDq83z1+nTqi44MwIAInpA=="
