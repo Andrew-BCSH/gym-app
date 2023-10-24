@@ -5,46 +5,22 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# db/seeds.rb
 puts 'Cleaning database...'
-Option.destroy_all
+Category.destroy_all
 Membership.destroy_all
 
+
+puts 'Creating categories...'
+short = Category.create!(name: 'short')
+long = Category.create!(name: 'long')
+
 puts 'Creating memberships...'
-daily = Membership.create!(name: 'Daily')
-monthly = Membership.create!(name: 'Monthly')
-yearly = Membership.create!(name: 'Yearly')
-
-puts 'Creating options...'
-Option.create!(
-  price: 185000,
-  sku: 'daily1',
-  name: 'Daily Drop In',
-  membership: daily,
-  photo_url: 'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016688/Mejiro/Sparring_tev2ct.jpg'
-)
-
-Option.create!(
-  price: 1250000,
-  sku: 'monthly1',
-  name: 'Monthly Membership',
-  membership: monthly,
-  photo_url: 'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016688/Mejiro/Muay_Thai_1_g8wizf.jpg'
-)
-
-Option.create!(
-  price: 9000000,
-  sku: 'yearly1',
-  name: 'Yearly Membership',
-  membership: yearly,
-  photo_url: 'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016688/Mejiro/Sparring_tev2ct.jpg'
-)
-
-Option.create!(
-  price: 700000,
-  sku: 'kids1',
-  name: 'Kids Membership',
-  membership: monthly,
-  photo_url: 'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016688/Mejiro/Muay_Thai_1_g8wizf.jpg'
-)
+ActiveRecord::Base.transaction do
+Membership.create!(sku: 'daily', name: 'Daily Drop In', category: short, price: 1800000, photo_url: 'http://onehdwallpaper.com/wp-content/uploads/2015/07/Teddy-Bears-HD-Images.jpg')
+Membership.create!(sku: 'monthly', name: 'Monthly', category: long, price: 120000000, photo_url: 'https://pbs.twimg.com/media/B_AUcKeU4AE6ZcG.jpg:large')
+Membership.create!(sku: 'yearly', name: 'Yearly', category: long, price: 900000000, photo_url: 'https://cdn-ak.f.st-hatena.com/images/fotolife/s/suzumidokoro/20160413/20160413220730.jpg')
+end
 
 puts 'Finished!'

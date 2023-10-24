@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'pages#home' # Define your root route
+  resources :memberships, only: [:show, :index]
   resources :orders, only: [:show, :create]
+  resources :payments, only: :new
 
   # Define routes for other actions
   get '/memberships', to: 'pages#memberships'
@@ -15,9 +17,15 @@ Rails.application.routes.draw do
   get 'top_up', to: 'pages#top_up'
   get '/qr_code_scanner', to: 'pages#qr_code_scanner'
   get '/membership_details', to: 'pages#membership_details', as: 'membership_details'
-  get '/membership_checkout', to: 'pages#membership_checkout'
+  get '/membership/:id/checkout', to: 'pages#membership_checkout'
 
 
+  resources :orders do
+    get 'new_payment', to: 'payments#new', as: 'new_payment'
+  end
+
+
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 
   #back arrow
   get 'go_back', to: 'pages#go_back'

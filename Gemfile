@@ -21,6 +21,9 @@ gem 'money-rails'
 
 gem 'stripe'
 
+gem 'monetize'
+
+gem 'stripe_event'
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -43,6 +46,8 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+
 
 
 
