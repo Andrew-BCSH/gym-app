@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "qr-code-scanner": "^1.0.8",
-    "qr-scanner": "^1.4.2",
-    "quagga": "^0.6.16"
+    "qr-scanner": "^1.4.2"
   }
 }

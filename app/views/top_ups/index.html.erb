@@ -1,0 +1,18 @@
+<!-- app/views/top_ups/index.html.erb -->
+<div class="container">
+  <h1>Top-Up Options</h1>
+  <div class="row">
+    <% @plans.each do |plan| %>
+      <div class="col-6 col-md-4">
+        <div class="card">
+          <!-- Display top-up details, e.g., photo, name, etc. -->
+          <div class="card-body">
+            <h5 class="card-title"><%= humanized_money_with_symbol(plan) %></h5>
+            <!-- You may add more details here -->
+            <%= link_to "Top-Up", top_up_checkout_path(plan), class: "btn btn-primary", data:{:turbo=>false}%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_144528) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_26_074759) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -39,16 +39,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_144528) do
   create_table "orders", force: :cascade do |t|
     t.string "state"
     t.string "membership_sku"
-    t.decimal "amount"
+    t.integer "amount_cents", default: 0, null: false
     t.string "checkout_session_id"
     t.integer "user_id", null: false
     t.integer "membership_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "amount_cents"
-    t.string "amount_currency"
     t.index ["membership_id"], name: "index_orders_on_membership_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "top_ups", force: :cascade do |t|
+    t.string "state"
+    t.integer "amount_cents"
+    t.string "amount_currency"
+    t.string "checkout_session_id"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_top_ups_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,4 +78,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_144528) do
   add_foreign_key "memberships", "categories"
   add_foreign_key "orders", "memberships"
   add_foreign_key "orders", "users"
+  add_foreign_key "top_ups", "users"
 end

@@ -9,8 +9,8 @@ class PagesController < ApplicationController
   end
 
   def mejiro_coin
-    # Your mejiro_coin action logic
   end
+
 
   def payment_scanner
     # Your payment_scanner action logic
@@ -24,12 +24,6 @@ class PagesController < ApplicationController
     # Your events action logic
   end
 
-  def top_up
-    # Your top-up logic here
-    # For example, you can update the user's balance here
-  end
-
-
 
   def qr_code_scanner
     respond_to do |format|
@@ -42,7 +36,6 @@ class PagesController < ApplicationController
       }
     end
   end
-
 
   def membership_checkout
     membership = Membership.find(params[:id])
@@ -60,7 +53,6 @@ class PagesController < ApplicationController
       payment_method_types: ['card'],
       line_items: [
         {
-          # price: membership.price,  # Replace with your actual price ID
           quantity: 1,
           price_data: {
             currency: 'idr',
@@ -69,18 +61,19 @@ class PagesController < ApplicationController
               name: membership.name,
               description: 'Comfortable cotton t-shirt',
               images: ['https://example.com/t-shirt.png'],
-
             },
           },
         }
       ],
-      mode:'payment',
+      mode: 'payment',
       success_url: order_url(order),
       cancel_url: order_url(order)
     )
     order.update(checkout_session_id: session.id)
     redirect_to session.url, allow_other_host: true, status: 302
   end
+
+
 
   # Define any other actions and private methods if needed
 end

@@ -18,8 +18,3 @@
   "version" "1.4.2"
   dependencies:
     "@types/offscreencanvas" "^2019.6.4"
-
-"quagga@^0.6.16":
-  "integrity" "sha512-8JP5ySqRPhUxmoS339Dq3/JYeP0S3+saicCV+MnMhOMB5F8kYsim0KWHmkPVNrNzSDq83z1+nTqi44MwIAInpA=="
-  "resolved" "https://registry.npmjs.org/quagga/-/quagga-0.6.16.tgz"
-  "version" "0.6.16"

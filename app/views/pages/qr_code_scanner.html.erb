@@ -1,31 +1,28 @@
-  <h1>Payment Scanner</h1>
+<h1>Payment Scanner</h1>
 
+<video id="camera"></video>
 
-  <video id="camera"></video>
-
-
-  <script>
-
-
+<script>
   document.addEventListener('DOMContentLoaded', () => {
-   let code = null;
+    let code = null;
 
-   const qrScanner = new window.QrScanner(
-    document.querySelector('#camera'),
-    result => {
-      if (code) {
-        qrScanner.stop();
-        return
+    const qrScanner = new window.QrScanner(
+      document.querySelector('#camera'),
+      (result) => {
+        if (code) {
+          qrScanner.stop();
+          return;
+        }
+        console.log('decoded qr code:', result);
+        code = result.data;
+        window.location.href = code;
+      },
+      {
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+        returnDetailedScanResult: true,
       }
-      console.log('decoded qr code:', result);
-      code = result.data;
-      window.location.href = code;
-    }, {
-      highlightScanRegion:true,
-      highlightCodeOutline:true,
-      returnDetailedScanResult: true
-    });
+    );
     qrScanner.start();
   });
-
-  </script>
+</script>

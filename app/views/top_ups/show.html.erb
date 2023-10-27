@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row py-4">
+      <div class="col">
+        <h1>Mejiro Coin Top-Up Completed</h1>
+        <ul class="list-unstyled">
+          <li><strong>Top Up ID:</strong> #<%= @top_up.id %></li>
+          <li><strong>Issued On:</strong> <%= @top_up.created_at.to_date %></li>
+          <li><strong>Total:</strong> <%= humanized_money_with_symbol @top_up.amount_cents %></li>
+        </ul>
+        <strong>Top Up Completed</strong>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
