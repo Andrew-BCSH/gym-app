@@ -62,7 +62,7 @@
 }
 
 /* Custom Small Button Styles */
-.btn-custom-small {
+.btn-secondary {
   appearance: button;
   background-color: #BA0D0D;
   background-image: none;
@@ -83,7 +83,7 @@
   vertical-align: middle;
   white-space: nowrap;
   height: 40px;
-  width: 110px;
+  width: 100px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -91,25 +91,25 @@
   align-items: center;
 }
 
-.btn-custom-small:focus {
+.btn-secondary:focus {
   text-decoration: none;
 }
 
-.btn-custom-small {
+.btn-secondary {
   text-decoration: none;
 }
 
-.btn-custom-small:active {
+.btn-secondary:active {
   box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
   outline: 0;
 }
 
-.btn-custom-small:not([disabled]):active {
+.btn-secondary:not([disabled]):active {
   box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
   transform: translate(2px, 2px);
 }
 
 /* Hover effect */
-.btn-custom-small:hover {
+.btn-secondary:hover {
   background-color: #a94444; /* Change the background color on hover */
 }

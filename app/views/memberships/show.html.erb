@@ -7,8 +7,10 @@
       <h1><%= @membership.name %></h1>
       <p>Some description of our memberships.</p>
       <p>Amount: <%= humanized_money_with_symbol(@membership.price) %></p>
-      <a href="/membership/<%= @membership.id %>/checkout" data-turbo="false">purchase</a>
-
+      <div class="btn btn-secondary">
+  <a href="/membership/<%= @membership.id %>/checkout" data-turbo="false" class="btn-secondary-font">Purchase</a>
+</div>
+  </div>
     </div>
   </div>
 </div>

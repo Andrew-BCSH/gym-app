@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'landing_page/index'
+  # For user login
+devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  root to: 'pages#home'
+# For admin login
+devise_for :admins, controllers: { sessions: 'admins/sessions' }
+
+
+  root to: 'landing_page#index'
 
   resources :memberships, only: [:show, :index]
   resources :orders, only: [:show, :create]
   resources :payments, only: :new
+  resources :users
 
+  get '/home', to: 'pages#home'
   get '/memberships', to: 'pages#memberships'
   get '/book_a_private_class', to: 'pages#book_a_private_class'
   get '/mejiro_coin', to: 'pages#mejiro_coin'

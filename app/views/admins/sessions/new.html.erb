@@ -1,0 +1,20 @@
+<%= form_for(:admin, url: admin_session_path, as: :admin) do |f| %>
+  <div class="field">
+    <%= f.label :admin_name %><br />
+    <%= f.text_field :admin_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
