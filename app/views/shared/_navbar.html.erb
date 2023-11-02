@@ -1,57 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">
-    <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 50, height: 50) %>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<% if user_signed_in? || admin_signed_in? %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+      <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 50, height: 50) %>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <h5 class="navbar-text">
-          Osssuuu! <%= current_user.username if user_signed_in? %>
-        </h5>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <h5 class="navbar-text">
+            Osssuuu! <%= current_user.username if user_signed_in? %>
+          </h5>
+        </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Membership Info
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% if user_signed_in? %>
-            <a class="dropdown-item" href="#">
-              <p>Your balance: <%= @user_balance.to_f %> Mejiro Coins</p>
-            </a>
-          <% end %>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<%= payment_scanner_path %>">Payment Scanner</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Membership in days</a>
-        </div>
-      </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Membership Info
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if user_signed_in? %>
+              <a class="dropdown-item" href="#">
+                <p>Your balance: <%= @user_balance.to_f %> Mejiro Coins</p>
+              </a>
+            <% end %>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<%= payment_scanner_path %>">Payment Scanner</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Membership in days</a>
+          </div>
+        </li>
 
-      <!-- New "Categories" Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="categories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="categories">
-          <a class="dropdown-item" href="<%= memberships_path %>">Memberships</a>
-          <a class="dropdown-item" href="<%= book_a_private_class_path %>">Book a Private Class</a>
-          <a class="dropdown-item" href="<%= mejiro_coin_path %>">Mejiro Coin</a>
-          <a class="dropdown-item" href="<%= weekly_class_schedule_path %>">Weekly Class Schedule</a>
-          <a class="dropdown-item" href="<%= events_path %>">Events</a>
-        </div>
-      </li>
+        <!-- New "Categories" Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="categories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="categories">
+            <a class="dropdown-item" href="<%= memberships_path %>">Memberships</a>
+            <a class="dropdown-item" href="<%= book_a_private_class_path %>">Book a Private Class</a>
+            <a class="dropdown-item" href="<%= mejiro_coin_path %>">Mejiro Coin</a>
+            <a class="dropdown-item" href="<%= weekly_class_schedule_path %>">Weekly Class Schedule</a>
+            <a class="dropdown-item" href="<%= events_path %>">Events</a>
+          </div>
+        </li>
 
-      <li class="nav-item">
-        <% if user_signed_in? %>
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        <% else %>
-          <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <li class="nav-item">
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" if user_signed_in? %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<% end %>
