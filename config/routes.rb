@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'dashboard/index'
+  end
   get 'landing_page/index'
   # For user login
 devise_for :users, controllers: { sessions: 'users/sessions' }
@@ -49,4 +52,9 @@ devise_for :admins, controllers: { sessions: 'admins/sessions' }
   namespace :pages do
     get 'memberships', to: 'memberships#index'
   end
+
+  namespace :admins do
+    get 'dashboard/index'
+  end
+
 end
