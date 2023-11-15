@@ -1,21 +1,16 @@
 Rails.application.routes.draw do
-  namespace :admins do
-    get 'dashboard/index'
-  end
-  get 'landing_page/index'
   # For user login
-devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
-# For admin login
-devise_for :admins, controllers: { sessions: 'admins/sessions' }
-
+  # For admin login
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   root to: 'landing_page#index'
 
   resources :memberships, only: [:show, :index]
   resources :orders, only: [:show, :create]
   resources :payments, only: :new
-  resources :users
+
 
   get '/home', to: 'pages#home'
   get '/memberships', to: 'pages#memberships'
@@ -43,10 +38,16 @@ devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   mount StripeEvent::Engine, at: '/stripe-webhooks'
 
-  get 'go_back', to: 'pages#go_back'
+  get 'go_back', to: 'pages#home'
 
+  # Define custom user sign-out route
   devise_scope :user do
-    get 'users/sign_out' => 'devise/sessions#destroy'
+    delete 'users/sign_out', to: 'users/sessions#destroy', as: :user_sign_out
+  end
+
+  # Define custom admin sign-out route
+  devise_scope :admin do
+    delete 'admins/sign_out', to: 'admins/sessions#destroy', as: :admin_sign_out
   end
 
   namespace :pages do
@@ -56,5 +57,4 @@ devise_for :admins, controllers: { sessions: 'admins/sessions' }
   namespace :admins do
     get 'dashboard/index'
   end
-
 end

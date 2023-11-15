@@ -183,9 +183,16 @@ Devise.setup do |config|
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
-  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+   # Specify the authentication keys for User and Admin models
+   #config.authentication_keys = { user: [:username], admin: [:admin_name] }
 
-  config.authentication_keys = [:admin_name]
+   # Rememberable settings
+   config.remember_for = 2.weeks
+
+   # Email format validation (example)
+   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+
+
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
@@ -206,7 +213,7 @@ Devise.setup do |config|
   # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
+  config.unlock_strategy = :both
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
@@ -268,7 +275,7 @@ Devise.setup do |config|
   config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

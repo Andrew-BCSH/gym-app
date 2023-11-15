@@ -57,20 +57,16 @@ class TopUpsController < ApplicationController
   def show_success
     @top_up = TopUp.find(params[:id])
 
-    if @top_up.state == 'completed'
-      # Assuming 'amount_cents' contains the top-up amount in currency
-      current_user.top_up_balance(@top_up.amount_cents / 100)
-
+    if @top_up.state != "completed"
       if current_user.save
         @top_up.update(state: 'completed')
+        # Assuming 'amount_cents' contains the top-up amount in currency
+        current_user.top_up_balance(@top_up.amount_cents / 100)
         flash[:notice] = 'Payment was successful, and your balance has been updated!'
       else
         flash[:alert] = 'Payment was successful, but there was an issue updating your balance.'
       end
-      else
-      flash[:alert] = 'Payment was successful, but there was an issue updating your balance 1.'
-      end
-
+    end
     render action: 'show'
   end
 

@@ -5,24 +5,63 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     let code = null;
+    let qrScanner = null;
+    let mediaStream = null;
 
-    const qrScanner = new window.QrScanner(
-      document.querySelector('#camera'),
-      (result) => {
-        if (code) {
-          qrScanner.stop();
-          return;
-        }
-        console.log('decoded qr code:', result);
-        code = result.data;
-        window.location.href = code;
-      },
-      {
-        highlightScanRegion: true,
-        highlightCodeOutline: true,
-        returnDetailedScanResult: true,
+    function startRearCamera() {
+      if (qrScanner === null) {
+        navigator.mediaDevices
+          .getUserMedia({ video: { facingMode: "environment" }, audio: true }) // Request the rear camera and microphone
+          .then((stream) => {
+            mediaStream = stream;
+            const videoElement = document.querySelector('#camera');
+            videoElement.srcObject = stream;
+            videoElement.play();
+
+            qrScanner = new window.QrScanner(
+              videoElement,
+              (result) => {
+                if (code) {
+                  stopVideo();
+                  return;
+                }
+                console.log('decoded qr code:', result);
+                code = result.data;
+                window.location.href = code;
+              },
+              {
+                highlightScanRegion: true,
+                highlightCodeOutline: true,
+                returnDetailedScanResult: true,
+              }
+            );
+            qrScanner.start();
+          })
+          .catch((error) => {
+            console.error('Error accessing rear camera and microphone:', error);
+          });
       }
-    );
-    qrScanner.start();
+    }
+
+    function stopVideo() {
+      if (qrScanner) {
+        qrScanner.stop();
+        qrScanner = null;
+        code = null;
+      }
+      if (mediaStream) {
+        mediaStream.getTracks().forEach((track) => {
+          track.stop();
+        });
+        mediaStream = null;
+      }
+    }
+
+    // Check if the user is on the QR code scanner page
+    if (window.location.pathname === '/qr_code_scanner') {
+      startRearCamera();
+    } else {
+      stopVideo();
+    }
   });
 </script>

@@ -25,6 +25,9 @@ gem 'monetize'
 
 gem 'stripe_event'
 
+gem 'jquery-rails'
+
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
