@@ -5,6 +5,7 @@
     <% @plans.each do |plan| %>
       <div class="col-6 col-md-4">
         <div class="card1">
+          <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 50, height: 50) %>
           <!-- Display top-up details, e.g., photo, name, etc. -->
           <div class="card-body">
             <h5 class="card-title"><%= humanized_money_with_symbol(plan) %></h5>
