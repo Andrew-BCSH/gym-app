@@ -1,2 +1,35 @@
-<h1>Admins::Dashboard#index</h1>
-<p>Find me in app/views/admins/dashboard/index.html.erb</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 50, height: 50) %>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+      </li>
+      <!-- New "Categories" Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="categories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="categories">
+          <a class="dropdown-item" href="#">
+                <p>Todays total spend: <%= @user_balance.to_f %> Mejiro Coins</p>
+                 <%= link_to 'Sign out', destroy_admin_session_path, method: :delete %>
+              </a>
+        </div>
+</nav>
+
+<!-- Container for primary buttons -->
+<div class="btn-primary-container">
+  <h1>Admin Dashboard</h1>
+  <%= link_to "Memberships & Editor", memberships_path, class: "btn btn-primary btn-primary-font" %>
+  <%= link_to "Private Class Bookings", book_a_private_class_path, class: "btn btn-primary btn-primary-font" %>
+  <%= link_to "Mejiro Coin Records", mejiro_coin_path, class: "btn btn-primary btn-primary-font" %>
+  <%= link_to 'Connect to Stripe', 'https://dashboard.stripe.com/login', class: 'btn btn-primary btn-primary-font' %>
+  <%= link_to "Weekly Class Schedule Editer", weekly_class_schedule_path, class: "btn btn-primary btn-primary-font" %>
+  <%= link_to "Events Editer", events_path, class: "btn btn-primary btn-primary-font" %>
+</div>

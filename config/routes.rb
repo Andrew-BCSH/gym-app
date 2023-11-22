@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/qr_code_scanner', to: 'pages#qr_code_scanner'
   get '/membership_details', to: 'pages#membership_details', as: 'membership_details'
 
+
+
   # Define the membership checkout route
   get '/membership/:id/checkout', to: 'pages#membership_checkout', as: 'membership_checkout'
 
@@ -57,4 +59,6 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'dashboard/index'
   end
+
+
 end

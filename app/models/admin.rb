@@ -5,5 +5,6 @@ class Admin < ApplicationRecord
 
   # Include Devise modules and custom attributes
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         authentication_keys: [:admin_name]
 end

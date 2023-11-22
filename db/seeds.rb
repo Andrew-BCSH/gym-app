@@ -24,7 +24,7 @@ admin1 = Admin.create!(email: 'admin1@example.com', password: 'admin_password1',
 admin2 = Admin.create!(email: 'admin2@example.com', password: 'admin_password2', admin_name: 'Admin User 2')
 
 puts 'Creating memberships...'
-Membership.create!(sku: 'daily', name: 'Daily Drop In', category: short, price_cents: 180000, photo_url: 'http://onehdwallpaper.com/wp-content/uploads/2015/07/Teddy-Bears-HD-Images.jpg')
+Membership.create!(sku: 'daily', name: 'Daily Drop In', category: short, price_cents: 1800000, photo_url: 'http://onehdwallpaper.com/wp-content/uploads/2015/07/Teddy-Bears-HD-Images.jpg')
 Membership.create!(sku: 'monthly', name: 'Monthly', category: long, price_cents: 1200000, photo_url: 'https://pbs.twimg.com/media/B_AUcKeU4AE6ZcG.jpg:large')
 Membership.create!(sku: 'yearly', name: 'Yearly', category: long, price_cents: 90000000, photo_url: 'https://cdn-ak.f.st-hatena.com/images/fotolife/s/suzumidokoro/20160413/20160413220730.jpg')
 

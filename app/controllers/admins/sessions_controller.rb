@@ -8,8 +8,8 @@ class Admins::SessionsController < Devise::SessionsController
 end
 
   def after_sign_in_path_for(resource)
-    # Redirect to the home page after sign-in
-    admin_dashboard_path
+  # Redirect to the home page after sign-in
+  admins_dashboard_index_path
   end
 
   def after_sign_out_path_for(resource_or_scope)
