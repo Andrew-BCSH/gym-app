@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_01_030248) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_23_021219) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -36,6 +36,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_030248) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_credits_on_user_id"
+  end
+
+  create_table "mejiro_coin_transactions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.decimal "spend_amount"
+    t.string "product_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "product"
+    t.date "date"
+    t.decimal "spend"
+    t.time "time"
+    t.index ["user_id"], name: "index_mejiro_coin_transactions_on_user_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -88,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_030248) do
   end
 
   add_foreign_key "credits", "users"
+  add_foreign_key "mejiro_coin_transactions", "users"
   add_foreign_key "memberships", "categories"
   add_foreign_key "orders", "memberships"
   add_foreign_key "orders", "users"

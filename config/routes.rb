@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :memberships, only: [:show, :index]
   resources :orders, only: [:show, :create]
   resources :payments, only: :new
+  resources :mejiro_coin, only: [:index]
+
 
 
   get '/home', to: 'pages#home'
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   get '/events', to: 'pages#events'
   get '/qr_code_scanner', to: 'pages#qr_code_scanner'
   get '/membership_details', to: 'pages#membership_details', as: 'membership_details'
+
 
 
 
@@ -58,6 +61,9 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get 'dashboard/index'
+
+    # Add the following line to define the mejiro_coin_records path
+    get 'mejiro_coin_records', to: 'mejiro_coin#index', as: 'mejiro_coin_records'
   end
 
 
