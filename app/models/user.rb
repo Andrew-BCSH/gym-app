@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable, and :omniauthable
   has_one :credit, dependent: :destroy
   has_many :orders
+  has_many :memberships
 
   after_create :initialize_user_credit
 

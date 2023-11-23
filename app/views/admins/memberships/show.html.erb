@@ -1,0 +1,33 @@
+<h1>All Users and Their Membership Details</h1>
+
+<table id="membershipsTable" class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Username</th>
+      <th>Membership Name</th>
+      <th>Price</th>
+      <th>Days of Membership</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users_with_memberships.each do |user| %>
+      <% if user.memberships.present? %>
+        <% user.memberships.each do |membership| %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= membership.name %></td>
+            <td><%= membership.price %></td>
+            <td id="membershipDays<%= membership.id %>"><%= membership.days_of_membership %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td><%= user.username %></td>
+          <td>No Membership</td>
+          <td>N/A</td>
+          <td id="membershipDays<%= user.id %>">0</td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

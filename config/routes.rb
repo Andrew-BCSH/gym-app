@@ -7,12 +7,10 @@ Rails.application.routes.draw do
 
   root to: 'landing_page#index'
 
-  resources :memberships, only: [:show, :index]
+  resources :memberships, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :orders, only: [:show, :create]
   resources :payments, only: :new
   resources :mejiro_coin, only: [:index]
-
-
 
   get '/home', to: 'pages#home'
   get '/memberships', to: 'pages#memberships'
@@ -24,16 +22,13 @@ Rails.application.routes.draw do
   get '/qr_code_scanner', to: 'pages#qr_code_scanner'
   get '/membership_details', to: 'pages#membership_details', as: 'membership_details'
 
-
-
-
   # Define the membership checkout route
   get '/membership/:id/checkout', to: 'pages#membership_checkout', as: 'membership_checkout'
 
   # Define the top-up route for the top-ups controller
   get '/top_up', to: 'top_ups#index', as: 'top_ups'
-  get '/top_up/:id/success', to: 'top_ups#show_success', as:'top_up_success'
-  get '/top_up/:id/failure', to: 'top_ups#show_failure', as:'top_up_failure'
+  get '/top_up/:id/success', to: 'top_ups#show_success', as: 'top_up_success'
+  get '/top_up/:id/failure', to: 'top_ups#show_failure', as: 'top_up_failure'
   # Add a route for top-up checkout
   get '/top_up/checkout/:amount', to: 'top_ups#checkout', as: 'top_up_checkout'
 
@@ -60,11 +55,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    resources :memberships do
+      post 'add_days', on: :member
+    end
     get 'dashboard/index'
 
-    # Add the following line to define the mejiro_coin_records path
-    get 'mejiro_coin_records', to: 'mejiro_coin#index', as: 'mejiro_coin_records'
+    # Routes for Mejiro Coin
+    get 'mejiro_coin/index', as: 'mejiro_coin_records'
+
+
+    # Custom route for editor action
+    get 'memberships/show', as: 'show_membership'
   end
-
-
 end

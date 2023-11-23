@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_23_021219) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_23_065518) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,7 +60,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_021219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
+    t.integer "days_of_membership"
+    t.integer "user_id"
     t.index ["category_id"], name: "index_memberships_on_category_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -104,6 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_021219) do
   add_foreign_key "credits", "users"
   add_foreign_key "mejiro_coin_transactions", "users"
   add_foreign_key "memberships", "categories"
+  add_foreign_key "memberships", "users"
   add_foreign_key "orders", "memberships"
   add_foreign_key "orders", "users"
   add_foreign_key "top_ups", "users"
