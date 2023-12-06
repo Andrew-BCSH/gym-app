@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :memberships, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :orders, only: [:show, :create]
   resources :payments, only: :new
-  resources :mejiro_coin, only: [:index]
+  #resources :mejiro_coin, only: [:index]
 
   get '/home', to: 'pages#home'
   get '/memberships', to: 'pages#memberships'
@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   get '/events', to: 'pages#events'
   get '/qr_code_scanner', to: 'pages#qr_code_scanner'
   get '/membership_details', to: 'pages#membership_details', as: 'membership_details'
-
+  get "/products/:id", to: "pages#show_product"
+  post "/products/:id", to: "pages#purchase_product", as: "purchase_product"
   # Define the membership checkout route
   get '/membership/:id/checkout', to: 'pages#membership_checkout', as: 'membership_checkout'
 
@@ -60,8 +61,10 @@ Rails.application.routes.draw do
     end
     get 'dashboard/index'
 
+    resources :products
+
     # Routes for Mejiro Coin
-    get 'mejiro_coin/index', as: 'mejiro_coin_records'
+    get 'mejiro_coin/admin', to:"admin/mejiro_coin#index", as: 'mejiro_coin_records'
 
 
     # Custom route for editor action

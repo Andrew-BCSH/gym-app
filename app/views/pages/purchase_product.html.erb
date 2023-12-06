@@ -1,0 +1,24 @@
+<%- if notice %>
+  <p style="color: green"><%= notice %></p>
+<%- else %>
+  <p>
+    <strong>Name:</strong>
+    <%= @receipt.product_name %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @receipt.product_price %>
+  </p>
+
+  <p>
+    <strong>User Balance:</strong>
+    <%= @receipt.user_post_balance %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @receipt.timestamp %>
+  </p>
+
+<%- end %>

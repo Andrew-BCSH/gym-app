@@ -1,0 +1,23 @@
+<!-- app/views/admins/weekly_class_schedule/index.html.erb -->
+<h1>Admin Class Schedule</h1>
+
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+
+<%= form_with(model: current_admin, url: admins_weekly_class_schedule_index_path, method: :patch, local: true, multipart: true) do |form| %>
+  <div class="field">
+    <%= form.label :weekly_class_schedule, 'Upload New Schedule (JPG only)' %>
+    <%= form.file_field :weekly_class_schedule, accept: 'image/jpeg' %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Update Schedule' %>
+  </div>
+<% end %>

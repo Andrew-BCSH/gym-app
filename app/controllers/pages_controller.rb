@@ -73,6 +73,32 @@ class PagesController < ApplicationController
     redirect_to session.url, allow_other_host: true, status: 302
   end
 
+  def show_product
+    @product = Product.find(params[:id])
+  end
+
+  def purchase_product
+    @product = Product.find(params[:id])
+    if @product.in_stock
+      @user_credit = current_user.credit if user_signed_in?
+      if @user_credit.balance >= @product.price
+        @user_credit.balance = @user_credit.balance - @product.price
+        @receipt = Receipt.create!(
+          product_id:@product.id,
+          product_name:@product.name,
+          product_price:@product.price,
+          product_category:@product.category,
+          user_id:current_user.id,
+          user_post_balance:@user_credit.balance,
+          timestamp:DateTime.now
+        )
+      else
+        flash[:notice] = "Not enough Mejiro Coin"
+      end
+    else
+      flash[:notice] = "Product not in stock"
+    end
+  end
 
 
   # Define any other actions and private methods if needed
