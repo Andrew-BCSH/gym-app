@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<!-- app/views/admins/products/index.html.erb -->
+<h1>All Current Products</h1>
 
-<h1>Products</h1>
-
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New product", new_admins_product_path %>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">In Stock</th>
+      <th scope="col">Price Currency</th>
+      <th scope="col">Category</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Product.all.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.in_stock ? 'Yes' : 'No' %></td>
+        <td><%= product.price_currency %></td>
+        <td><%= product.category %></td>
+        <td>
+          <%= link_to "Show", admins_product_path(product), class: "btn btn-info btn-sm" %>
+          <%= link_to "Edit", edit_admins_product_path(product), class: "btn btn-warning btn-sm" %>
+          <%= link_to "Delete", admins_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

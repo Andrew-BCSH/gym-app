@@ -1,5 +1,6 @@
 <!-- app/views/admins/mejiro_coin/index.html.erb -->
 
+<!-- app/views/admins/mejiro_coin/index.html.erb -->
 <h1>Mejiro Coin Usage Records</h1>
 
 <%= form_with(url: admins_mejiro_coin_records_path, method: :get) do |form| %>
@@ -12,7 +13,7 @@
   <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary' %>
 <% end %>
 
-
+<!-- Total Usage Section -->
 <h2>Total Usage</h2>
 <table class="table table-bordered table-striped">
   <thead class="thead-dark">
@@ -78,25 +79,26 @@
 </table>
 
 <!-- Individual Transactions Section -->
-<h2>Individual Transactions</h2>
+<!-- Individual Transactions Section -->
+<h2>Individual Receipts</h2>
 <table class="table table-bordered table-striped">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Username</th>
-      <th scope="col">Product</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Product ID</th>
       <th scope="col">Date</th>
-      <th scope="col">Spend Amount</th>
+      <th scope="col">Product Price</th>
       <th scope="col">Time</th>
     </tr>
   </thead>
   <tbody>
-    <% @transactions.each do |transaction| %>
+    <% @receipts.each do |receipt| %>
       <tr>
-        <td><%= transaction.username %></td>
-        <td><%= transaction.product %></td>
-        <td><%= transaction.date %></td>
-        <td><%= transaction.spend_amount %></td>
-        <td><%= transaction.time %></td>
+        <td><%= receipt.user_id %></td>
+        <td><%= receipt.product_id %></td>
+        <td><%= receipt.timestamp.to_date %></td>
+        <td><%= receipt.product_price %></td>
+        <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
       </tr>
     <% end %>
   </tbody>

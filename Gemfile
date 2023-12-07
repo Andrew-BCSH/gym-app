@@ -27,6 +27,8 @@ gem 'stripe_event'
 
 gem 'jquery-rails'
 
+gem 'simple_form'
+
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]

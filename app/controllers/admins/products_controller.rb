@@ -7,8 +7,10 @@ class Admins::ProductsController < AdminController
   end
 
   # GET /products/1 or /products/1.json
-  def show
+  def set_product
+    @product = Product.find(params[:id])
   end
+
 
   # GET /products/new
   def new
@@ -20,31 +22,33 @@ class Admins::ProductsController < AdminController
   end
 
   # POST /products or /products.json
-  def create
-    @product = Product.new(product_params)
+  # POST /products or /products.json
+def create
+  @product = Product.new(product_params)
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+  respond_to do |format|
+    if @product.save
+      format.html { redirect_to admins_products_path, notice: "Product was successfully created." }
+      format.json { render :show, status: :created, location: @product }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @product.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
+        format.html { redirect_to admins_product_path(@product), notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /products/1 or /products/1.json
@@ -52,7 +56,7 @@ class Admins::ProductsController < AdminController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
+      format.html { redirect_to admins_products_url, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
     end
   end

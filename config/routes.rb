@@ -37,7 +37,6 @@ Rails.application.routes.draw do
     get 'new_payment', to: 'payments#new', as: 'new_payment'
   end
 
-  mount StripeEvent::Engine, at: '/stripe-webhooks'
 
   get 'go_back', to: 'pages#home'
 
@@ -58,13 +57,14 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :memberships do
       post 'add_days', on: :member
+
     end
     get 'dashboard/index'
 
-    resources :products
+    resources :products, path: 'products'
 
     # Routes for Mejiro Coin
-    get 'mejiro_coin/admin', to:"admin/mejiro_coin#index", as: 'mejiro_coin_records'
+    get 'mejiro_coin/admin', to: 'mejiro_coin#index', as: 'mejiro_coin_records'
 
 
     # Custom route for editor action

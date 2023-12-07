@@ -78,20 +78,14 @@ class PagesController < ApplicationController
   end
 
   def purchase_product
-    @product = Product.find(params[:id])
+    @product = find_product(params[:id])
+    return unless @product
+
     if @product.in_stock
       @user_credit = current_user.credit if user_signed_in?
-      if @user_credit.balance >= @product.price
-        @user_credit.balance = @user_credit.balance - @product.price
-        @receipt = Receipt.create!(
-          product_id:@product.id,
-          product_name:@product.name,
-          product_price:@product.price,
-          product_category:@product.category,
-          user_id:current_user.id,
-          user_post_balance:@user_credit.balance,
-          timestamp:DateTime.now
-        )
+
+      if user_has_enough_credit?
+        process_purchase
       else
         flash[:notice] = "Not enough Mejiro Coin"
       end
@@ -99,6 +93,37 @@ class PagesController < ApplicationController
       flash[:notice] = "Product not in stock"
     end
   end
+
+  private
+
+  def find_product(id)
+    Product.find_by(id: id)
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "Product not found"
+    nil
+  end
+
+  def user_has_enough_credit?
+    @user_credit&.balance.to_i >= @product.price
+  end
+
+  def process_purchase
+    @user_credit.decrement!(:balance, @product.price)
+    create_receipt
+  end
+
+  def create_receipt
+    @receipt = Receipt.create!(
+      product_id: @product.id,
+      product_name: @product.name,
+      product_price: @product.price,
+      product_category: @product.category,
+      user_id: current_user.id,
+      user_post_balance: @user_credit.balance,
+      timestamp: DateTime.now
+    )
+  end
+
 
 
   # Define any other actions and private methods if needed
