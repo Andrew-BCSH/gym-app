@@ -29,7 +29,7 @@ gem 'jquery-rails'
 
 gem 'simple_form'
 
-
+gem 'pg'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
