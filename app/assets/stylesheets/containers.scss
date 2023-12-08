@@ -1,33 +1,9 @@
-.btn-primary-container {
-  display: flex;
-  flex-direction: column; /* Arrange tiles vertically */
-  align-items: center; /* Center-align tiles horizontally */
-  max-width: 1000px; /* Set the maximum width of the container */
-  max-height: 2000px;
-  margin: 5; /* Center the container horizontally */
-  padding: 25px; /* Add some padding for spacing */
-  background-color: white;
-  border-radius: 10px;
-  border: 1px solid #000;
-  border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
-  box-sizing: border-box;
-}
+
 
 .container {
-  display: flex;
-  flex-direction: column; /* Arrange tiles vertically */
-  align-items: center; /* Center-align tiles horizontally */
-  max-width: 1000px; /* Set the maximum width of the container */
-  max-height: 2000px;
-  margin: 5; /* Center the container horizontally */
-  padding: 25px; /* Add some padding for spacing */
-  background-color: white;
-  border-radius: 10px;
-  border: 1px solid #000;
-  border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
-  box-sizing: border-box;
+  width: 375px;
+  height: 812px;
+  background: #FFF;
 }
 
 .card1 {

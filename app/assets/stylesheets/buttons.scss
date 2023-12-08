@@ -1,65 +1,19 @@
 
 /* Style for each tile */
 .btn-primary {
-  appearance: button;
-  background-color: #BA0D0D;
-  background-image: none;
-  border: 1px solid #000;
-  border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 20px;
-  margin: 0 5px 10px 0;
-  overflow: visible;
-  padding: 20px 20px;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  height: 60px;
-  width: 300px;
-  margin-top: 10px;
+  display: flex;
+  width: 341px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  border-radius: 10px;
+  background: #BA0D0D;
+  border-color: #000;
+  margin-bottom: 10px; /* Adjust the margin as needed */
 }
 
-.btn-primary:focus {
-  text-decoration: none;
-}
 
-.btn-primary {
-  text-decoration: none;
-}
-
-.btn-primary:active {
-  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
-  outline: 0;
-}
-
-.btn-primary:not([disabled]):active {
-  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
-  transform: translate(2px, 2px);
-}
-
-@media (min-width: 768px) {
-  .tile {
-    padding: 12px 50px;
-  }
-}
-
-/* Style for the icon (optional) */
-.btn-primary-link {
-  text-decoration: none;
-  color: #e0e0e0;
-  margin: auto;
-}
-
-/* Hover effect */
-.btn-primary:hover {
-  background-color: #a94444; /* Change the background color on hover */
-}
 
 /* Custom Small Button Styles */
 .btn-secondary {
