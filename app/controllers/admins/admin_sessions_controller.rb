@@ -1,4 +1,4 @@
-class Admins::SessionsController < Devise::SessionsController
+class Admins::AdminSessionsController < Devise::SessionsController
   # This will execute after a successful sign-in
   def after_sign_in_path_for(resource)
     # Redirect to the home page after sign-in
