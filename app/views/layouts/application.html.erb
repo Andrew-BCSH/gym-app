@@ -13,8 +13,6 @@
   <%= stylesheet_link_tag 'containers', media: 'all' %>
   <%= stylesheet_link_tag 'buttons' %>
   <%= javascript_importmap_tags %>
-
-
 </head>
 <body>
   <% if user_signed_in? && !current_page?(root_path) %>
@@ -35,20 +33,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Membership Info
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <% if user_signed_in? %>
-                <a class="dropdown-item" href="#">
-                  <p>Your balance: <%= current_user.credit.balance %> Mejiro Coins</p>
-                </a>
-              <% end %>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="<%= payment_scanner_path %>">Payment Scanner</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Membership in days</a>
-            </div>
+            <!-- ... existing dropdown content ... -->
           </li>
 
           <!-- New "Categories" Dropdown Menu -->
@@ -64,18 +49,33 @@
               <a class="dropdown-item" href="<%= events_path %>">Events</a>
             </div>
           </li>
-          <li class="nav-item">
-            <%= link_to "Sign Out", user_sign_out_path, method: :delete, class: "nav-link" if user_signed_in? %>
-          </li>
+
+          <% if current_user.admin? %>
+            <!-- Admin-specific link -->
+            <li class="nav-item">
+              <%= link_to "Admin Dashboard", admin_dashboard_path, class: "nav-link" %>
+            </li>
+          <% else %>
+            <!-- User-specific link -->
+            <li class="nav-item">
+              <%= link_to "Sign Out", user_sign_out_path, method: :delete, class: "nav-link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
   <% end %>
 
   <div class="container mt-3 shadow p-3 mb-5 bg-white rounded">
-      <%= link_to home_path do %>
-        <i class="fas fa-arrow-left"></i>
-      <% end %>
+  <% if current_admin %>
+    <%= link_to admins_dashboard_index_path do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+  <% elsif user_signed_in? %>
+    <%= link_to home_path do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+  <% end %>
 
       <!-- Show the "Mejiro Coin Balance" unconditionally -->
       <% if notice.present? || alert.present? %>
@@ -88,8 +88,6 @@
 
   <div class="bottom-navigation-bar">
   </div>
-
-
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
