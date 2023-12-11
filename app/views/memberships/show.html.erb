@@ -1,4 +1,4 @@
-<div class="container py-3">
+
   <div class="row">
     <div class="col-sm-12 col-md-6">
       <%= image_tag(@membership.photo_url, width: '100%') %>
@@ -7,8 +7,8 @@
       <h1><%= @membership.name %></h1>
       <p>Some description of our memberships.</p>
       <p>Amount: <%= humanized_money_with_symbol(@membership.price) %></p>
-      <div class="btn btn-secondary">
-  <a href="/membership/<%= @membership.id %>/checkout" data-turbo="false" class="btn-secondary-font">Purchase</a>
+      <div class="btn btn-primary">
+  <a href="/membership/<%= @membership.id %>/checkout" data-turbo="false" class="btn-primary-font">Purchase</a>
 </div>
   </div>
     </div>
