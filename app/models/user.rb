@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   def initialize_user_credit
     # Create a Credit record for the user with an initial balance of 0 Mejiro Coins
-    Credit.create(user: self, balance: 1000000)
+    Credit.create(user: self, balance:0)
   end
 
   # Method to update user's balance

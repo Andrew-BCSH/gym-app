@@ -57,17 +57,19 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :memberships do
       post 'add_days', on: :member
-
     end
+
     get 'dashboard/index'
 
     resources :products, path: 'products'
 
     # Routes for Mejiro Coin
     get 'mejiro_coin/admin', to: 'mejiro_coin#index', as: 'mejiro_coin_records'
-
+    # Add mejirocoin to user balance
+    post 'mejiro_coin/add_credit', to: 'mejiro_coin#add_credit', as: 'add_credit_to_user'
 
     # Custom route for editor action
     get 'memberships/show', as: 'show_membership'
+
   end
 end

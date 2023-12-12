@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">
     <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 50, height: 50) %>
@@ -26,12 +28,89 @@
 <!-- Container for primary buttons -->
  <div class="btn-primary-container">
     <h1>Admin Dashboard</h1>
-    <%= link_to 'Membership Show Page', admins_show_membership_path, class: 'btn btn-primary btn-primary-font' %>
-    <%= link_to "Private Class Bookings", book_a_private_class_path, class: "btn btn-primary btn-primary-font" %>
-    <%= link_to "Mejiro Coin Records", admins_mejiro_coin_records_path, class: "btn btn-primary btn-primary-font" %>
-    <%= link_to 'Connect to Stripe', 'https://dashboard.stripe.com/login', class: 'btn btn-primary btn-primary-font' %>
-    <%= link_to "Weekly Class Schedule Editer", weekly_class_schedule_path, class: "btn btn-primary btn-primary-font" %>
-    <%= link_to "Events Editer", events_path, class: "btn btn-primary btn-primary-font" %>
-    <%= link_to "Product Management", new_admins_product_path, class: "btn btn-primary btn-primary-font" %>
   </div>
 </nav>
+
+  <div class="btn-primary-container">
+  <%= link_to admins_show_membership_path, class: "btn btn-primary btn-primary-font" do %>
+    <span class="button-icon symbol">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 7C10.5 5.89543 11.3954 5 12.5 5C13.6046 5 14.5 5.89543 14.5 7C14.5 8.10457 13.6046 9 12.5 9C11.3954 9 10.5 8.10457 10.5 7ZM12.5 3C10.2909 3 8.5 4.79086 8.5 7C8.5 9.20914 10.2909 11 12.5 11C14.7091 11 16.5 9.20914 16.5 7C16.5 4.79086 14.7091 3 12.5 3ZM12.7692 14C15.6867 14 18.0949 16.1801 18.4538 19H6.54615C6.90506 16.1801 9.31332 14 12.2308 14H12.7692ZM12.2308 12C7.96118 12 4.5 15.4612 4.5 19.7308C4.5 20.4317 5.06825 21 5.76923 21H19.2308C19.9317 21 20.5 20.4317 20.5 19.7308C20.5 15.4612 17.0388 12 12.7692 12H12.2308Z" fill="white"/></svg>') %>
+    </span>
+    Memberships
+    <span class="button-icon arrow">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><g clip-path="url(#clip0_1_158)"><path d="M16.51 11H4.5V13H16.51V16L20.5 12L16.51 8V11Z" fill="white"/></g><defs><clipPath id="clip0_1_158"><rect width="24" height="24" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>') %>
+    </span>
+  <% end %>
+</div>
+  <div class="btn-primary-container">
+  <%= link_to book_a_private_class_path, class: "btn btn-primary btn-primary-font" do %>
+    <span class="button-icon symbol">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9 1C7.89543 1 7 1.89543 7 3H6C4.34315 3 3 4.34315 3 6V20C3 21.6569 4.34315 23 6 23H18C19.6569 23 21 21.6569 21 20V6C21 4.34315 19.6569 3 18 3H17C17 1.89543 16.1046 1 15 1H9ZM17 5C17 6.10457 16.1046 7 15 7H9C7.89543 7 7 6.10457 7 5H6C5.44772 5 5 5.44772 5 6V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V6C19 5.44772 18.5523 5 18 5H17ZM9 3H15V5H9V3Z" fill="white"/>
+</svg>') %>
+    </span>
+    Private Classes
+    <span class="button-icon arrow">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><g clip-path="url(#clip0_1_158)"><path d="M16.51 11H4.5V13H16.51V16L20.5 12L16.51 8V11Z" fill="white"/></g><defs><clipPath id="clip0_1_158"><rect width="24" height="24" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>') %>
+    </span>
+  <% end %>
+</div>
+  <div class="btn-primary-container">
+  <%= link_to admins_mejiro_coin_records_path, class: "btn btn-primary btn-primary-font" do %>
+    <span class="button-icon symbol">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M16.3821 14.304C16.3821 11.855 14.9493 11.0303 12.1553 10.6554C10.1015 10.3556 9.69557 9.85577 9.69557 8.85618C9.69557 7.85659 10.3881 7.25684 11.7254 7.25684C12.9433 7.25684 13.6359 7.68166 13.9224 8.70624C13.9463 8.8062 14.018 8.90616 14.1135 8.98113C14.209 9.0561 14.3045 9.08109 14.4239 9.08109H15.4986C15.5702 9.08109 15.6418 9.0561 15.6896 9.03111C15.7612 9.00612 15.809 8.95614 15.8568 8.90616C15.9045 8.85618 15.9284 8.78121 15.9523 8.73123C15.9762 8.65626 15.9762 8.58129 15.9523 8.50633C15.618 6.90698 14.5672 5.95737 12.9433 5.65749V3.98317C12.9433 3.83324 12.8956 3.70829 12.8 3.60833C12.7045 3.50837 12.5851 3.45839 12.4418 3.45839H11.415C11.2717 3.45839 11.1523 3.50837 11.0568 3.60833C10.9612 3.70829 10.9135 3.83324 10.9135 3.98317V5.60751C8.88363 5.90739 7.59407 7.28183 7.59407 9.0561C7.59407 11.3552 8.95527 12.2298 11.7732 12.6296C13.7075 12.9545 14.2568 13.3793 14.2568 14.5039C14.2568 15.6284 13.3254 16.3781 12.012 16.3781C10.2448 16.3781 9.64781 15.5784 9.43288 14.5539C9.409 14.4289 9.33736 14.3289 9.26571 14.254C9.17019 14.179 9.05079 14.129 8.95527 14.129H7.78512C7.71348 14.129 7.64183 14.154 7.59407 14.179C7.52243 14.204 7.47467 14.254 7.42691 14.304C7.37915 14.3539 7.35527 14.4289 7.33139 14.4789C7.30751 14.5539 7.30751 14.6288 7.33139 14.6788C7.61795 16.4281 8.71646 17.7026 10.9374 18.0024V19.6518C10.9374 19.8017 10.9851 19.9267 11.0806 20.0266C11.1762 20.1266 11.2956 20.1766 11.4388 20.1766H12.4657C12.609 20.1766 12.7284 20.1266 12.8239 20.0266C12.9194 19.9267 12.9672 19.8017 12.9672 19.6518V18.0024C15.0448 17.6526 16.3821 16.1782 16.3821 14.304Z" fill="white"/>
+  <path d="M8.66866 21.8009C6.73433 21.0762 5.06269 19.7267 3.86866 17.9775C2.67463 16.2282 2.05373 14.129 2.05373 12.0049C2.05373 9.88077 2.69851 7.78163 3.86866 6.03234C5.06269 4.28306 6.73433 2.93361 8.66866 2.20891C8.78806 2.15893 8.90746 2.05897 8.9791 1.93402C9.05075 1.80907 9.09851 1.68412 9.09851 1.53418V0.55958C9.09851 0.48461 9.09851 0.384651 9.05075 0.309682C9.02687 0.234713 8.95522 0.159743 8.88358 0.109763C8.81194 0.0597834 8.7403 0.0347932 8.64478 0.00980341C8.54925 -0.0151864 8.47761 0.00980456 8.40597 0.0597841C5.97015 0.859457 3.84478 2.4588 2.31642 4.60792C0.81194 6.75705 0 9.33099 0 12.0049C0 14.6538 0.81194 17.2528 2.31642 19.4019C3.8209 21.551 5.94627 23.1254 8.40597 23.95C8.47761 23.975 8.57313 24 8.64478 24C8.71642 24 8.81194 23.95 8.88358 23.9C8.95522 23.8501 9.00299 23.7751 9.05075 23.7001C9.07463 23.6251 9.09851 23.5252 9.09851 23.4502V22.4756C9.09851 22.3257 9.05075 22.2007 8.9791 22.0758C8.90746 21.9508 8.81194 21.8509 8.66866 21.8009Z" fill="white"/>
+  <path d="M15.594 0.0847708C15.5224 0.059781 15.4269 0.03479 15.3552 0.03479C15.2836 0.03479 15.1881 0.08477 15.1164 0.13475C15.0448 0.184729 14.997 0.259699 14.9492 0.334669C14.9254 0.409638 14.9015 0.509597 14.9015 0.584566V1.55917C14.9015 1.70911 14.9493 1.83406 15.0209 1.959C15.0925 2.08395 15.2119 2.15892 15.3313 2.23389C17.2657 2.9586 18.9373 4.30804 20.1313 6.05733C21.3254 7.80661 21.9463 9.90576 21.9463 12.0299C21.9463 14.154 21.3015 16.2532 20.1313 18.0024C18.9373 19.7517 17.2657 21.1012 15.3313 21.8259C15.2119 21.8759 15.0925 21.9758 15.0209 22.0758C14.9493 22.2007 14.9015 22.3257 14.9015 22.4756V23.4502C14.9015 23.5252 14.9015 23.6251 14.9492 23.7001C14.9731 23.7751 15.0448 23.8501 15.1164 23.9C15.1881 23.95 15.2597 23.975 15.3552 24C15.4269 24 15.5224 24 15.594 23.95C18.0299 23.1503 20.1552 21.551 21.6836 19.4019C23.1881 17.2528 24 14.6788 24 12.0049C24 9.35598 23.1881 6.75704 21.6836 4.60792C20.1552 2.48379 18.0299 0.884444 15.594 0.0847708Z" fill="white"/>
+</svg>') %>
+    </span>
+    Mejiro Coin Data
+    <span class="button-icon arrow">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><g clip-path="url(#clip0_1_158)"><path d="M16.51 11H4.5V13H16.51V16L20.5 12L16.51 8V11Z" fill="white"/></g><defs><clipPath id="clip0_1_158"><rect width="24" height="24" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>') %>
+    </span>
+  <% end %>
+</div>
+  <div class="btn-primary-container">
+  <%= link_to 'https://dashboard.stripe.com/login', class: "btn btn-primary btn-primary-font" do %>
+    <span class="button-icon symbol">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M6 6C5.44772 6 5 6.44772 5 7V10H3V7C3 5.34315 4.34315 4 6 4H10V6H6ZM19 7C19 6.44772 18.5523 6 18 6L14 6V4H18C19.6569 4 21 5.34315 21 7V10L19 10V7ZM19 17C19 17.5523 18.5523 18 18 18L14 18V20L18 20C19.6569 20 21 18.6569 21 17V14L19 14V17ZM5 17C5 17.5523 5.44772 18 6 18L10 18V20H6C4.34315 20 3 18.6569 3 17V14H5L5 17ZM13 9C13 8.44772 12.5523 8 12 8C11.4477 8 11 8.44772 11 9V15C11 15.5523 11.4477 16 12 16C12.5523 16 13 15.5523 13 15V9ZM16 8C16.5523 8 17 8.44772 17 9V15C17 15.5523 16.5523 16 16 16C15.4477 16 15 15.5523 15 15V9C15 8.44772 15.4477 8 16 8ZM9 9C9 8.44772 8.55228 8 8 8C7.44772 8 7 8.44772 7 9L7 15C7 15.5523 7.44772 16 8 16C8.55229 16 9 15.5523 9 15L9 9Z" fill="white"/>
+</svg>') %>
+    </span>
+    Payment Scanner
+    <span class="button-icon arrow">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><g clip-path="url(#clip0_1_158)"><path d="M16.51 11H4.5V13H16.51V16L20.5 12L16.51 8V11Z" fill="white"/></g><defs><clipPath id="clip0_1_158"><rect width="24" height="24" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>') %>
+    </span>
+  <% end %>
+</div>
+ <div class="btn-primary-container">
+  <%= link_to weekly_class_schedule_path, class: "btn btn-primary btn-primary-font" do %>
+    <span class="button-icon symbol">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9 1C7.89543 1 7 1.89543 7 3H6C4.34315 3 3 4.34315 3 6V20C3 21.6569 4.34315 23 6 23H18C19.6569 23 21 21.6569 21 20V6C21 4.34315 19.6569 3 18 3H17C17 1.89543 16.1046 1 15 1H9ZM17 5C17 6.10457 16.1046 7 15 7H9C7.89543 7 7 6.10457 7 5H6C5.44772 5 5 5.44772 5 6V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V6C19 5.44772 18.5523 5 18 5H17ZM9 3H15V5H9V3Z" fill="white"/>
+</svg>') %>
+    </span>
+    Weekly Schedule
+    <span class="button-icon arrow">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><g clip-path="url(#clip0_1_158)"><path d="M16.51 11H4.5V13H16.51V16L20.5 12L16.51 8V11Z" fill="white"/></g><defs><clipPath id="clip0_1_158"><rect width="24" height="24" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>') %>
+    </span>
+  <% end %>
+</div>
+  <div class="btn-primary-container">
+  <%= link_to new_admins_product_path, class: "btn btn-primary btn-primary-font" do %>
+    <span class="button-icon symbol">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9 1C7.89543 1 7 1.89543 7 3H6C4.34315 3 3 4.34315 3 6V20C3 21.6569 4.34315 23 6 23H18C19.6569 23 21 21.6569 21 20V6C21 4.34315 19.6569 3 18 3H17C17 1.89543 16.1046 1 15 1H9ZM17 5C17 6.10457 16.1046 7 15 7H9C7.89543 7 7 6.10457 7 5H6C5.44772 5 5 5.44772 5 6V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V6C19 5.44772 18.5523 5 18 5H17ZM9 3H15V5H9V3Z" fill="white"/>
+</svg>') %>
+    </span>
+    Inventory
+    <span class="button-icon arrow">
+      <%= raw('<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><g clip-path="url(#clip0_1_158)"><path d="M16.51 11H4.5V13H16.51V16L20.5 12L16.51 8V11Z" fill="white"/></g><defs><clipPath id="clip0_1_158"><rect width="24" height="24" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>') %>
+    </span>
+  <% end %>
+</div>
+
+</body>
+<h5>Copyright Mejiro 2023</h5>
+
+</html>

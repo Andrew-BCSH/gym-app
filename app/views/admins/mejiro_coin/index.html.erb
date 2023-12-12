@@ -1,4 +1,27 @@
 <!-- app/views/admins/mejiro_coin/index.html.erb -->
+<h1>Add Credit to User</h1>
+
+<!-- Display success notice -->
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<!-- Display error notice -->
+<% if flash[:alert] %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
+
+<div class="add-credit-form">
+  <%= form_with(url: admins_add_credit_to_user_path, method: :post) do |form| %>
+    <%= form.text_field :username, placeholder: 'Enter Username', class: 'form-control' %>
+    <%= form.text_field :credit_amount, placeholder: 'Enter Credit Amount', class: 'form-control' %>
+    <%= form.submit 'Add Credit', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+
+
+
 <h1>Mejiro Coin Usage Records</h1>
 
 <%= form_with(url: admins_mejiro_coin_records_path, method: :get) do |form| %>
@@ -13,32 +36,34 @@
 
 <!-- Total Usage Section -->
 <h2>Total Usage</h2>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Period</th>
-      <th scope="col">Total Spend (Mejiro Coins)</th>
-      <th scope="col">Compare to Previous</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Today</td>
-      <td><%= @total_spend_day %></td>
-      <td><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
-    </tr>
-    <tr>
-      <td>This Week</td>
-      <td><%= @total_spend_week %></td>
-      <td><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
-    </tr>
-    <tr>
-      <td>This Month</td>
-      <td><%= @total_spend_month %></td>
-      <td><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="scrollable-table">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Period</th>
+        <th scope="col">Total Spend (Mejiro Coins)</th>
+        <th scope="col">Compare to Previous</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Today</td>
+        <td><%= @total_spend_day %></td>
+        <td><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
+      </tr>
+      <tr>
+        <td>This Week</td>
+        <td><%= @total_spend_week %></td>
+        <td><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
+      </tr>
+      <tr>
+        <td>This Month</td>
+        <td><%= @total_spend_month %></td>
+        <td><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <% def compare_to_previous(current, previous) %>
   <% return 'No data available' if previous.nil? %>
@@ -49,55 +74,58 @@
 
 <!-- Total Top Ups Section -->
 <h2>Total Top Ups</h2>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Period</th>
-      <th scope="col">Total Top Ups (Mejiro Coins)</th>
-      <th scope="col">Compare to Previous</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Today</td>
-      <td><%= @total_top_up_today %></td>
-      <td><%= compare_to_previous(@total_top_up_today, @total_top_up_today_prev) %></td>
-    </tr>
-    <tr>
-      <td>This Week</td>
-      <td><%= @total_top_up_week %></td>
-      <td><%= compare_to_previous(@total_top_up_week, @total_top_up_week_prev) %></td>
-    </tr>
-    <tr>
-      <td>This Month</td>
-      <td><%= @total_top_up_month %></td>
-      <td><%= compare_to_previous(@total_top_up_month, @total_top_up_month_prev) %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="scrollable-table">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Period</th>
+        <th scope="col">Total Top Ups (Mejiro Coins)</th>
+        <th scope="col">Compare to Previous</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Today</td>
+        <td><%= @total_top_up_today %></td>
+        <td><%= compare_to_previous(@total_top_up_today, @total_top_up_today_prev) %></td>
+      </tr>
+      <tr>
+        <td>This Week</td>
+        <td><%= @total_top_up_week %></td>
+        <td><%= compare_to_previous(@total_top_up_week, @total_top_up_week_prev) %></td>
+      </tr>
+      <tr>
+        <td>This Month</td>
+        <td><%= @total_top_up_month %></td>
+        <td><%= compare_to_previous(@total_top_up_month, @total_top_up_month_prev) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!-- Individual Transactions Section -->
-<!-- Individual Transactions Section -->
 <h2>Individual Receipts</h2>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">User ID</th>
-      <th scope="col">Product ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">Product Price</th>
-      <th scope="col">Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @receipts.each do |receipt| %>
+<div class="scrollable-table">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
       <tr>
-        <td><%= receipt.user_id %></td>
-        <td><%= receipt.product_id %></td>
-        <td><%= receipt.timestamp.to_date %></td>
-        <td><%= receipt.product_price %></td>
-        <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+        <th scope="col">User ID</th>
+        <th scope="col">Product ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Product Price</th>
+        <th scope="col">Time</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @receipts.each do |receipt| %>
+        <tr>
+          <td><%= receipt.user_id %></td>
+          <td><%= receipt.product_id %></td>
+          <td><%= receipt.timestamp.to_date %></td>
+          <td><%= receipt.product_price %></td>
+          <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

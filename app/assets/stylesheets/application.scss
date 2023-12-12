@@ -29,3 +29,8 @@
   display: flex;
   margin-left: 20px;
 }
+
+.scrollable-table {
+  max-height: 300px; /* Set your preferred max height */
+  overflow: auto;
+}

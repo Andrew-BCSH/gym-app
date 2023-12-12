@@ -30,7 +30,7 @@ Membership.create!(sku: 'yearly', name: 'Yearly', category: long, price_cents: 9
 
 puts 'Creating top-ups...'
 TopUp.create!(
-  state: 'pending',
+  state: 'pending'
   amount_cents: 500000,  # Amount in cents
   amount_currency: 'IDR', # Currency code
   user: user1
