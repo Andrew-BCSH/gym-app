@@ -4,6 +4,12 @@
   background: #FFF;
 }
 
+.scrollable-container {
+  max-height: 600px; /* Set the maximum height as needed */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the maximum height */
+}
+
+
 
 .card-img-top {
   width: 50px;

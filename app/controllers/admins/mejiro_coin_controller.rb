@@ -25,25 +25,39 @@ class Admins::MejiroCoinController < ApplicationController
     render :index
   end
 
-    def add_credit
-      @user = User.find_by(username: params[:username])
+  def add_credit
+    @user = User.find_by(username: params[:username])
 
-      if @user
-        credit_amount = params[:credit_amount].to_i
-        @credit = @user.credit
+    if @user
+      credit_amount = params[:credit_amount].to_i
+      puts "Params Credit Amount: #{params[:credit_amount]}"
+      puts "Credit Amount: #{credit_amount}"
 
-        if @credit
-          # Update the balance by adding the credit amount
-          @credit.update(balance: @credit.balance + credit_amount)
-          flash[:notice] = 'Credit added successfully.'
-        else
-          flash[:alert] = 'Credit record not found for the user.'
-        end
+      @credit = @user.credit
+
+      if @credit
+        # Update the balance by adding the credit amount
+        @credit.update(balance: @credit.balance + credit_amount)
+        flash[:notice] = 'Credit added successfully.'
+
+        # Create a receipt for the Mejiro Coin top-up
+        receipt = Receipt.create(
+          user_id: @user.id,
+          timestamp: Time.now,
+          credit_amount: credit_amount
+        )
+
+        puts "Receipt ID: #{receipt.id}"  # Add this line to check the receipt ID
+
       else
-        flash[:alert] = 'User not found.'
+        flash[:alert] = 'Credit record not found for the user.'
       end
-
-      # Respond with a redirect or other response if needed
-      redirect_to admins_mejiro_coin_records_path
+    else
+      flash[:alert] = 'User not found.'
     end
+
+    # Respond with a redirect or other response if needed
+    redirect_to admins_mejiro_coin_records_path
   end
+
+end

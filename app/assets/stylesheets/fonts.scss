@@ -52,13 +52,26 @@ h5{
   /* Add any other styles you want for h1 headers */
 }
 
-.btn-secondary-font
-{
-  font-family: Arial !important;
-  color: white !important;
-  font-weight: bold !important;
+.btn-primary-font {
+  color: #FFF;
+/* bold */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
+  flex: 1 0 0;
+}
+
+.btn-secondary-font {
+  color: #FFF;
+/* bold */
+  font-family: Inter;
   font-size: 14px;
-  text-align: center;
-  -webkit-text-stroke: 1px black !important; /* Add a black border around each letter */
-  text-shadow: 1px black !important; /* Add a black border around each letter (non-Webkit browsers) */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
+  flex: 1 0 0;
 }

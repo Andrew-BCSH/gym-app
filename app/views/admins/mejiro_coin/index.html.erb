@@ -1,4 +1,7 @@
 <!-- app/views/admins/mejiro_coin/index.html.erb -->
+
+<div class="scrollable-container">
+
 <h1>Add Credit to User</h1>
 
 <!-- Display success notice -->
@@ -15,24 +18,51 @@
   <%= form_with(url: admins_add_credit_to_user_path, method: :post) do |form| %>
     <%= form.text_field :username, placeholder: 'Enter Username', class: 'form-control' %>
     <%= form.text_field :credit_amount, placeholder: 'Enter Credit Amount', class: 'form-control' %>
-    <%= form.submit 'Add Credit', class: 'btn btn-primary' %>
+    <%= form.submit 'Add Credit', class: 'btn btn-primary btn-primary-font' %>
   <% end %>
 </div>
 
+<!-- Individual Transactions Section -->
+<h2>Individual Receipts</h2>
+<div class="scrollable-table">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Date</th>
+        <th scope="col">Credit Amount</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @receipts.each do |receipt| %>
+        <tr>
+          <td><%= receipt.user_id %></td>
+          <td><%= receipt.user.username %></td>
+          <td><%= receipt.timestamp.to_date %></td>
+          <td><%= receipt.credit_amount.inspect %></td>
+          <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 
 
 <h1>Mejiro Coin Usage Records</h1>
 
-<%= form_with(url: admins_mejiro_coin_records_path, method: :get) do |form| %>
+<%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
   <%= form.select :username, User.pluck(:username, :username), { include_blank: 'Select User' }, class: 'form-control' %>
   <%= form.select :product, MejiroCoinTransaction.pluck(:product, :product).uniq, { include_blank: 'Select Product' }, class: 'form-control' %>
   <%= form.date_field :date, placeholder: 'Date', class: 'form-control' %>
   <%= form.select :spend, options_for_select([['Select Spend', nil], ['Less than 10,000', 10000], ['Between 10,000 and 50,000', 50000], ['More than 50,000', 100000]]), {}, class: 'form-control' %>
   <%= form.time_field :time, placeholder: 'Time', class: 'form-control' %>
-  <%= form.submit 'Filter', class: 'btn btn-secondary' %>
-  <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary' %>
+  <%= form.submit 'Filter', class: 'btn btn-secondary btn-secondary-font' %>
+  <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary btn-secondary-font' %>
 <% end %>
+
 
 <!-- Total Usage Section -->
 <h2>Total Usage</h2>
@@ -111,6 +141,7 @@
       <tr>
         <th scope="col">User ID</th>
         <th scope="col">Product ID</th>
+        <th scope="col">Product Name</th>
         <th scope="col">Date</th>
         <th scope="col">Product Price</th>
         <th scope="col">Time</th>
@@ -121,6 +152,7 @@
         <tr>
           <td><%= receipt.user_id %></td>
           <td><%= receipt.product_id %></td>
+          <td><%= receipt.product_name %></td>
           <td><%= receipt.timestamp.to_date %></td>
           <td><%= receipt.product_price %></td>
           <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
