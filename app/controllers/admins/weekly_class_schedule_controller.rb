@@ -1,5 +1,5 @@
 # app/controllers/admins/weekly_class_schedule_controller.rb
-class Admins::WeeklyClassScheduleController < ApplicationController
+class Admins::WeeklyClassScheduleController < AdminController
   before_action :authenticate_admin!
 
   def index

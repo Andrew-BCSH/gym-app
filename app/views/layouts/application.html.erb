@@ -5,14 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag 'card_margins', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag 'fonts' %>
-  <%= stylesheet_link_tag 'containers', media: 'all' %>
-  <%= stylesheet_link_tag 'buttons' %>
-  <%= stylesheet_link_tag 'forms' %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
 <body>
@@ -62,24 +57,12 @@
     </nav>
   <% end %>
 
-  <div class="container mt-3 shadow p-3 mb-5 bg-white rounded">
-    <% if current_admin %>
-      <%= link_to admins_dashboard_index_path do %>
-        <i class="fas fa-arrow-left"></i>
-      <% end %>
-    <% elsif user_signed_in? %>
-      <%= link_to home_path do %>
-        <i class="fas fa-arrow-left"></i>
-      <% end %>
-    <% end %>
-
     <!-- Show the "Mejiro Coin Balance" unconditionally -->
     <% if notice.present? || alert.present? %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     <% end %>
     <%= yield %>
-  </div>
 
   <div class="bottom-navigation-bar">
   </div>

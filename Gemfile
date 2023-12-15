@@ -31,6 +31,8 @@ gem 'simple_form'
 
 gem 'pg'
 
+gem 'heroicon'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -97,3 +99,5 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+gem "tailwindcss-rails", "~> 2.0"

@@ -1,5 +1,5 @@
 # app/controllers/admin/memberships_controller.rb
-class Admins::MembershipsController < ApplicationController
+class Admins::MembershipsController < AdminController
 
   def show
     # Retrieve all users and their memberships

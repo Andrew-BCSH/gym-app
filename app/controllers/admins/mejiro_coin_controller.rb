@@ -1,7 +1,5 @@
-# app/controllers/admins/mejiro_coin_controller.rb
 
-# app/controllers/admins/mejiro_coin_controller.rb
-class Admins::MejiroCoinController < ApplicationController
+class Admins::MejiroCoinController < AdminController
   include Admins::MejiroCoinHelper
 
   def index

@@ -1,33 +1,53 @@
-<h1>All Users and Their Membership Details</h1>
+<h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">All Users</h1>
 
-<table id="membershipsTable" class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>Username</th>
-      <th>Membership Name</th>
-      <th>Price</th>
-      <th>Days of Membership</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users_with_memberships.each do |user| %>
-      <% if user.memberships.present? %>
-        <% user.memberships.each do |membership| %>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+      <tr>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Username</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Membership Type</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Price</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Remaining Membership (days)</th>
+        <th class="px-4 py-2"></th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+      <% @users_with_memberships.each do |user| %>
+        <% if user.memberships.present? %>
+          <% user.memberships.each do |membership| %>
+            <tr>
+              <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><%= user.username %></td>
+              <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= membership.name %></td>
+              <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= membership.price %></td>
+              <td class="whitespace-nowrap px-4 py-2 text-gray-700" id="membershipDays<%= membership.id %>"><%= membership.days_of_membership %></td>
+              <td class="whitespace-nowrap px-4 py-2">
+                <a
+                  href="#"
+                  class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                >
+                  View
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
           <tr>
-            <td><%= user.username %></td>
-            <td><%= membership.name %></td>
-            <td><%= membership.price %></td>
-            <td id="membershipDays<%= membership.id %>"><%= membership.days_of_membership %></td>
+            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><%= user.username %></td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">No Membership</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">N/A</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700" id="membershipDays<%= user.id %>">0</td>
+            <td class="whitespace-nowrap px-4 py-2">
+              <a
+                href="#"
+                class="inline-block rounded bg-red-700 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+              >
+                View
+              </a>
+            </td>
           </tr>
         <% end %>
-      <% else %>
-        <tr>
-          <td><%= user.username %></td>
-          <td>No Membership</td>
-          <td>N/A</td>
-          <td id="membershipDays<%= user.id %>">0</td>
-        </tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

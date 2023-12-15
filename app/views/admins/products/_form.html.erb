@@ -1,6 +1,6 @@
+<h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">Enter a New Product</h1>
 
 <%= form_for(product, url: admins_products_path, method: product.new_record? ? :post : :patch) do |form| %>
-
   <% if product.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -13,60 +13,71 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control' %>
+
+  <div class="mb-4">
+    <label for="ProductName" class="block text-xs font-medium text-gray-700">Product Name</label>
+    <%= form.text_field :name, id: "ProductName", class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :price %>
-    <%= form.text_field :price, class: 'form-control' %>
+  <div class="mb-4">
+    <label for="ProductPrice" class="block text-xs font-medium text-gray-700">Product Price</label>
+    <%= form.text_field :price, id: "ProductPrice", class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :in_stock %>
-    <%= form.text_field :in_stock, class: 'form-control' %>
+  <div class="mb-4">
+    <label for="ProductInStock" class="block text-xs font-medium text-gray-700">In Stock</label>
+    <%= form.check_box :in_stock, id: "ProductInStock", class: 'mt-1' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :price_currency %>
-    <%= form.text_field :price_currency, class: 'form-control' %>
+  <div class="mb-4">
+    <label for="ProductCurrency" class="block text-xs font-medium text-gray-700">Price Currency</label>
+    <%= form.text_field :price_currency, id: "ProductCurrency", class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :category %>
-    <%= form.text_field :category, class: 'form-control' %>
+  <div class="mb-4">
+    <label for="ProductCategory" class="block text-xs font-medium text-gray-700">Product Category</label>
+    <%= form.text_field :category, id: "ProductCategory", class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
   </div>
 
-  <div class="form-group">
-    <%= form.submit 'Save', class: 'btn btn-primary' %>
+  <div class="mb-4">
+    <%= form.submit 'Save', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
   </div>
 <% end %>
 
 
+<h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">Current Registered Products</h1>
 
-
-<h1>All Current Products</h1>
-
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">In Stock</th>
-      <th scope="col">Price Currency</th>
-      <th scope="col">Category</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Product.all.each do |product| %>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
       <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.in_stock ? 'Yes' : 'No' %></td>
-        <td><%= product.price_currency %></td>
-        <td><%= product.category %></td>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Price</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">In Stock</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Price Currency</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Category</th>
+        <th class="px-4 py-2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+      <% Product.all.each do |product| %>
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><%= product.name %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= product.price %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= product.in_stock ? 'Yes' : 'No' %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= product.price_currency %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= product.category %></td>
+          <td class="whitespace-nowrap px-4 py-2">
+            <a
+              href="#"
+              class="inline-block rounded bg-red-700 px-4 py-2 text-xs font-medium text-white hover:bg-red-800"
+            >
+              View & Edit
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

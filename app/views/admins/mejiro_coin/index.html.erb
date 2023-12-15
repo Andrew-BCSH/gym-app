@@ -2,7 +2,7 @@
 
 <div class="scrollable-container">
 
-<h1>Add Credit to User</h1>
+<h1 class="mb-4 text-2xl font-bold">Add Credit to User</h1>
 
 <!-- Display success notice -->
 <% if flash[:notice] %>
@@ -14,35 +14,44 @@
   <p class="alert"><%= flash[:alert] %></p>
 <% end %>
 
-<div class="add-credit-form">
-  <%= form_with(url: admins_add_credit_to_user_path, method: :post) do |form| %>
-    <%= form.text_field :username, placeholder: 'Enter Username', class: 'form-control' %>
-    <%= form.text_field :credit_amount, placeholder: 'Enter Credit Amount', class: 'form-control' %>
-    <%= form.submit 'Add Credit', class: 'btn btn-primary btn-primary-font' %>
+<div class="mb-4">
+  <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
+    <div>
+      <label for="Username" class="block text-xs font-medium text-gray-700">Username</label>
+      <%= form.text_field :username, id: "Username", placeholder: 'Enter Username', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    </div>
+
+    <div>
+      <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
+      <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    </div>
+
+    <div>
+      <%= form.submit 'Add Credit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+    </div>
   <% end %>
 </div>
 
+
 <!-- Individual Transactions Section -->
-<h2>Individual Receipts</h2>
-<div class="scrollable-table">
-  <table class="table table-bordered table-striped">
+<h2 class="text-2xl font-bold mb-4">User Top Up Receipts</h2>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">User ID</th>
-        <th scope="col">Username</th>
-        <th scope="col">Date</th>
-        <th scope="col">Credit Amount</th>
-        <th scope="col">Time</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Credit Amount</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-gray-200">
       <% @receipts.each do |receipt| %>
         <tr>
-          <td><%= receipt.user_id %></td>
-          <td><%= receipt.user.username %></td>
-          <td><%= receipt.timestamp.to_date %></td>
-          <td><%= receipt.credit_amount.inspect %></td>
-          <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.credit_amount.inspect %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
         </tr>
       <% end %>
     </tbody>
@@ -51,49 +60,73 @@
 
 
 
-<h1>Mejiro Coin Usage Records</h1>
+<h1 class="text-2xl font-bold mb-4">Mejiro Coin Data Filter</h1>
 
 <%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
-  <%= form.select :username, User.pluck(:username, :username), { include_blank: 'Select User' }, class: 'form-control' %>
-  <%= form.select :product, MejiroCoinTransaction.pluck(:product, :product).uniq, { include_blank: 'Select Product' }, class: 'form-control' %>
-  <%= form.date_field :date, placeholder: 'Date', class: 'form-control' %>
-  <%= form.select :spend, options_for_select([['Select Spend', nil], ['Less than 10,000', 10000], ['Between 10,000 and 50,000', 50000], ['More than 50,000', 100000]]), {}, class: 'form-control' %>
-  <%= form.time_field :time, placeholder: 'Time', class: 'form-control' %>
-  <%= form.submit 'Filter', class: 'btn btn-secondary btn-secondary-font' %>
-  <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary btn-secondary-font' %>
+  <div class="mb-4">
+    <%= form.label :username, class: 'block text-xs font-medium text-gray-700' %>
+    <%= form.select :username, User.pluck(:username, :username), { include_blank: 'Select User' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :product, class: 'block text-xs font-medium text-gray-700' %>
+    <%= form.select :product, MejiroCoinTransaction.pluck(:product, :product).uniq, { include_blank: 'Select Product' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :date, class: 'block text-xs font-medium text-gray-700' %>
+    <%= form.date_field :date, placeholder: 'Date', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :spend, class: 'block text-xs font-medium text-gray-700' %>
+    <%= form.select :spend, options_for_select([['Select Spend', nil], ['Less than 10,000', 10000], ['Between 10,000 and 50,000', 50000], ['More than 50,000', 100000]]), {}, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :time, class: 'block text-xs font-medium text-gray-700' %>
+    <%= form.time_field :time, placeholder: 'Time', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <%= form.submit 'Filter', class: 'btn btn-secondary btn-secondary-font' %>
+    <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary btn-secondary-font' %>
+  </div>
 <% end %>
 
 
+
 <!-- Total Usage Section -->
-<h2>Total Usage</h2>
-<div class="scrollable-table">
-  <table class="table table-bordered table-striped">
+<h2 class="text-2xl font-bold mb-4">Total Usage</h2>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Period</th>
-        <th scope="col">Total Spend (Mejiro Coins)</th>
-        <th scope="col">Compare to Previous</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Period</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Spend (Mejiro Coins)</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Compare to Previous</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-gray-200">
       <tr>
-        <td>Today</td>
-        <td><%= @total_spend_day %></td>
-        <td><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_day %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
       </tr>
       <tr>
-        <td>This Week</td>
-        <td><%= @total_spend_week %></td>
-        <td><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_week %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
       </tr>
       <tr>
-        <td>This Month</td>
-        <td><%= @total_spend_month %></td>
-        <td><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_month %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
       </tr>
     </tbody>
   </table>
 </div>
+
 
 <% def compare_to_previous(current, previous) %>
   <% return 'No data available' if previous.nil? %>
@@ -103,59 +136,60 @@
 <% end %>
 
 <!-- Total Top Ups Section -->
-<h2>Total Top Ups</h2>
-<div class="scrollable-table">
-  <table class="table table-bordered table-striped">
+<h2 class="text-2xl font-bold mb-4">Total Top Ups</h2>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Period</th>
-        <th scope="col">Total Top Ups (Mejiro Coins)</th>
-        <th scope="col">Compare to Previous</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Period</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Top Ups (Mejiro Coins)</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Compare to Previous</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-gray-200">
       <tr>
-        <td>Today</td>
-        <td><%= @total_top_up_today %></td>
-        <td><%= compare_to_previous(@total_top_up_today, @total_top_up_today_prev) %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_today %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_today, @total_top_up_today_prev) %></td>
       </tr>
       <tr>
-        <td>This Week</td>
-        <td><%= @total_top_up_week %></td>
-        <td><%= compare_to_previous(@total_top_up_week, @total_top_up_week_prev) %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_week %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_week, @total_top_up_week_prev) %></td>
       </tr>
       <tr>
-        <td>This Month</td>
-        <td><%= @total_top_up_month %></td>
-        <td><%= compare_to_previous(@total_top_up_month, @total_top_up_month_prev) %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_month %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_month, @total_top_up_month_prev) %></td>
       </tr>
     </tbody>
   </table>
 </div>
 
+
 <!-- Individual Transactions Section -->
-<h2>Individual Receipts</h2>
-<div class="scrollable-table">
-  <table class="table table-bordered table-striped">
+<h2 class="text-2xl font-bold mb-4">Individual Receipts</h2>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">User ID</th>
-        <th scope="col">Product ID</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Date</th>
-        <th scope="col">Product Price</th>
-        <th scope="col">Time</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Product ID</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Product Name</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Product Price</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-gray-200">
       <% @receipts.each do |receipt| %>
         <tr>
-          <td><%= receipt.user_id %></td>
-          <td><%= receipt.product_id %></td>
-          <td><%= receipt.product_name %></td>
-          <td><%= receipt.timestamp.to_date %></td>
-          <td><%= receipt.product_price %></td>
-          <td><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.product_id %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.product_name %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.product_price %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
         </tr>
       <% end %>
     </tbody>
