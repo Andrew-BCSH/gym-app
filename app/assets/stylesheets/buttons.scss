@@ -1,0 +1,59 @@
+
+
+.btn-primary-memberships {
+  display: flex;
+  width: 341px;
+  height: 80px;
+  padding: 20px;
+  gap: 10px;
+  border-radius: 10px;
+  background: hwb(0 5% 27%);
+  margin-bottom: 10px; /* Adjust the margin as needed */
+  margin-top: 10px;
+}
+
+
+.btn-primary {
+  display: flex;
+  width: 341px;
+  padding: 20px;
+  gap: 10px;
+  border-radius: 10px;
+  background: #BA0D0D;
+  border-color: #000;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+.button-icon {
+  display: flex;
+  align-items: left;
+}
+
+.button-icon.symbol {
+  margin-right: 15px; /* Adjust the margin as needed */
+  margin-left: 5px; /* Move the symbol further left */
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.button-icon.arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-right: 5px;
+  margin-left: 15px;
+  }
+
+
+/* Custom Small Button Styles */
+.btn-secondary {
+  display: flex;
+  width: 141px;
+  padding: 20px;
+  gap: 10px;
+  border-radius: 10px;
+  background: #BA0D0D;
+  border-color: #000;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}

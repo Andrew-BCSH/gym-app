@@ -1,0 +1,77 @@
+h1 {
+  height: 29px;
+  color: var(--color-grey-black, #000);
+  font-family: Barlow;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  flex: 1 0 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
+
+h2 {
+  font-family: Arial;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;;
+  /* Add any other styles you want for h1 headers */
+}
+
+h3{
+  font-family: Arial;
+  color: #BA0D0D;
+  font-weight: bold;
+  font-size: 16px;
+  margin: -10px;
+  text-decoration: none;
+  /* Add any other styles you want for h1 headers */
+}
+
+h4 {
+  font-family: Arial;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0px;
+  text-align: center;
+  /* Add any other styles you want for h1 headers */
+}
+
+h5{
+  font-family: Arial;
+  color: #080808;
+  font-weight: bold;
+  font-size: 10px;
+  text-align: center;
+  margin-top: 20px;
+  /* Add any other styles you want for h1 headers */
+}
+
+.btn-primary-font {
+  color: #FFF;
+/* bold */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
+  flex: 1 0 0;
+}
+
+.btn-secondary-font {
+  color: #FFF;
+/* bold */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
+  flex: 1 0 0;
+}
