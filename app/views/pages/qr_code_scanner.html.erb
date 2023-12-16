@@ -11,7 +11,7 @@
     function startRearCamera() {
       if (qrScanner === null) {
         navigator.mediaDevices
-          .getUserMedia({ video: { facingMode: "environment" }, audio: true }) // Request the rear camera and microphone
+          .getUserMedia({ video: { facingMode: "environment" }, audio: false}) // Request the rear camera and microphone
           .then((stream) => {
             mediaStream = stream;
             const videoElement = document.querySelector('#camera');
