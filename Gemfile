@@ -33,6 +33,8 @@ gem 'pg'
 
 gem 'heroicon'
 
+
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -54,8 +56,11 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "tailwindcss-rails", "~> 2.0"
+
 group :development, :test do
   gem 'pry-rails'
+
 end
 
 
@@ -99,5 +104,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
-gem "tailwindcss-rails", "~> 2.0"
