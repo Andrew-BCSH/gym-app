@@ -13,7 +13,6 @@ gem 'font-awesome-rails'
 
 gem 'cloudinary'
 
-gem "sassc-rails"
 
 gem 'font-awesome-sass', '~> 5.0'
 
