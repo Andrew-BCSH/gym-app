@@ -1,28 +1,34 @@
+
+
 <div id="<%= dom_id @product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= @product.name %>
-  </p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= @product.price %>
-  </p>
-
-  <p>
-    <strong>In stock:</strong>
-    <%= @product.in_stock %>
-  </p>
-
-  <p>
-    <strong>Price currency:</strong>
-    <%= @product.price_currency %>
-  </p>
-
-
-
-<div>
-  <%= button_to "Purchase", purchase_product_path(@product), method: :post, data: { turbo: false } %>
 </div>
 
+
+<div class="flow-root p-6">
+  <dl class="-my-3 divide-y divide-gray-100 text-sm">
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Product Name</dt>
+      <%= @product.name %>
+    </div>
+
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Price</dt>
+      <%= @product.price %>
+    </div>
+
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">In Stock</dt>
+      <%= @product.in_stock %>
+    </div>
+
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Currency</dt>
+      <dd class="text-gray-700 sm:col-span-2">Mejiro Coin (IDR)</dd>
+    </div>
+  </dl>
+</div>
+
+<div>
+  <%= button_to "Purchase", purchase_product_path(@product),class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800', method: :post, data: { turbo: false } %>
 </div>

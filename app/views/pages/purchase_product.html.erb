@@ -1,24 +1,29 @@
-<%- if notice %>
-  <p style="color: black"><%= notice %></p>
-<%- else %>
-  <p>
-    <strong>Name:</strong>
-    <%= @receipt.product_name %>
-  </p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= @receipt.product_price %>
-  </p>
 
-  <p>
-    <strong>User Balance:</strong>
-    <%= @receipt.user_post_balance %>
-  </p>
+<div class="flow-root">
+  <dl class="-my-3 divide-y divide-gray-100 text-sm">
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Product Name</dt>
+      <%= @receipt.product_name %>
+    </div>
 
-  <p>
-    <strong>Category:</strong>
-    <%= @receipt.timestamp %>
-  </p>
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Total</dt>
+      <%= @receipt.product_price %>
+    </div>
 
-<%- end %>
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Your New Balance</dt>
+      <%= @receipt.user_post_balance %>
+    </div>
+
+    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+      <dt class="font-medium text-gray-900">Receipt</dt>
+      <%= @receipt.timestamp %>
+    </div>
+  </dl>
+</div>
+
+<div>
+  <%= link_to "Back to Home", home_path, class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+</div>
