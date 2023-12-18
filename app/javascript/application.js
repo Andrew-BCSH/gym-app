@@ -2,7 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 // back button
-import QrScanner from "qr-scanner";
 
-console.log({ QrScanner });
-window.QrScanner = QrScanner;
+import "./qr_code_scanner"

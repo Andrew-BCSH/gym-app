@@ -1,5 +1,3 @@
-# app/helpers/admins/mejiro_coin_helper.rb
-
 module Admins
   module MejiroCoinHelper
     def compare_to_previous(current, previous)
