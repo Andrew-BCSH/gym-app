@@ -3,4 +3,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 // back button
 
-import "./qr_code_scanner"
+import "./qr_code_scanner.js"
