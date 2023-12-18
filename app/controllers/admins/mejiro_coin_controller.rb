@@ -23,6 +23,7 @@ class Admins::MejiroCoinController < AdminController
     render :index
   end
 
+
   def add_credit
     @user = User.find_by(username: params[:username])
 
