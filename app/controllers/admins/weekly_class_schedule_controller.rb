@@ -8,15 +8,22 @@ class Admins::WeeklyClassScheduleController < AdminController
   end
 
   # app/controllers/admins/weekly_class_schedule_controller.rb
-def update
-  @admin = current_admin
-  if @admin.update(admin_params)
-    flash[:notice] = 'Class schedule updated successfully.'
-  else
-    flash[:alert] = 'Failed to update class schedule.'
-    Rails.logger.error(@admin.errors.full_messages)  # Log errors for debugging
+  def update
+    @admin = current_admin
+    if @admin.update(admin_params)
+      flash[:notice] = 'Class schedule updated successfully.'
+    else
+      flash[:alert] = 'Failed to update class schedule.'
+      Rails.logger.error(@admin.errors.full_messages)  # Log errors for debugging
+      render :index
+    end
+    redirect_to admins_weekly_class_schedule_index_path
   end
-  redirect_to admins_weekly_class_schedule_index_path
+
+
+def new
+  @admin = current_admin || Admin.new
+  flash.now[:notice] = 'You are creating a new weekly class schedule.'
 end
 
 

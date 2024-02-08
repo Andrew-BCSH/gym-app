@@ -1,0 +1,28 @@
+<h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">Upload a New Class Schedule</h1>
+
+<%= form_for @admin, url: admins_weekly_class_schedule_index_path, html: { multipart: true } do |f| %>
+  <% if @admin.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+        <% @admin.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= f.label :weekly_class_schedule, class: 'block text-xs font-medium text-gray-700' %>
+    <%= f.file_field :weekly_class_schedule, id: 'WeeklyClassSchedule', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.submit 'Upload Schedule', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+  </div>
+<% end %>
+
+<div class="mt-4">
+  <%= link_to 'Show Class Schedule', admins_weekly_class_schedule_index_path, class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800 text-center' %>
+</div>

@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   def initialize_user_credit
     # Create a Credit record for the user with an initial balance of 0 Mejiro Coins
-    Credit.create(user: self, balance:0)
+    Credit.create(user: self, balance: 0)
   end
 
   # Method to update user's balance
@@ -24,6 +24,18 @@ class User < ApplicationRecord
       # Handle the case where there's no credit record for the user
       # You can create one or handle it as per your application logic
     end
+  end
+
+  def qr_code_data
+    # Define the data you want to include in the QR code for the user
+    qr_data = {
+      user_id: id,
+      mejiro_coin_balance: credit&.balance || 0,
+      # Add more data as needed
+    }
+
+    # Convert the data to a JSON string
+    qr_data.to_json
   end
 
   # Other user model code...

@@ -1,63 +1,43 @@
 
-<%= render "users/navbar", balance: @user_balance.to_f %>
 
 
   <h1 class="text-2xl py-5 ml-10 font-bold text-gray-900 sm:text-3xl">Mejiro Gym</h1>
   <!-- Container for primary buttons -->
   <ul>
   <li>
-    <%= link_to memberships_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+<%= link_to memberships_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "finger-print", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Memberships </span>
+<% end %>
 
-     <%= heroicon "finger-print", options: { class: "w-6 h-6"} %>
+<%= link_to users_qr_code_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "qr-code", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Your QR Code </span>
+<% end %>
 
-      <span class="text-sm font-medium"> Memberships </span>
-    <% end %>
-  </li>
+<%= link_to book_a_private_class_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "bookmark", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Private Classes </span>
+<% end %>
 
- <li>
-    <%= link_to book_a_private_class_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+<%= link_to mejiro_coin_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "currency-dollar", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Your Mejiro Coin </span>
+<% end %>
 
-     <%= heroicon "bookmark", options: { class: "w-6 h-6"} %>
+<%= link_to payment_scanner_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "wallet", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Payment Scanner </span>
+<% end %>
 
-      <span class="text-sm font-medium"> Private Classes </span>
-      <% end %>
-  </li>
+<%= link_to weekly_class_schedule_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "calendar-days", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Weekly Class Schedule </span>
+<% end %>
 
- <li>
-    <%= link_to mejiro_coin_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
-
-     <%= heroicon "currency-dollar", options: { class: "w-6 h-6"} %>
-
-      <span class="text-sm font-medium"> Your Mejiro Coin </span>
-      <% end %>
-  </li>
-
- <li>
-    <%= link_to payment_scanner_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
-
-     <%= heroicon "qr-code", options: { class: "w-6 h-6"} %>
-
-      <span class="text-sm font-medium"> Payment Scanner </span>
-      <% end %>
-  </li>
-
-   <li>
-    <%= link_to weekly_class_schedule_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
-
-     <%= heroicon "calendar-days", options: { class: "w-6 h-6"} %>
-
-      <span class="text-sm font-medium"> Weekly Class Schedule </span>
-      <% end %>
-  </li>
-
-<li>
-    <%= link_to events_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
-
-     <%= heroicon "star", options: { class: "w-6 h-6"} %>
-
-      <span class="text-sm font-medium"> Events Information </span>
-      <% end %>
+<%= link_to events_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "star", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium"> Events Information </span>
+<% end %>
   </li>
 </ul>
-
-  <%= render "admins/dashboard/footer"%>

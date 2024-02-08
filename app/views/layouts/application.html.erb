@@ -1,15 +1,22 @@
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_importmap_tags %>
+<% unless current_page?(root_path) %>
+  <%= render "users/navbar" %>
+<% end %>
 
 
-    <!-- Show the "Mejiro Coin Balance" unconditionally -->
 
-    <%= yield %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_importmap_tags %>
 
-  <div class="bottom-navigation-bar">
-  </div>
+<!-- Show the "Mejiro Coin Balance" unconditionally -->
+<%= yield %>
+
+<div class="bottom-navigation-bar">
+</div>
+
+<% unless current_page?(root_path) %>
+ <%= render "admins/dashboard/footer" %>
+<% end %>
