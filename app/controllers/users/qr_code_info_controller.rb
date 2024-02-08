@@ -1,5 +1,5 @@
 # app/controllers/qr_code_info_controller.rb
-class QrCodeInfosController < ApplicationController
+class QrCodeInfoController < ApplicationController
   def show
     # Retrieve the information stored in the QR code
     # You can access the information based on the parameters passed in the request
