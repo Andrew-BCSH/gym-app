@@ -3,7 +3,7 @@ module Users::QrCodesHelper
   def generate_qr(params)
 
     qrcode = RQRCode::QRCode.new(
-      "https://mejirogymbali.abcsh.me/admin/qr_code_information?user_id=#{params[:user_id]}",
+      "https://mejirogymbali.abcsh.me/admins/qr_code_information?user_id=#{params[:user_id]}",
       size: 10
     )
 
