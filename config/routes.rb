@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     end
 
     get 'dashboard/index'
+    get '/qr_code_information', to: 'member_qr_code_information#show', as: 'qr_code_information'
+
 
     resources :products, path: 'products'
     resources :weekly_class_schedule, only: [:index, :new, :create, :update]
