@@ -32,7 +32,12 @@ class PagesController < ApplicationController
         # Handle the QR code scanning functionality here, e.g., using Quagga or ZXing
         scanned_data = scan_qr_code(params[:qr_code_image])
 
-        render json: { scanned_data: scanned_data }
+        # You might need to extract user_id and mejiro_coin_balance from scanned_data
+        user_id = scanned_data[:user_id]
+        mejiro_coin_balance = scanned_data[:mejiro_coin_balance]
+
+        # Redirect to the QR code information page with the scanned data
+        redirect_to admins_qr_code_information_path(user_id: user_id, mejiro_coin_balance: mejiro_coin_balance)
       }
     end
   end
