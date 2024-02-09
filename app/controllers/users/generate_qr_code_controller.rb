@@ -4,10 +4,16 @@ class Users::GenerateQrCodeController < ApplicationController
   def generate_qr_code
     # Generate the QR code image using the rqrcode gem
     qrcode = RQRCode::QRCode.new(qr_code_data, size: 10)
-    qr_code_image = qrcode.as_png
+    svg = qrcode.as_svg(
+  color: "000",
+  shape_rendering: "crispEdges",
+  module_size: 11,
+  standalone: true,
+  use_path: true
+)
 
     # Respond with the generated QR code image
-    send_data qr_code_image.to_s, type: 'image/png', disposition: 'inline'
+    send_data svg.to_s, type: 'image/svg', disposition: 'inline'
   rescue => e
     # Log the error for debugging
     Rails.logger.error "Error generating QR code: #{e.message}"
