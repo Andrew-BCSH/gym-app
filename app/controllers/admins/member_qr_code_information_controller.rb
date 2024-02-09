@@ -3,6 +3,15 @@ class Admins::MemberQrCodeInformationController < ApplicationController
   def show
     # Decode the QR code data
     @decoded_data = decode_qr_code(params[:qr_code_data])
+
+    # Generate the URL based on the decoded data
+    # You need to replace the placeholders with the actual user_id and mejiro_coin_balance
+    user_id = @decoded_data[:user_id]
+    mejiro_coin_balance = @decoded_data[:mejiro_coin_balance]
+    qr_code_info_url = admins_qr_code_information_url(user_id: user_id, mejiro_coin_balance: mejiro_coin_balance)
+
+    # Redirect the admin to the generated URL
+    redirect_to qr_code_info_url
   end
 
   private
