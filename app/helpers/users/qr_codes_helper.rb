@@ -10,7 +10,7 @@ module Users::QrCodesHelper
     svg = qrcode.as_svg(
       color: "000",
       shape_rendering: "crispEdges",
-      module_size: 11,
+      module_size: 3.38,
       standalone: true,
       use_path: true
     )
