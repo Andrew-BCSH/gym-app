@@ -34,7 +34,8 @@
 
         <div>
           <%= form.label :user_id, "User ID or Name:", class: "sr-only" %>
-          <%= form.select :user_id, User.all.order(:name, :asc).map { |m| [m.username, m.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+          <%= form.select :user_id, User.all.order(:username).map { |m| [m.username, m.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+
         </div>
 
         <div>
