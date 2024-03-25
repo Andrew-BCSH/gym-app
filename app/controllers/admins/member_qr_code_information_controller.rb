@@ -1,27 +1,29 @@
 # app/controllers/admins/member_qr_code_information_controller.rb
 class Admins::MemberQrCodeInformationController < ApplicationController
 
-  def show
-    # Decode the QR code data
-    # @decoded_data = decode_qr_code(params[:qr_code_data])
+  class Admins::MemberQrCodeInformationController < ApplicationController
+    def show
+      # Retrieve the user from the database using the user_id obtained from the QR code data
+      user_id = params[:user_id]
+      @user = User.find_by(id: user_id)
 
-    # Generate the URL based on the decoded data
-    # You need to replace the placeholders with the actual user_id and mejiro_coin_balance
-    user_id = request.query_parameters[:user_id]
-    # mejiro_coin_balance = 0 # @decoded_data[:mejiro_coin_balance]
-    # qr_code_info_url = admins_qr_code_information_url(user_id: user_id, mejiro_coin_balance: mejiro_coin_balance)
+      if @user
+        # Calculate membership_days_remaining
+        @membership_days_remaining = @user.membership_days_remaining
 
-    # Redirect the admin to the generated URL
-    # redirect_to qr_code_info_url
-    # render json: { user_id: user_id }
+        # Retrieve mejiro_coin_balance (Replace this with your actual implementation)
+        @mejiro_coin_balance = 0
 
-    # Fix the syntax here
-    @decoded_data = {
-    user_id: user_id,
-    remaining_days: remaining_days,
-    mejiro_coin_balance: mejiro_coin_balance
-   }
+        # Render the view
+        render 'show'
+      else
+        # Handle the case where the user is not found
+        flash[:error] = "User not found."
+        redirect_to root_path
+      end
+    end
   end
+
 
   private
 
