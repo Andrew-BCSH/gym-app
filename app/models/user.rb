@@ -40,6 +40,10 @@ class User < ApplicationRecord
     total_remaining_days
   end
 
+  def last_membership_start_date
+    # Logic to fetch the last membership start date
+  end
+
 
   def qr_code_data
     # Define the data you want to include in the QR code for the user
