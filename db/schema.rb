@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_20_024658) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_25_051222) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_024658) do
     t.index ["user_id"], name: "index_mejiro_coin_transactions_on_user_id"
   end
 
+  create_table "membership_logs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "membership_id"
+    t.integer "amount"
+    t.integer "total_cost"
+    t.string "operation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.string "sku"
     t.string "name"
@@ -62,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_024658) do
     t.integer "price_cents", default: 0, null: false
     t.integer "days_of_membership"
     t.integer "user_id"
+    t.integer "membership_days_remaining"
     t.index ["category_id"], name: "index_memberships_on_category_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
@@ -122,7 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_024658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
-    t.integer "membership_days_remaining", default: 0
+    t.integer "membership_days"
+    t.date "last_membership_start_date"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

@@ -5,14 +5,20 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable, and :omniauthable
   has_one :credit, dependent: :destroy
   has_many :orders
-  has_many :memberships
+  has_many :membership_logs
 
   after_create :initialize_user_credit
+  after_create :set_last_membership_start_date
+
 
   def initialize_user_credit
     # Create a Credit record for the user with an initial balance of 0 Mejiro Coins
     Credit.create(user: self, balance: 0)
   end
+
+  # def set_last_membership_start_date
+  #   update(last_membership_start_date: Date.today)
+  # end
 
   # Method to update user's balance
   def top_up_balance(amount_in_currency)
@@ -25,6 +31,15 @@ class User < ApplicationRecord
       # You can create one or handle it as per your application logic
     end
   end
+
+  def membership_days_remaining
+    total_remaining_days = 0
+    if last_membership_start_date
+      total_remaining_days = [0, (last_membership_start_date + membership_days - Date.today).to_i].max
+    end
+    total_remaining_days
+  end
+
 
   def qr_code_data
     # Define the data you want to include in the QR code for the user

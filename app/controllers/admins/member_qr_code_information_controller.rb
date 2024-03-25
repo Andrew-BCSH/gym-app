@@ -14,7 +14,13 @@ class Admins::MemberQrCodeInformationController < ApplicationController
     # Redirect the admin to the generated URL
     # redirect_to qr_code_info_url
     # render json: { user_id: user_id }
-    @decoded_data = { user_id: user_id }
+
+    # Fix the syntax here
+    @decoded_data = {
+    user_id: user_id,
+    remaining_days: remaining_days,
+    mejiro_coin_balance: mejiro_coin_balance
+   }
   end
 
   private

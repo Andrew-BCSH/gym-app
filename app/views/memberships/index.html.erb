@@ -1,20 +1,20 @@
- <h1 class="text-2xl text-center py-5 font-bold text-gray-900 sm:text-3xl">Memberships</h1>
+ <h1 class="text-2xl text-center py-5 font-bold text-gray-900 sm:text-3xl">Memberships can now be purchased at reciption in days, months, and years. Memberships days will automatically be added to your user account.</h1>
 
 
 
-
+<%#
 <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center md:gap-8">
     <% @memberships.each do |membership| %>
-      <div class="rounded-2xl border border-indigo-600 p-6 shadow-sm sm:px-8 lg:p-12">
+      <%# <div class="rounded-2xl border border-indigo-600 p-6 shadow-sm sm:px-8 lg:p-12">
         <div class="text-center">
           <h2 class="text-lg font-medium text-gray-900">
             <%= membership.name %>
-            <span class="sr-only">Plan</span>
+            <%# <span class="sr-only">Plan</span>
           </h2>
           <p class="mt-2 sm:mt-4">
             <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"><%= humanized_money_with_symbol(membership.price) %></strong>
-            <span class="text-sm font-medium text-gray-700">/month</span>
+            <%# <span class="text-sm font-medium text-gray-700">/month</span>
           </p>
         </div>
         <ul class="mt-6 space-y-2">
@@ -35,11 +35,11 @@
         </ul>
         <a
           href="<%= membership_path(membership) %>"
-          class="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
+          <%# class="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
         >
           Get Started
         </a>
       </div>
     <% end %>
-  </div>
-</div>
+  <%# </div>
+</div>  %>

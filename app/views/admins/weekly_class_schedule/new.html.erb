@@ -15,14 +15,13 @@
 
   <div class="mb-4">
     <%= f.label :weekly_class_schedule, class: 'block text-xs font-medium text-gray-700' %>
-    <%= f.file_field :weekly_class_schedule, id: 'WeeklyClassSchedule', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    <%= f.file_field :weekly_class_schedule, id: 'WeeklyClassSchedule', class: 'mt-1 rounded-md border-gray-200 shadow-sm sm:text-sm' %>
   </div>
 
-  <div class="mb-4">
-    <%= f.submit 'Upload Schedule', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
-  </div>
+<div class="mb-4">
+  <%= f.submit 'Upload Schedule', class: 'block bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+</div>
 <% end %>
-
-<div class="mt-4">
-  <%= link_to 'Show Class Schedule', admins_weekly_class_schedule_index_path, class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800 text-center' %>
+<div class="mb-4"> <!-- Ensure both buttons are within the same container or grid layout -->
+  <%= link_to 'Class Schedule', admins_weekly_class_schedule_index_path, class: 'block bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
 </div>

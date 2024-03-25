@@ -2,6 +2,8 @@
 
 <br>
 
-<div>
-  <%= link_to "Show and Edit Products", admins_products_path %>
+<div class="mt-4"> <!-- Add margin top for spacing -->
+  <%= link_to admins_products_path, class: "inline-block rounded bg-red-700 px-4 py-2 text-xs font-medium text-white hover:bg-red-800 mt-4" do %>
+    Show and Edit Products
+  <% end %>
 </div>
