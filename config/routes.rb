@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # For user login
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
+
   # For admin login
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
 

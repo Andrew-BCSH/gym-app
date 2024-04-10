@@ -1,24 +1,32 @@
-
-
-<% unless current_page?(root_path) %>
+<% if current_admin %>
+  <%= render "admins/dashboard/navbar" %>
+<% elsif current_user && current_user.credit %>
   <%= render "users/navbar" %>
+
+  </div>
 <% end %>
-
-<div class="md:container md:mx-auto">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<%= csrf_meta_tags %>
-<%= csp_meta_tag %>
-<%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_importmap_tags %>
-
-
-<!-- Show the "Mejiro Coin Balance" unconditionally -->
-<%= yield %>
-
-<div class="bottom-navigation-bar">
+<div class="flex items-center ml-8">
+  <a href="#" onclick="window.history.back();" class="block text-gray-700 hover:text-gray-900">
+    <%= heroicon "arrow-uturn-left", options: { class: "h-6 w-6" } %>
+  </a>
 </div>
 
-<% unless current_page?(root_path) %>
- <%= render "admins/dashboard/footer" %>
-<% end %>
+<div class="md:container md:mx-auto">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+
+  <!-- Show the "Mejiro Coin Balance" unconditionally -->
+  <%= yield %>
+
+  <div class="bottom-navigation-bar">
+    <!-- Your bottom navigation bar content goes here -->
+  </div>
+
+  <% unless current_page?(root_path) %>
+    <%= render "admins/dashboard/footer" %>
+  <% end %>
+</div>

@@ -1,106 +1,110 @@
 <!-- app/views/admins/mejiro_coin/index.html.erb -->
 
-<div class="scrollable-container">
 
-<h1 class="mb-4 text-2xl font-bold">Add Credit to User</h1>
+<div class="shadow-lg bg-white p-6 rounded-lg mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-8"> <!-- Added shadow container -->
+  <h1 class="mb-4 text-2xl font-bold">Add Credit to User</h1>
 
-<!-- Display success notice -->
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% end %>
+  <!-- Display success notice -->
+  <% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
 
-<!-- Display error notice -->
-<% if flash[:alert] %>
-  <p class="alert"><%= flash[:alert] %></p>
-<% end %>
+  <!-- Display error notice -->
+  <% if flash[:alert] %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
 
-<div class="mb-4">
-  <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
-    <div>
-      <label for="Username" class="block text-xs font-medium text-gray-700">Username</label>
-      <%= form.text_field :username, id: "Username", placeholder: 'Enter Username', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  <div class="mb-4">
+    <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
+      <div>
+        <label for="Username" class="block text-xs font-medium text-gray-700">Username</label>
+        <%= form.text_field :username, id: "Username", placeholder: 'Enter Username', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+      </div>
+
+      <div>
+        <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
+        <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+      </div>
+
+      <div>
+        <%= form.submit 'Add Credit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Individual Transactions Section -->
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8"> <!-- Added shadow container -->
+  <h2 class="text-2xl font-bold mb-4">User Top Up Receipts</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Username</th>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Credit Amount</th>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @receipts.each do |receipt| %>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user.username %></td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.credit_amount.inspect %></td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8"> <!-- Added shadow container -->
+  <h1 class="text-2xl font-bold mb-4">Mejiro Coin Data Filter</h1>
+
+  <%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
+    <div class="mb-4">
+      <%= form.label :username, class: 'block text-xs font-medium text-gray-700' %>
+      <%= form.select :username, User.pluck(:username, :username), { include_blank: 'Select User' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
     </div>
 
-    <div>
-      <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
-      <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    <div class="mb-4">
+      <%= form.label :product, class: 'block text-xs font-medium text-gray-700' %>
+      <%= form.select :product, MejiroCoinTransaction.pluck(:product, :product).uniq, { include_blank: 'Select Product' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
     </div>
 
-    <div>
-      <%= form.submit 'Add Credit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+    <div class="mb-4">
+      <%= form.label :date, class: 'block text-xs font-medium text-gray-700' %>
+      <%= form.date_field :date, placeholder: 'Date', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :spend, class: 'block text-xs font-medium text-gray-700' %>
+      <%= form.select :spend, options_for_select([['Select Spend', nil], ['Less than 10,000', 10000], ['Between 10,000 and 50,000', 50000], ['More than 50,000', 100000]]), {}, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :time, class: 'block text-xs font-medium text-gray-700' %>
+      <%= form.time_field :time, placeholder: 'Time', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <%= form.submit 'Filter', class: 'btn btn-secondary btn-secondary-font' %>
+      <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary btn-secondary-font' %>
     </div>
   <% end %>
 </div>
 
 
 
-<!-- Individual Transactions Section -->
-<h2 class="text-2xl font-bold mb-4">User Top Up Receipts</h2>
-<div class="overflow-x-auto">
-  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
-    <thead class="thead-dark">
-      <tr>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Username</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Credit Amount</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-200">
-      <% @receipts.each do |receipt| %>
-        <tr>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user.username %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.credit_amount.inspect %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-
-
-
-<h1 class="text-2xl font-bold mb-4">Mejiro Coin Data Filter</h1>
-
-<%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
-  <div class="mb-4">
-    <%= form.label :username, class: 'block text-xs font-medium text-gray-700' %>
-    <%= form.select :username, User.pluck(:username, :username), { include_blank: 'Select User' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :product, class: 'block text-xs font-medium text-gray-700' %>
-    <%= form.select :product, MejiroCoinTransaction.pluck(:product, :product).uniq, { include_blank: 'Select Product' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :date, class: 'block text-xs font-medium text-gray-700' %>
-    <%= form.date_field :date, placeholder: 'Date', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :spend, class: 'block text-xs font-medium text-gray-700' %>
-    <%= form.select :spend, options_for_select([['Select Spend', nil], ['Less than 10,000', 10000], ['Between 10,000 and 50,000', 50000], ['More than 50,000', 100000]]), {}, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :time, class: 'block text-xs font-medium text-gray-700' %>
-    <%= form.time_field :time, placeholder: 'Time', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-  </div>
-
-  <div class="flex items-center gap-4">
-    <%= form.submit 'Filter', class: 'btn btn-secondary btn-secondary-font' %>
-    <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary btn-secondary-font' %>
-  </div>
-<% end %>
-
-
 
 <!-- Total Usage Section -->
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8">
 <h2 class="text-2xl font-bold mb-4">Total Usage</h2>
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
@@ -130,6 +134,7 @@
     </tbody>
   </table>
 </div>
+</div>
 
 
 <% def compare_to_previous(current, previous) %>
@@ -140,6 +145,7 @@
 <% end %>
 
 <!-- Total Top Ups Section -->
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8">
 <h2 class="text-2xl font-bold mb-4">Total Top Ups</h2>
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
@@ -169,8 +175,9 @@
     </tbody>
   </table>
 </div>
+</div>
 
-
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8">
 <h2 class="text-2xl font-bold mb-4">Individual Receipts</h2>
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
@@ -205,3 +212,4 @@
   </table>
 </div>
 <div>
+</div>

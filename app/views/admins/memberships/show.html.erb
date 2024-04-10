@@ -1,6 +1,6 @@
 <h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl text-center">All Users</h1>
-
-<div class="overflow-x-auto">
+<div class="shadow-md overflow-hidden">
+  <div class="overflow-x-auto">
     <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
       <thead class="ltr:text-left rtl:text-right">
         <tr>
@@ -24,18 +24,19 @@
         <% end %>
       </tbody>
     </table>
+  </div>
 </div>
-<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-8"> <!-- Added mt-8 for margin-top -->
-  <div class="mx-auto max-w-lg">
-    <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Update User Memberships</h1>
 
-    <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4") do |form| %>
-      <div class="grid grid-cols-1 gap-4">
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-8">
+  <div class="mx-auto max-w-lg shadow-md rounded-lg overflow-hidden">
+    <h1 class="text-center text-2xl font-bold text-black-600 sm:text-3xl">Update User Memberships</h1>
+
+    <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4 pb-6") do |form| %>
+      <div class="grid grid-cols-1 gap-4 p-6">
 
         <div>
           <%= form.label :user_id, "User ID or Name:", class: "sr-only" %>
           <%= form.select :user_id, User.all.order(:username).map { |m| [m.username, m.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
-
         </div>
 
         <div>
@@ -61,7 +62,7 @@
         </div>
       </div>
 
-      <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto" %>
+      <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
     <% end %>
   </div>
 </div>

@@ -24,7 +24,6 @@ class PagesController < ApplicationController
     # Your events action logic
   end
 
-
   def qr_code_scanner
     respond_to do |format|
       format.html

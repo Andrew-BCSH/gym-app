@@ -10,7 +10,7 @@
   <div class="header-container">
     <header class="bg-white">
       <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <a class="block text-teal-600" href="/">
+        <a class="block text-teal-600" href="<%= current_user.is_a?(Admin) ? admins_dashboard_index_path : home_path %>">
           <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 50, height: 50) %>
         </a>
 
