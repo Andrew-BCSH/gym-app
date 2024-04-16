@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:username, :email])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:username, :email]) # Remove :email from sign_in
   end
-
 end
