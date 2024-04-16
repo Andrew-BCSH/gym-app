@@ -30,16 +30,16 @@ Membership.create!(
   category: short,
   price_cents: 180000,
   photo_url: 'http://onehdwallpaper.com/wp-content/uploads/2015/07/Teddy-Bears-HD-Images.jpg',
-  days_of_membership: nil,
+  days_of_membership: 1,
   user_id: nil,
-  membership_days_remaining: nil
+  membership_days_remaining: 0
 )
-Membership.create!(sku: 'monthly', name: 'Monthly', category: long, price_cents: 1200000, photo_url: 'https://pbs.twimg.com/media/B_AUcKeU4AE6ZcG.jpg:large',days_of_membership: nil,
+Membership.create!(sku: 'monthly', name: 'Monthly', category: long, price_cents: 1200000, photo_url: 'https://pbs.twimg.com/media/B_AUcKeU4AE6ZcG.jpg:large',days_of_membership: 30,
 user_id: nil,
-membership_days_remaining: nil)
-Membership.create!(sku: 'yearly', name: 'Yearly', category: long, price_cents: 90000000, photo_url: 'https://cdn-ak.f.st-hatena.com/images/fotolife/s/suzumidokoro/20160413/20160413220730.jpg',days_of_membership: nil,
+membership_days_remaining: 0)
+Membership.create!(sku: 'yearly', name: 'Yearly', category: long, price_cents: 90000000, photo_url: 'https://cdn-ak.f.st-hatena.com/images/fotolife/s/suzumidokoro/20160413/20160413220730.jpg',days_of_membership: 365,
 user_id: nil,
-membership_days_remaining: nil)
+membership_days_remaining: 0)
 
 puts 'Creating top-ups...'
 TopUp.create!(
