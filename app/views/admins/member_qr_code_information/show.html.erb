@@ -1,8 +1,12 @@
-<!-- app/views/admins/member_qr_code_information/show.html.erb -->
-<h1>Member QR Code Information</h1>
-
-<% if @decoded_data.present? %>
-  <p>Decoded Data: <%= @decoded_data %></p>
-<% else %>
-  <p>No information available.</p>
-<% end %>
+  <h1>Member QR Code Information</h1>
+  <% if @decoded_data.present? %>
+    <h2>Decoded Data:</h2>
+    <p>User ID: <%= @decoded_data[:user_id] %></p>
+    <p>User Email: <%= @decoded_data[:user].email %></p>
+    <p>Username: <%= @decoded_data[:user].username %></p>
+    <p>Membership Days: <%= @decoded_data[:user].membership_days %></p>
+    <p>Last Membership Start Date: <%= @decoded_data[:user].last_membership_start_date %></p>
+    <p>Credit Balance: <%= @decoded_data[:credit].balance %></p>
+  <% else %>
+    <p>No data available.</p>
+  <% end %>
