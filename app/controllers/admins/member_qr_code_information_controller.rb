@@ -1,15 +1,9 @@
 # app/controllers/admins/member_qr_code_information_controller.rb
 class Admins::MemberQrCodeInformationController < ApplicationController
+
   def show
     # Decode the QR code data
     @decoded_data = decode_qr_code(params[:qr_code_data])
-
-    # Check if decoding was successful
-    if @decoded_data.nil?
-      flash[:alert] = "Error decoding QR code data. Please try again."
-      redirect_to root_path # Redirect to an appropriate page
-      return
-    end
 
     # Render the decoded data in the view
     # This assumes the decoded_data object contains the necessary user information
@@ -23,7 +17,7 @@ class Admins::MemberQrCodeInformationController < ApplicationController
 
     # Return the decoded data
     decoded_data
-  rescue StandardError => e
+  rescue RQRCode::DecodeError => e
     # Handle decoding errors
     Rails.logger.error "Error decoding QR code: #{e.message}"
     nil

@@ -50,8 +50,6 @@ class User < ApplicationRecord
     {
       user_id: id,
       mejiro_coin_balance: credit&.balance || 0,
-      username: username,
-      membership_days_remaining: membership_days_remaining
       # Add more data as needed
     }
   end
