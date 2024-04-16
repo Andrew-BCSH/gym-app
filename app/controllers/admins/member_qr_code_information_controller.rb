@@ -25,7 +25,7 @@ class Admins::MemberQrCodeInformationController < ApplicationController
 
     # Return the decoded data
     decoded_data
-  rescue RQRCode::DecodeError => e
+  rescue StandardError => e
     # Handle decoding errors
     Rails.logger.error "Error decoding QR code: #{e.message}"
     nil
