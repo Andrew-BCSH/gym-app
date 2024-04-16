@@ -14,7 +14,7 @@ class Admins::MemberQrCodeInformationController < ApplicationController
     # Redirect the admin to the generated URL
     # redirect_to qr_code_info_url
     # render json: { user_id: user_id }
-    @decoded_data = { user_id: user_id }
+    @decoded_data = decode_qr_code(params[:qr_code_data])
   end
 
   private
