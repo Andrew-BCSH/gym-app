@@ -2,10 +2,7 @@
 <h1>Member QR Code Information</h1>
 
 <% if @decoded_data.present? %>
-  <p>User ID: <%= @decoded_data[:user_id] %></p>
-  <p>Username: <%= @decoded_data[:username] %></p>
-  <p>Mejiro Coin Balance: <%= @decoded_data[:mejiro_coin_balance] %></p>
-  <p>Membership Days Remaining: <%= @decoded_data[:membership_days_remaining] %></p>
+  <p>Decoded Data: <%= @decoded_data %></p>
 <% else %>
-  <p>No decoded data available</p>
+  <p>No information available.</p>
 <% end %>
