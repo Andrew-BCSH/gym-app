@@ -9,13 +9,15 @@ class Admins::MemberQrCodeInformationController < ApplicationController
     # You need to replace the placeholders with the actual user_id and mejiro_coin_balance
     user_id = request.query_parameters[:user_id]
     user = User.find(user_id.to_i)
+    credit = user.credit
+
     # mejiro_coin_balance = 0 # @decoded_data[:mejiro_coin_balance]
     # qr_code_info_url = admins_qr_code_information_url(user_id: user_id, mejiro_coin_balance: mejiro_coin_balance)
 
     # Redirect the admin to the generated URL
     # redirect_to qr_code_info_url
     # render json: { user_id: user_id }
-    @decoded_data = { user_id: user_id, user:user }
+    @decoded_data = @decoded_data = { user_id: user_id, user: user, credit: user_credit }
   end
 
   private
