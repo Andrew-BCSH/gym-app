@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-
   namespace :users do
     resource :qr_code, only: [:show]
     get '/generate_qr_code', to: 'generate_qr_code#generate_qr_code', as: 'generate_qr_code'
   end
 
-
   # For user login
   devise_for :users, controllers: { sessions: 'users/sessions' }
-
 
   # For admin login
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
@@ -60,15 +57,13 @@ Rails.application.routes.draw do
       post 'add_days', on: :member
     end
 
-    get 'dashboard/index'
+    resources :weekly_class_schedule, only: [:index, :new, :create, :edit, :update, :destroy] do
+      get 'new_weekly_class_schedule', to: 'weekly_class_schedule#new', as: 'new_weekly_class_schedule'
+    end
+
+    get 'dashboard/index', as: 'dashboard_index'
     get '/qr_code_information', to: 'member_qr_code_information#show', as: 'qr_code_information'
-
-
-
     resources :products, path: 'products'
-    resources :weekly_class_schedule, only: [:index, :new, :create, :update]
-    get 'weekly_class_schedule/new', to: 'weekly_class_schedule#new', as: 'new_weekly_class_schedule'
-
     get 'mejiro_coin/admin', to: 'mejiro_coin#index', as: 'mejiro_coin_records'
     post 'mejiro_coin/add_credit', to: 'mejiro_coin#add_credit', as: 'add_credit_to_user'
     get 'memberships/show', as: 'show_membership'

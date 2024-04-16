@@ -1,35 +1,34 @@
 # app/controllers/admins/weekly_class_schedule_controller.rb
 class Admins::WeeklyClassScheduleController < AdminController
   before_action :authenticate_admin!
+  before_action :set_weekly_class_schedule, only: [:index, :update]
+
+  def new
+    @admin = current_admin || Admin.new
+    # Your other logic here
+  end
 
   def index
-    @admin = current_admin
-    @admin ||= Admin.new  # If current_admin is nil, create a new Admin instance
+    flash.now[:notice] = 'You are uploading a new weekly class schedule.'
   end
 
-  # app/controllers/admins/weekly_class_schedule_controller.rb
   def update
-    @admin = current_admin
-    if @admin.update(admin_params)
+    if @admins_weekly_class_schedule.update(admins_weekly_class_schedule_params)
       flash[:notice] = 'Class schedule updated successfully.'
+      redirect_to admins_weekly_class_schedule_index_path
     else
       flash[:alert] = 'Failed to update class schedule.'
-      Rails.logger.error(@admin.errors.full_messages)  # Log errors for debugging
       render :index
     end
-    redirect_to admins_weekly_class_schedule_index_path
   end
-
-
-def new
-  @admin = current_admin || Admin.new
-  flash.now[:notice] = 'You are creating a new weekly class schedule.'
-end
-
 
   private
 
-  def admin_params
-    params.require(:admin).permit(:weekly_class_schedule)
+  def set_weekly_class_schedule
+    @admins_weekly_class_schedule = current_admin.weekly_class_schedule || current_admin.build_weekly_class_schedule
+  end
+
+  def admins_weekly_class_schedule_params
+    params.require(:admins_weekly_class_schedule).permit(:weekly_class_schedule)
   end
 end
