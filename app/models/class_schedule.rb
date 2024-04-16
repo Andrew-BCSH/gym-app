@@ -1,7 +1,7 @@
 # app/models/class_schedule.rb
 class ClassSchedule < ApplicationRecord
   belongs_to :scheduleable, polymorphic: true
-  has_one_attached :weekly_class_schedule
+  #has_one_attached :weekly_class_schedule
 end
 
 class Admin < ApplicationRecord
