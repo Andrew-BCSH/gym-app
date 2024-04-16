@@ -1,6 +1,6 @@
-<div class="container mx-auto mt-8 shadow-lg p-6 ml-8 mb-8 pb-4">
-  <div class="container mx-auto max-w-xl"> <!-- Increase maximum width -->
-    <h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">Enter a New Product</h1>
+<div class="shadow-lg bg-white p-6 rounded-lg mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 mt-4">
+  <div class="container mx-auto max-w-xl mx-auto"> <!-- Center the container -->
+    <h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl text-center">Enter a New Product</h1>
 
     <%= form_for(product, url: admins_products_path, method: product.new_record? ? :post : :patch) do |form| %>
       <div class="mx-auto max-w-md"> <!-- Center the form and limit its maximum width -->
@@ -40,7 +40,7 @@
           <%= form.text_field :category, id: "ProductCategory", class: "rounded-md ml-2 sm:w-auto border-gray-200 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"%>
         </div>
 
-        <div class="mb-4"> <!-- Padding below Save button -->
+        <div class="mb-4 text-center"> <!-- Center the Save button -->
           <%= form.submit 'Save', class: 'block bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
         </div>
       </div>
@@ -52,7 +52,10 @@
 
 
 
-<h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">Current Registered Products</h1>
+
+<div class="text-center">
+  <h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl">Current Registered Products</h1>
+</div>
 
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">

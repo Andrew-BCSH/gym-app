@@ -1,7 +1,5 @@
-<!-- app/views/admins/mejiro_coin/index.html.erb -->
-
-
-<div class="shadow-lg bg-white p-6 rounded-lg mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-8"> <!-- Added shadow container -->
+<div class="shadow-lg bg-white p-6 rounded-lg mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 mt-4">
+  <!-- Content of the div --> <!-- Added shadow container -->
   <h1 class="mb-4 text-2xl font-bold">Add Credit to User</h1>
 
   <!-- Display success notice -->
@@ -32,6 +30,8 @@
     <% end %>
   </div>
 </div>
+
+
 
 <!-- Individual Transactions Section -->
 <div class="shadow-lg bg-white p-6 rounded-lg mb-8"> <!-- Added shadow container -->
@@ -104,35 +104,52 @@
 
 
 <!-- Total Usage Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8">
-<h2 class="text-2xl font-bold mb-4">Total Usage</h2>
-<div class="overflow-x-auto">
-  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
-    <thead class="thead-dark">
-      <tr>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Period</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Spend (Mejiro Coins)</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Compare to Previous</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-200">
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_day %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
-      </tr>
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_week %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
-      </tr>
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_month %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8 tab-content" id="total-usage">
+  <h2 class="text-2xl font-bold mb-4">Total Usage</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Period</th>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Spend (Mejiro Coins)</th>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Compare to Previous</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_day %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_week %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_month %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
+        </tr>
+        <!-- Add the following rows -->
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">Last Month</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_last_month %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_last_month, @total_spend_last_month_prev) %></td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Year</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_year %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_year, @total_spend_year_prev) %></td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">Last Year</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_spend_last_year %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_last_year, @total_spend_last_year_prev) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </div>
 
@@ -145,11 +162,11 @@
 <% end %>
 
 <!-- Total Top Ups Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8">
-<h2 class="text-2xl font-bold mb-4">Total Top Ups</h2>
-<div class="overflow-x-auto">
-  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
-    <thead class="thead-dark">
+<div class="shadow-lg bg-white p-6 rounded-lg mb-8 tab-content" id="total-usage">
+  <h2 class="text-2xl font-bold mb-4">Total Top Ups</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
+      <thead class="thead-dark">
       <tr>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Period</th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Top Ups (Mejiro Coins)</th>
