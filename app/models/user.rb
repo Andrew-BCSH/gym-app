@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :membership_logs
 
   after_create :initialize_user_credit
-  after_create :set_last_membership_start_date
+  # after_create :set_last_membership_start_date
 
 
   def initialize_user_credit
@@ -40,9 +40,9 @@ class User < ApplicationRecord
     total_remaining_days
   end
 
-  def last_membership_start_date
-    # Logic to fetch the last membership start date
-  end
+  # def last_membership_start_date
+  #   # Logic to fetch the last membership start date
+  # end
 
 
   def qr_code_data
