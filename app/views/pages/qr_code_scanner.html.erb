@@ -1,10 +1,13 @@
-<h1 class="text-2xl py-5 pr-0 font-bold text-gray-900 sm:text-3xl mx-auto text-center">Scan the QR Code</h1>
+<div class="container mx-auto px-4">
+  <div class="shadow-lg bg-white p-6 rounded-lg">
+    <h1 class="text-2xl py-5 pr-0 font-bold text-gray-900 sm:text-3xl mx-auto text-center">Scan the QR Code</h1>
 
-<div class="flex justify-center items-center">
-  <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 100, height: 100) %>
-</div>
+    <div class="flex justify-center items-center">
+      <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 100, height: 100) %>
+    </div>
 
-
-<div class="flex h-screen w-screen flex-column items-center justify-center">
-  <video id="camera1" class="flex w-[100svw] h-[200svw]"></video>
+    <div class="flex justify-center items-center mt-8">
+      <video id="camera1" class="w-64 h-64"></video>
+    </div>
+  </div>
 </div>
