@@ -1,13 +1,39 @@
-
 <div class="max-w-md mx-auto mt-8 flex justify-center">
   <div>
     <h1 class="text-2xl font-bold text-gray-900 mb-4">Your Personal QR Code</h1>
   </div>
 </div>
+
 <div class="max-w-md mx-auto mt-8 flex justify-center">
   <div class="bg-white p-8 rounded-lg shadow-md">
     <div class="flex items-center justify-center">
       <%= render inline: generate_qr(@qr_code_data) %>
     </div>
+  </div>
+</div>
+
+<div class="max-w-md mx-auto mt-8 flex justify-center">
+  <div class="flow-root">
+    <dl class="-my-3 divide-y divide-gray-100 text-sm">
+      <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+        <dt class="font-medium text-gray-900 sm:col-span-1">User Name</dt>
+        <dd class="text-gray-700 sm:col-span-2"><%= current_user.username %></dd>
+      </div>
+
+      <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+        <dt class="font-medium text-gray-900 sm:col-span-1">Mejiro Coins</dt>
+        <dd class="text-gray-700 sm:col-span-2"><%= current_user.credit&.balance.present? ? current_user.credit.balance : 'No Coins Left, please top up' %></dd>
+      </div>
+
+      <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+        <dt class="font-medium text-gray-900 sm:col-span-1">Membership Days</dt>
+        <dd class="text-gray-700 sm:col-span-2"><%= current_user.membership_days.present? ? current_user.membership_days : 'No days left' %></dd>
+      </div>
+
+      <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+        <dt class="font-medium text-gray-900 sm:col-span-1">Membership Valid From</dt>
+        <dd class="text-gray-700 sm:col-span-2"><%= current_user.last_membership_start_date.present? ? current_user.last_membership_start_date : 'Please Renew Membership' %></dd>
+      </div>
+    </dl>
   </div>
 </div>
