@@ -28,8 +28,8 @@ module MejiroGymApp
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    config.time_zone = 'Asia/Makassar'
-    config.active_record.default_timezone = :utc
+    config.time_zone = 'Asia/Makassar'  # Set the application time zone to WITA
+    config.active_record.default_timezone = :local  # Use the local time zone for ActiveRecord operations
 
     # config.eager_load_paths << Rails.root.join("extras")
 
