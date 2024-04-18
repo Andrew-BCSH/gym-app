@@ -1,14 +1,17 @@
+
   <div class="shadow-lg bg-white p-6 rounded-lg">
-  <h1 class="text-2xl py-5 ml-10 font-bold text-gray-900 sm:text-3xl">Mejiro Gym</h1>
-  <!-- Container for primary buttons -->
-<%= link_to memberships_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
-  <%= heroicon "finger-print", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Memberships </span>
-<% end %>
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Gym Bali</h1>
+  </div>
+
+  <%= link_to memberships_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700 mt-8" do %> <!-- Added mt-8 for margin top -->
+    <%= heroicon "finger-print", options: { class: "w-6 h-6"} %>
+    <span class="text-sm font-medium"> Memberships </span>
+  <% end %>
 
 <%= link_to users_qr_code_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
   <%= heroicon "qr-code", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Your QR Code </span>
+  <span class="text-sm font-medium"> Your Checkin QR Code </span>
 <% end %>
 
 <!-- <%= link_to book_a_private_class_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
@@ -35,5 +38,7 @@
   <%= heroicon "star", options: { class: "w-6 h-6"} %>
   <span class="text-sm font-medium"> Events Information </span>
 <% end %>
+
+</div>
   </li>
 </ul>
