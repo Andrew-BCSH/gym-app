@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one :credit, dependent: :destroy
   has_many :orders
   has_many :membership_logs
+  has_many :memberships
 
   after_create :initialize_user_credit
   # after_create :set_last_membership_start_date

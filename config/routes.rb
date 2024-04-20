@@ -55,12 +55,17 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :memberships do
       post 'add_days', on: :member
+      post 'add_or_remove_membership_types', on: :collection
     end
 
     resources :weekly_class_schedule, only: [:index, :new, :create, :edit, :update, :destroy] do
       get 'new_weekly_class_schedule', to: 'weekly_class_schedule#new', as: 'new_weekly_class_schedule'
     end
 
+    resources :membership_types, only: [:new, :create]
+
+  # Add the route for create_or_remove_membership action
+    post 'create_or_remove_membership', to: 'memberships#create_or_remove_membership', as: 'create_or_remove_membership'
     get 'dashboard/index', as: 'dashboard_index'
     get '/qr_code_information', to: 'member_qr_code_information#show', as: 'qr_code_information'
     resources :products, path: 'products'

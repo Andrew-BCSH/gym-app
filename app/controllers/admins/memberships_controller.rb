@@ -6,7 +6,64 @@ class Admins::MembershipsController < AdminController
   def show
     # Retrieve all users and their memberships
     @users_with_memberships = User.all.order(sort_column + ' ' + sort_direction)
+
   end
+
+  # Controller action
+  def new
+    @membership = Membership.new
+    @memberships = Membership.all
+  end
+
+
+  def create
+    @membership = Membership.new(membership_params)
+    if @membership.save
+      flash[:success] = "Membership created successfully."
+      redirect_to admins_memberships_path
+    else
+      flash[:error] = "Failed to create membership."
+      render :new
+    end
+  end
+
+  private
+
+  def membership_params
+    params.require(:membership).permit(:name, :sku, :category_id, :price_cents, :days_of_membership)
+  end
+
+    def add_or_remove_membership_types
+      if params[:action_type] == "add"
+        # Logic to add a new membership type
+        membership_params = {
+          sku: params[:sku],
+          name: params[:name],
+          category: params[:category],
+          price_cents: params[:price_cents],
+          days_of_membership: params[:days_of_membership]
+        }
+        @membership = Membership.new(membership_params)
+
+        if @membership.save
+          flash[:success] = "Membership type added successfully."
+        else
+          flash[:error] = "Failed to add membership type."
+        end
+      elsif params[:action_type] == "remove"
+        # Logic to remove an existing membership type
+        membership = Membership.find_by(id: params[:membership_id])
+        if membership.present?
+          membership.destroy
+          flash[:success] = "Membership type removed successfully."
+        else
+          flash[:error] = "Membership type not found."
+        end
+      end
+
+      redirect_to admins_show_membership_path
+
+    end
 
 
   def add_days
