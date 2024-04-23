@@ -37,9 +37,6 @@
               No Membership <!-- Display if user has no memberships -->
             <% end %>
           </td>
-          <td class="whitespace-nowrap px-4 py-2">
-            <a href="#" class="inline-block rounded bg-red-700 px-4 py-2 text-xs font-medium text-white hover:bg-red-700">View</a>
-          </td>
         </tr>
     <% end %>
   </tbody>
@@ -49,9 +46,9 @@
 </div>
 
 <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-8">
-  <div class="shadow-lg bg-white p-6 rounded-lg">
+
   <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">User Database</h1>
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Update a Membership</h1>
     </div>
 
     <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4 pb-6") do |form| %>
@@ -93,8 +90,13 @@
   <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
 <% end %>
 
-
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-8">
+  <div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Create a New Membership Type</h1>
+    </div>
 <%= form_with(model: Membership.new, url: admins_memberships_path, method: :post) do |form| %>
+<div class="grid grid-cols-1 gap-4 p-6">
   <!-- Membership Name -->
   <div>
     <%= form.label :name, "Membership Name:", class: "sr-only" %>

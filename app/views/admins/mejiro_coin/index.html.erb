@@ -1,6 +1,14 @@
-<div class="shadow-lg bg-white p-6 rounded-lg mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 mt-4">
+ <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">All Things Mejiro Coin</h1>
+    <p class="text-gray-500 sm:text-xl">
+       Add Balance and Check User Spending
+      </p>
+  </div>
   <!-- Content of the div --> <!-- Added shadow container -->
-  <h1 class="mb-4 text-2xl font-bold">Add Credit to User</h1>
+  <div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Add Credit To User</h1>
+    </div>
 
   <!-- Display success notice -->
   <% if flash[:notice] %>
@@ -34,8 +42,10 @@
 
 
 <!-- Individual Transactions Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8"> <!-- Added shadow container -->
-  <h2 class="text-2xl font-bold mb-4">User Top Up Receipts</h2>
+<div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">User Top Up Receipts</h1>
+  </div>
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
       <thead class="thead-dark">
@@ -62,8 +72,11 @@
   </div>
 </div>
 
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8"> <!-- Added shadow container -->
-  <h1 class="text-2xl font-bold mb-4">Mejiro Coin Data Filter</h1>
+
+<div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Coin Data Filter</h1>
+  </div>
 
   <%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
     <div class="mb-4">
@@ -102,8 +115,10 @@
 
 
 <!-- Total Usage Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8 tab-content" id="total-usage">
-  <h2 class="text-2xl font-bold mb-4">Total Usage</h2>
+<div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Usage</h1>
+  </div>
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
       <thead class="thead-dark">
@@ -160,8 +175,10 @@
 <% end %>
 
 <!-- Total Top Ups Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8 tab-content" id="total-usage">
-  <h2 class="text-2xl font-bold mb-4">Total Top Ups</h2>
+<div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Top Ups</h1>
+  </div>
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
       <thead class="thead-dark">
@@ -192,8 +209,10 @@
 </div>
 </div>
 
-<div class="shadow-lg bg-white p-6 rounded-lg mb-8">
-<h2 class="text-2xl font-bold mb-4">Individual Receipts</h2>
+<div class="shadow-lg bg-white p-6 rounded-lg">
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Individual Receipts</h1>
+  </div>
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
     <thead class="thead-dark">

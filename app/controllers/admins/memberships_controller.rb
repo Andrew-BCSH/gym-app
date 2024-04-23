@@ -121,7 +121,7 @@ class Admins::MembershipsController < AdminController
       #   format.turbo_stream
       # end
 
-      redirect_to admins_show_membership_path
+      redirect_to admins_show_membership_path(user)
     end
 
 
