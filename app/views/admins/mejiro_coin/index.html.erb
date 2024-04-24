@@ -4,79 +4,111 @@
        Add Balance and Check User Spending
       </p>
   </div>
-  <!-- Content of the div --> <!-- Added shadow container -->
-  <div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Add Credit To User</h1>
-    </div>
 
-  <!-- Display success notice -->
-  <% if flash[:notice] %>
-    <p class="notice"><%= flash[:notice] %></p>
-  <% end %>
 
-  <!-- Display error notice -->
-  <% if flash[:alert] %>
-    <p class="alert"><%= flash[:alert] %></p>
-  <% end %>
+ <div>
+  <label for="toggle-section" class="block text-sm font-medium text-gray-900">Mejiro Coin Selector</label>
 
-  <div class="mb-4">
-    <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
-      <div>
-        <label for="Username" class="block text-xs font-medium text-gray-700">Username</label>
-        <%= form.text_field :username, id: "Username", placeholder: 'Enter Username', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-      </div>
-
-      <div>
-        <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
-        <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-      </div>
-
-      <div>
-        <%= form.submit 'Add Credit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
-      </div>
-    <% end %>
-  </div>
+  <select
+    name="toggle-section"
+    id="toggle-section"
+    class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+    onchange="toggleSection(this.value)"
+  >
+    <option value="">Please select the information you need</option>
+    <option value="add-credit-section">Add Credit Section</option>
+    <option value="top-up-receipts-section">User Top Up Receipts Section</option>
+    <option value="mejiro-coin-filter-section">Mejiro Coin Data Filter Section</option>
+    <option value="total-usage-section">Total Usage Section</option>
+    <option value="total-top-ups-section">Total Top Ups Section</option>
+    <option value="individual-receipts-section">Individual Receipts Section</option>
+  </select>
 </div>
 
+<!-- Script to handle toggling of sections -->
 
 
-<!-- Individual Transactions Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">User Top Up Receipts</h1>
-  </div>
-  <div class="overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
-      <thead class="thead-dark">
-        <tr>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Username</th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Credit Amount</th>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200">
-        <% @receipts.each do |receipt| %>
-          <tr>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user.username %></td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.credit_amount.inspect %></td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
-          </tr>
+
+<!-- "Add Credit To User" section -->
+<div id="add-credit-section" class="section hidden">
+    <div class="shadow-lg bg-white p-6 rounded-lg">
+        <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+            <!-- Added mb-8 for margin bottom -->
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Add Credit To User</h1>
+        </div>
+
+      <!-- Display success notice -->
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% end %>
+
+      <!-- Display error notice -->
+      <% if flash[:alert] %>
+        <p class="alert"><%= flash[:alert] %></p>
+      <% end %>
+
+      <div class="mb-4">
+        <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
+          <div>
+            <label for="Username" class="block text-xs font-medium text-gray-700">Username</label>
+            <%= form.text_field :username, id: "Username", placeholder: 'Enter Username', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+          </div>
+
+          <div>
+            <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
+            <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+          </div>
+
+          <div>
+            <%= form.submit 'Add Credit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+          </div>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+    </div>
+  </div>
+
+
+<!-- "User Top Up Receipts" section -->
+<div id="top-up-receipts-section" class="section hidden">
+    <div class="shadow-lg bg-white p-6 rounded-lg">
+        <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">User Top Up Receipts</h1>
+        </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Username</th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Credit Amount</th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <% @receipts.each do |receipt| %>
+              <tr>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user.username %></td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.credit_amount.inspect %></td>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
 
-<div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Coin Data Filter</h1>
-  </div>
+<!-- Mejiro Coin Data Filter Section -->
+<div id="mejiro-coin-filter-section" class="section hidden">
+    <div class="shadow-lg bg-white p-6 rounded-lg">
+        <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Coin Data Filter</h1>
+        </div>
 
   <%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
     <div class="mb-4">
@@ -112,13 +144,12 @@
 </div>
 
 
-
-
 <!-- Total Usage Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Usage</h1>
-  </div>
+<div id="total-usage-section" class="section hidden">
+    <div class="shadow-lg bg-white p-6 rounded-lg">
+        <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Usage</h1>
+        </div>
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
       <thead class="thead-dark">
@@ -175,10 +206,11 @@
 <% end %>
 
 <!-- Total Top Ups Section -->
-<div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Top Ups</h1>
-  </div>
+<div id="total-top-ups-section" class="section hidden">
+    <div class="shadow-lg bg-white p-6 rounded-lg">
+        <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Top Ups</h1>
+        </div>
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
       <thead class="thead-dark">
@@ -209,10 +241,12 @@
 </div>
 </div>
 
-<div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Individual Receipts</h1>
-  </div>
+<!-- Individual Receipts Section -->
+<div id="individual-receipts-section" class="section hidden">
+    <div class="shadow-lg bg-white p-6 rounded-lg">
+        <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Individual Receipts</h1>
+        </div>
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
     <thead class="thead-dark">
@@ -244,6 +278,23 @@
       <% end %>
     </tbody>
   </table>
+
 </div>
 <div>
 </div>
+
+<!-- Script for fold down sections -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleSelect = document.getElementById('toggle-section');
+
+    toggleSelect.addEventListener('change', function() {
+      const selectedOption = this.value;
+      const targetSection = document.getElementById(selectedOption);
+
+      if (targetSection) {
+        targetSection.classList.toggle('hidden');
+      }
+    });
+  });
+</script>
