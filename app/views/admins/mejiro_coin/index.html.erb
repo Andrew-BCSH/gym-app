@@ -10,19 +10,19 @@
   <label for="toggle-section" class="block text-sm font-medium text-gray-900">Mejiro Coin Selector</label>
 
   <select
-    name="toggle-section"
-    id="toggle-section"
-    class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
-    onchange="toggleSection(this.value)"
-  >
-    <option value="">Please select the information you need</option>
-    <option value="add-credit-section">Add Credit Section</option>
-    <option value="top-up-receipts-section">User Top Up Receipts Section</option>
-    <option value="mejiro-coin-filter-section">Mejiro Coin Data Filter Section</option>
-    <option value="total-usage-section">Total Usage Section</option>
-    <option value="total-top-ups-section">Total Top Ups Section</option>
-    <option value="individual-receipts-section">Individual Receipts Section</option>
+  name="toggle-section"
+  id="toggle-section"
+  class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+>
+  <option value="">Please select the information you need</option>
+  <option value="add-credit-section">Add Credit Section</option>
+  <option value="top-up-receipts-section">User Top Up Receipts Section</option>
+  <option value="mejiro-coin-filter-section">Mejiro Coin Data Filter Section</option>
+  <option value="total-usage-section">Total Usage Section</option>
+  <!-- <option value="total-top-ups-section">Total Top Ups Section</option> -->
+  <option value="individual-receipts-section">Individual Receipts Section</option>
   </select>
+
 </div>
 
 <!-- Script to handle toggling of sections -->
@@ -206,7 +206,7 @@
 <% end %>
 
 <!-- Total Top Ups Section -->
-<div id="total-top-ups-section" class="section hidden">
+<!--<div id="total-top-ups-section" class="section hidden">
     <div class="shadow-lg bg-white p-6 rounded-lg">
         <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
             <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Top Ups</h1>
@@ -239,7 +239,7 @@
     </tbody>
   </table>
 </div>
-</div>
+</div> -->
 
 <!-- Individual Receipts Section -->
 <div id="individual-receipts-section" class="section hidden">
@@ -290,10 +290,17 @@
 
     toggleSelect.addEventListener('change', function() {
       const selectedOption = this.value;
-      const targetSection = document.getElementById(selectedOption);
+      const sections = document.querySelectorAll('.toggleable-section');
 
+      // Hide all sections
+      sections.forEach(function(section) {
+        section.classList.add('hidden');
+      });
+
+      // Show the selected section
+      const targetSection = document.getElementById(selectedOption);
       if (targetSection) {
-        targetSection.classList.toggle('hidden');
+        targetSection.classList.remove('hidden');
       }
     });
   });

@@ -1,6 +1,14 @@
-<div class="shadow-lg bg-white p-6 rounded-lg mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8 mt-4">
-  <div class="container mx-auto max-w-xl mx-auto"> <!-- Center the container -->
-    <h1 class="text-2xl py-5 font-bold text-gray-900 sm:text-3xl text-center">Enter a New Product</h1>
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Inventory Management</h1>
+    <p class="text-gray-500 sm:text-xl">
+       Update and remove products
+      </p>
+  </div>
+
+<div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Enter a New Product</h1>
+
+    <div class="container mx-auto max-w-md">
 
     <%= form_for(product, url: admins_products_path, method: product.new_record? ? :post : :patch) do |form| %>
       <div class="mx-auto max-w-md"> <!-- Center the form and limit its maximum width -->
