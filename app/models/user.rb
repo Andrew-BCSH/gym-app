@@ -4,7 +4,6 @@ class User < ApplicationRecord
   # Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable, and :omniauthable
   has_one :credit, dependent: :destroy
-  has_many :orders
   has_many :membership_logs
   has_many :memberships
 
