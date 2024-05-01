@@ -12,6 +12,9 @@ class Admins::MejiroCoinController < AdminController
     @receipts = @receipts.where('product_price <= ?', params[:spend].to_i) if params[:spend].present?
     @receipts = @receipts.where(time: params[:time]) if params[:time].present?
 
+    # Paginate the @receipts collection
+    @receipts = Receipt.all.order(timestamp: :desc).paginate(page: params[:page], per_page: 10)
+
     # Calculate totals
     @total_spend_day = @receipts.where('timestamp >= ?', Time.zone.now.beginning_of_day).sum(:product_price)
     @total_spend_week = @receipts.where('timestamp >= ?', 1.week.ago).sum(:product_price)

@@ -1,41 +1,46 @@
+<section class="mx-auto max-w-screen-2xl px-4 py-4 sm:px-6 lg:px-8">
+  <div class="rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Member Information</h1>
+  </div>
   <div class="shadow-lg bg-white p-6 rounded-lg">
-  <h1 class="text-2xl py-5 ml-10 font-bold text-gray-900 sm:text-3xl">Member QR Code Information</h1>
-  <% if @decoded_data.present? %>
-    <div class="flow-root">
-      <dl class="-my-3 divide-y divide-gray-100 text-sm">
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Username</dt>
-          <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].username %></dd>
-        </div>
+    <div class="flex flex-col rounded-lg border border-red-900 px-4 py-8 text-center">
+      <% if @decoded_data.present? %>
+      <div class="flow-root">
+        <dl class="-my-3 divide-y divide-gray-100 text-sm">
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">Username</dt>
+            <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].username %></dd>
+          </div>
 
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">User ID</dt>
-          <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user_id] %></dd>
-        </div>
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">User ID</dt>
+            <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user_id] %></dd>
+          </div>
 
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">User Email</dt>
-          <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].email %></dd>
-        </div>
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">User Email</dt>
+            <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].email %></dd>
+          </div>
 
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Membership Days</dt>
-          <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].membership_days %></dd>
-        </div>
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">Membership Days</dt>
+            <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].membership_days %></dd>
+          </div>
 
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Last Membership Start Date</dt>
-          <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].last_membership_start_date %></dd>
-        </div>
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">Last Membership Start Date</dt>
+            <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:user].last_membership_start_date %></dd>
+          </div>
 
-        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-          <dt class="font-medium text-gray-900">Credit Balance</dt>
-          <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:credit].balance %></dd>
-        </div>
-      </dl>
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">Credit Balance</dt>
+            <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:credit].balance %></dd>
+          </div>
+        </dl>
+      </div>
+      <% else %>
+      <p>No decoded data available.</p>
+      <% end %>
     </div>
-  <% else %>
-    <p>No decoded data available.</p>
-  <% end %>
-</body>
-</html>
+  </div>
+</section>
