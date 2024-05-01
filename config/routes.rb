@@ -54,8 +54,9 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :memberships do
-      post 'add_days', on: :member
+      post 'add_days', on: :member  # Add this line to define the route for add_days action
       post 'add_or_remove_membership_types', on: :collection
+      post 'create_or_remove_membership', on: :collection
     end
 
     resources :weekly_class_schedule, only: [:index, :new, :create, :edit, :update, :destroy] do
