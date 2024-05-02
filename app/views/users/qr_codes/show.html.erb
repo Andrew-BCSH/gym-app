@@ -29,6 +29,11 @@
       </div>
 
       <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+       <dt class="font-medium text-gray-900 sm:col-span-1">Type of Membership</dt>
+       <dd class="text-gray-700 sm:col-span-2"><%= current_user.membership_id.present? ? current_user.membership_id : 'No current membership' %></dd>
+      </div>
+
+      <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
         <dt class="font-medium text-gray-900 sm:col-span-1">Membership Days</dt>
         <dd class="text-gray-700 sm:col-span-2"><%= current_user.membership_days.present? && current_user.membership_days != 0 ? current_user.membership_days_remaining : 'No days left' %></dd>
       </div>
