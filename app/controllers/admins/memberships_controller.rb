@@ -6,7 +6,6 @@ class Admins::MembershipsController < AdminController
   def show
     # Retrieve all users and their memberships
     @users_with_memberships = User.all.order(sort_column + ' ' + sort_direction)
-
   end
 
   # Controller action
