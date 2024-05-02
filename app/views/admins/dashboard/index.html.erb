@@ -1,5 +1,6 @@
 
-    <div class="shadow-lg bg-white p-6 rounded-lg">
+   <section class="mx-auto max-w-screen-2xl px-4 py-4 sm:px-6 lg:px-8 bg-red-400">
+  <div class="shadow-lg bg-white p-6 rounded-lg">
   <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
     <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Gym Admin Dashboard</h1>
     </div>
@@ -42,14 +43,14 @@
       <% end %>
   </li>
 
-  <li>
+  <!--<li>
     <%= link_to 'https://dashboard.stripe.com/login', class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
 
      <%= heroicon "credit-card", options: { class: "w-6 h-6"} %>
 
       <span class="text-sm font-medium"> Stripe </span>
       <% end %>
-  </li>
+  </li> -->
 
  <li>
     <%= link_to new_admins_weekly_class_schedule_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
@@ -69,3 +70,4 @@
       <% end %>
   </li>
 </ul>
+</section>
