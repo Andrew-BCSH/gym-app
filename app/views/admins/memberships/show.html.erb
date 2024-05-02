@@ -1,10 +1,10 @@
-<div class="mx-auto max-w-screen-2xl px-4 py-4 sm:px-6 lg:px-8">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Memberships Database</h1>
-    <p class="text-gray-500 sm:text-xl">User and Membership Data</p>
-  </div>
+<div class="container mx-auto max-w-screen-2xl px-4 py-4 sm:px-6 lg:px-8">
+  <section class="shadow-lg bg-white p-6 rounded-lg">
+    <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+      <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Memberships Database</h1>
+      <p class="text-gray-500 sm:text-xl">User and Membership Data</p>
+    </div>
 
-  <div class="shadow-lg bg-white p-6 rounded-lg">
     <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
       <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Membership Info</h1>
     </div>
@@ -16,7 +16,6 @@
           <th class="sortable px-4 py-2 font-medium text-gray-900"><%= sort_link('last_membership_start_date', 'Updated at') %></th>
           <th class="sortable px-4 py-2 font-medium text-gray-900"><%= sort_link('price', 'Price') %></th>
           <th class="sortable px-4 py-2 font-medium text-gray-900"><%= sort_link('membership_days', 'Remaining Membership (days)') %></th>
-          <!--<th class="sortable px-4 py-2 font-medium text-gray-900">Membership Type(s)</th> -->
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
@@ -26,70 +25,59 @@
             <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= user.updated_at %></td>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700">N/A</td>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700" id="membershipDays<%= user.id %>"><%= user.membership_days_remaining %></td>
-           <!-- <td class="whitespace-nowrap px-4 py-2">
-              <% if user.memberships.present? %>
-                <% user.memberships.each do |membership| %>
-                  <%= "#{membership.name}: #{membership.days_of_membership} days" %> <br>
-                <% end %>
-              <% else %>
-                No Membership
-              <% end %> -->
-            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
+    <%= will_paginate @users_with_memberships%>
+  </section>
 
-
-
-<div class="mt-8"></div>
-<div class="shadow-lg bg-white p-6 rounded-lg">
-  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Update a Membership</h1>
-  </div>
-
-  <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4 pb-6") do |form| %>
-  <div class="grid grid-cols-1 gap-4 p-6">
-    <!-- Select dropdown for User ID -->
-    <div>
-      <%= form.label :user_id, "User ID:", class: "sr-only" %>
-      <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+  <section class="shadow-lg bg-white p-6 rounded-lg mt-8">
+    <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+      <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Update a Membership</h1>
     </div>
 
-    <!-- Select dropdown for Membership Type -->
-    <div>
-      <%= form.label :membership_id, "Membership Type:", class: "sr-only" %>
-      <%= form.select :membership_id, Membership.all.map { |membership| [membership.name, membership.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
-    </div>
+    <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4 pb-6") do |form| %>
+      <div class="grid grid-cols-1 gap-4 p-6">
+        <!-- Select dropdown for User ID -->
+        <div>
+          <%= form.label :user_id, "User ID:", class: "sr-only" %>
+          <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+        </div>
 
-    <!-- Input field for Order Amount -->
-    <div>
-      <%= form.label :order_amount, "Order Amount:", class: "sr-only" %>
-      <div class="relative">
-        <%= form.number_field :order_amount, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Total amount" %>
+        <!-- Select dropdown for Membership Type -->
+        <div>
+          <%= form.label :membership_id, "Membership Type:", class: "sr-only" %>
+          <%= form.select :membership_id, Membership.all.map { |membership| [membership.name, membership.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+        </div>
+
+        <!-- Input field for Order Amount -->
+        <div>
+          <%= form.label :order_amount, "Order Amount:", class: "sr-only" %>
+          <div class="relative">
+            <%= form.number_field :order_amount, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Total amount" %>
+          </div>
+        </div>
+
+        <!-- Input field for Total Cost -->
+        <div>
+          <%= form.label :total_cost, "Total  Cost:", class: "sr-only" %>
+          <%= form.number_field :total_cost, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Enter price" %>
+        </div>
+
+        <!-- Select dropdown for Action Type -->
+        <div>
+          <%= form.label :action_type, "Action:", class: "sr-only" %>
+          <%= form.select :action_type, [["Add", "add"], ["Subtract", "subtract"]], {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+        </div>
       </div>
-    </div>
 
-    <!-- Input field for Total Cost -->
-    <div>
-      <%= form.label :total_cost, "Total  Cost:", class: "sr-only" %>
-      <%= form.number_field :total_cost, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Enter price" %>
-    </div>
+      <!-- Submit button -->
+      <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
+    <% end %>
+  </section>
 
-    <!-- Select dropdown for Action Type -->
-    <div>
-      <%= form.label :action_type, "Action:", class: "sr-only" %>
-      <%= form.select :action_type, [["Add", "add"], ["Subtract", "subtract"]], {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
-    </div>
-  </div>
-
-    <!-- Submit button -->
-    <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
-  <% end %>
-
-  <div class="mt-8"></div>
-  <div class="shadow-lg bg-white p-6 rounded-lg">
+  <section class="shadow-lg bg-white p-6 rounded-lg mt-8">
     <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
       <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Create a New Membership Type</h1>
     </div>
@@ -129,5 +117,5 @@
         <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
       </div>
     <% end %>
-  </div>
+  </section>
 </div>
