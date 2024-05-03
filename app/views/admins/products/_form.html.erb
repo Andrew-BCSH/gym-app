@@ -1,3 +1,6 @@
+
+ <section class="mx-auto rounded-lg border max-w-screen-2xl px-4 py-4 sm:px-6 lg:px-8 bg-white">
+  <div class="shadow-lg bg-white p-6 rounded-lg">
   <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
     <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Inventory Management</h1>
     <p class="text-gray-500 sm:text-xl">
@@ -11,7 +14,7 @@
     <div class="container mx-auto max-w-md">
 
     <%= form_for(product, url: admins_products_path, method: product.new_record? ? :post : :patch) do |form| %>
-      <div class="mx-auto max-w-md"> <!-- Center the form and limit its maximum width -->
+      <div class="grid grid-cols-1 gap-4 p-6">
         <% if product.errors.any? %>
           <div style="color: red">
             <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -49,7 +52,7 @@
         </div>
 
         <div class="mb-4 text-center"> <!-- Center the Save button -->
-          <%= form.submit 'Save', class: 'block bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
+          <%= form.submit 'Save', class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
         </div>
       </div>
     <% end %>
@@ -92,3 +95,4 @@
     </tbody>
   </table>
 </div>
+ </section>
