@@ -106,10 +106,10 @@ class Admins::MembershipsController < AdminController
         if user.save()
           membership_log.save!
           # You can optionally set a flash message here if needed
-          # flash[:success] = "#{days_to_modify} days #{params[:action_type]}ed successfully."
+           flash[:success] = "#{days_to_modify} days #{params[:action_type]}ed successfully."
         else
           # You can optionally set a flash message here if needed
-          # flash[:error] = "Failed to #{params[:action_type]} days."
+           flash[:error] = "Failed to #{params[:action_type]} days."
         end
       end
 
