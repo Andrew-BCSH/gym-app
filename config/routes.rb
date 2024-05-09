@@ -53,8 +53,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    resources :users, only: [:destroy] # Restrict user deletion to admins
     resources :memberships do
-      post 'add_days', on: :member  # Add this line to define the route for add_days action
+      post 'add_days', on: :member
       post 'add_or_remove_membership_types', on: :collection
       post 'create_or_remove_membership', on: :collection
     end
@@ -64,8 +65,6 @@ Rails.application.routes.draw do
     end
 
     resources :membership_types, only: [:new, :create]
-
-  # Add the route for create_or_remove_membership action
     post 'create_or_remove_membership', to: 'memberships#create_or_remove_membership', as: 'create_or_remove_membership'
     get 'dashboard/index', as: 'dashboard_index'
     get '/qr_code_information', to: 'member_qr_code_information#show', as: 'qr_code_information'
