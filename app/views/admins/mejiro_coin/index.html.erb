@@ -60,7 +60,7 @@
           <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Time</th>
         </tr>
       </thead>
-      <!--<tbody class="divide-y divide-gray-200">
+      <tbody class="divide-y divide-gray-200">
         <% @receipts.each do |receipt| %>
           <tr>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
@@ -70,7 +70,7 @@
             <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
           </tr>
         <% end %>
-      </tbody>-->
+      </tbody>
     </table>
   </div>
   <%= will_paginate @receipts %>
