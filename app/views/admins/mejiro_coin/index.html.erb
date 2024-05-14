@@ -90,7 +90,7 @@
     <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Coin Data Filter</h1>
   </div>
 
- !-- <%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
+   <%= form_with(url: admins_mejiro_coin_records_path, method: :get, class: 'filter-form') do |form| %>
     <div class="mb-4">
       <%= form.label :username, class: 'block text-xs font-medium text-gray-700' %>
       <%= form.select :username, User.pluck(:username, :username), { include_blank: 'Select User' }, class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
@@ -121,7 +121,7 @@
       <%= link_to 'Reset Filter', admins_mejiro_coin_records_path, class: 'btn btn-secondary btn-secondary-font' %>
     </div>
   <% end %>
-</div> -->
+</div>
 
 
 
