@@ -10,23 +10,47 @@
     <div class="container mx-auto px-4 py-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div class="shadow-lg bg-white rounded-lg overflow-hidden">
-          <a href="#" class="block">
+          <a href="#" class="block" onclick="openImageModal(event, 'https://res.cloudinary.com/dh8uxggfc/image/upload/v1717399236/PHOTO-2024-05-28-17-36-15_yqiw4v.jpg')">
             <div class="aspect-w-16 aspect-h-9">
               <img
-                alt=""
+                alt="Event Image"
                 src="https://res.cloudinary.com/dh8uxggfc/image/upload/v1717399236/PHOTO-2024-05-28-17-36-15_yqiw4v.jpg"
                 class="h-full w-full object-cover rounded-lg"
               />
             </div>
           </a>
-           <div class="p-4">
-             <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Andy Souwer Seminar</h1>
-              <p class="mt-4 pb-4 text-gray-500 sm:text-xl text-center">
-               Saturday 13th July
-              </p>
+          <div class="p-4">
+            <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Andy Souwer Seminar</h1>
+            <p class="mt-4 pb-4 text-gray-500 sm:text-xl text-center">Saturday 13th July</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div id="imageModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-white p-4 rounded-lg">
+    <img id="modalImage" src="" alt="Full Size Event Image" class="max-w-full h-auto">
+  </div>
+</div>
+
+<script>
+  function openImageModal(event, imageUrl) {
+    event.preventDefault();
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = imageUrl;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Close modal on outside click
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }
+    });
+  }
+</script>
