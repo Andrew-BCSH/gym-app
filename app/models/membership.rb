@@ -1,5 +1,6 @@
 class Membership < ApplicationRecord
   belongs_to :category
+  belongs_to :user, optional: true
   monetize :price_cents
   has_many :orders, dependent: :destroy
 
