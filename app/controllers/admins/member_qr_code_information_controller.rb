@@ -1,13 +1,22 @@
 class Admins::MemberQrCodeInformationController < ApplicationController
   def show
     user_id = request.query_parameters[:user_id]
-    user = User.includes(:memberships).find(user_id.to_i)
-    credit = user.credit
+    Rails.logger.debug "Received user_id: #{user_id}"
 
-    # Collect membership names
-    membership_names = user.memberships.map(&:name).join(", ")
-
-    @decoded_data = { user_id: user_id, user: user, credit: credit, membership_names: membership_names }
+    if user_id.present?
+      user = User.includes(:memberships).find_by(id: user_id.to_i)
+      if user
+        credit = user.credit
+        membership_names = user.memberships.map(&:name).join(", ")
+        @decoded_data = { user_id: user_id, user: user, credit: credit, membership_names: membership_names }
+      else
+        Rails.logger.debug "User not found"
+        @decoded_data = { error: "User not found" }
+      end
+    else
+      Rails.logger.debug "No user_id parameter provided"
+      @decoded_data = { error: "No user_id parameter provided" }
+    end
   end
 
   private
