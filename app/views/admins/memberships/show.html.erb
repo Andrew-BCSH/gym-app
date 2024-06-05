@@ -48,10 +48,11 @@
         </div>
 
         <!-- Select dropdown for Membership Type -->
-        <div>
-          <%= form.label :membership_id, "Membership Type:", class: "sr-only" %>
-          <%= form.select :membership_id, Membership.all.map { |membership| [membership.name, membership.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
-        </div>
+         <div>
+        <%= form.label :membership_id, "Membership Type:", class: "sr-only" %>
+        <%= form.select :membership_id, Membership.all.map { |membership| [membership.name, membership.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+      </div>
+
 
         <!-- Input field for Order Amount -->
         <div>
