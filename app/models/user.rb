@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :top_ups, dependent: :destroy
 
+  belongs_to :membership, optional: true
+
+
   after_create :initialize_user_credit
   # after_create :set_last_membership_start_date
 
