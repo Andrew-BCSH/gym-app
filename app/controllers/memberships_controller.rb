@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
   def index
-    @memberships = Membership.all
+    @memberships = Membership.includes(:user)
   end
 
   def show
