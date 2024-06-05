@@ -1,21 +1,39 @@
 module Users
   class QrCodeInfoController < ApplicationController
-    # Define an action method to handle requests
+    before_action :validate_and_set_user, only: :show
+
     def show
-      # Retrieve the information stored in the QR code
-      # Make sure to sanitize and validate parameters
-      @user_id = params[:user_id]
-      @mejiro_coin_balance = params[:mejiro_coin_balance]
+      if @user
+        @mejiro_coin_balance = params[:mejiro_coin_balance]
 
-      # Generate URLs based on the retrieved information
-      @qr_code_info_url = qr_code_info_url(user_id: @user_id, mejiro_coin_balance: @mejiro_coin_balance)
+        # Ensure @mejiro_coin_balance is a valid number
+        unless valid_balance?(@mejiro_coin_balance)
+          render plain: "Invalid Mejiro coin balance", status: :unprocessable_entity and return
+        end
 
-      # Add more information retrieval logic as needed
-      # Ensure that the data retrieval is secure and accurate
+        # Retrieve the user's membership details
+        @membership = @user.memberships.last
 
-      # Render the view template
-      # Make sure to pass the retrieved information to the view template
-      # The view template will be responsible for rendering the information
+        # Generate URLs based on the retrieved information
+        @qr_code_info_url = qr_code_info_url(user_id: @user.id, mejiro_coin_balance: @mejiro_coin_balance)
+
+        # Render the view template with the retrieved information
+      else
+        render plain: "User not found", status: :not_found
+      end
+    end
+
+    private
+
+    def validate_and_set_user
+      @user = User.find_by(id: params[:user_id])
+    end
+
+    def valid_balance?(balance)
+      balance.present? && balance.to_s.match?(/\A\d+(\.\d{1,2})?\z/)
+    end
+
+    def qr_code_info_params
+      params.permit(:user_id, :mejiro_coin_balance)
     end
   end
-end
