@@ -8,7 +8,18 @@ class Admins::MemberQrCodeInformationController < ApplicationController
       if user
         credit = user.credit
         membership_names = user.memberships.map(&:name).join(", ")
-        @decoded_data = { user_id: user_id, user: user, credit: credit, membership_names: membership_names }
+        last_membership = user.memberships.last
+        last_membership_name = last_membership&.name
+        last_membership_sku = last_membership&.sku
+
+        @decoded_data = {
+          user_id: user_id,
+          user: user,
+          credit: credit,
+          membership_names: membership_names,
+          last_membership_name: last_membership_name,
+          last_membership_sku: last_membership_sku
+        }
       else
         Rails.logger.debug "User not found"
         @decoded_data = { error: "User not found" }
