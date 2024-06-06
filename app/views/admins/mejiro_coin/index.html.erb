@@ -186,7 +186,6 @@
   <%= "#{percentage_change.round(2)}%" %>
 <% end %>
 
-<!-- Total Top Ups Section -->
 <div class="shadow-lg bg-white p-6 rounded-lg">
   <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
     <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Top Ups</h1>
@@ -203,17 +202,17 @@
     <tbody class="divide-y divide-gray-200">
       <tr>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_today %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_today / 100.0 %></td>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_today, @total_top_up_today_prev) %></td>
       </tr>
       <tr>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_week %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_week / 100.0 %></td>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_week, @total_top_up_week_prev) %></td>
       </tr>
       <tr>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_month %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_month / 100.0 %></td>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_month, @total_top_up_month_prev) %></td>
       </tr>
     </tbody>

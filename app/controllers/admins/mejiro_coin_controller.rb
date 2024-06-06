@@ -13,7 +13,7 @@ class Admins::MejiroCoinController < AdminController
     @receipts = @receipts.where(time: params[:time]) if params[:time].present?
 
     # Paginate the @receipts collection
-    @receipts = Receipt.all.order(timestamp: :desc).paginate(page: params[:page], per_page: 10)
+    @receipts = @receipts.order(timestamp: :desc).paginate(page: params[:page], per_page: 10)
 
     # Calculate totals
     @total_spend_day = @receipts.where('timestamp >= ?', Time.zone.now.beginning_of_day).sum(:product_price)
@@ -23,8 +23,52 @@ class Admins::MejiroCoinController < AdminController
     @total_top_up_week = TopUp.where('created_at >= ?', 1.week.ago).sum(:amount_cents)
     @total_top_up_month = TopUp.where('created_at >= ?', 1.month.ago).sum(:amount_cents)
 
+    # Debugging statements
+    puts "Total Top Up Today: #{@total_top_up_today}"
+    puts "Total Top Up Week: #{@total_top_up_week}"
+    puts "Total Top Up Month: #{@total_top_up_month}"
+
     render :index
   end
+
+  def add_credit
+    @user = User.find_by(username: params[:username])
+
+    if @user
+      credit_amount = params[:credit_amount].to_i
+      puts "Params Credit Amount: #{params[:credit_amount]}"
+      puts "Credit Amount: #{credit_amount}"
+
+      @credit = @user.credit
+
+      if @credit
+        # Update the balance by adding the credit amount
+        @credit.update(balance: @credit.balance + credit_amount)
+        flash[:notice] = 'Credit added successfully.'
+
+        # Create a receipt for the Mejiro Coin top-up
+        Receipt.create(
+          user_id: @user.id,
+          timestamp: Time.now,
+          credit_amount: credit_amount
+        )
+
+        # Create a top-up record
+        TopUp.create(
+          user_id: @user.id,
+          amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
+        )
+      else
+        flash[:alert] = 'Credit record not found for the user.'
+      end
+    else
+      flash[:alert] = 'User not found.'
+    end
+
+    redirect_to admins_mejiro_coin_records_path
+  end
+end
+
 
 
 
