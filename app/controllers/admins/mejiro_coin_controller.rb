@@ -19,14 +19,10 @@ class Admins::MejiroCoinController < AdminController
     @total_spend_day = @receipts.where('timestamp >= ?', Time.zone.now.beginning_of_day).sum(:product_price)
     @total_spend_week = @receipts.where('timestamp >= ?', 1.week.ago).sum(:product_price)
     @total_spend_month = @receipts.where('timestamp >= ?', 1.month.ago).sum(:product_price)
-    @total_top_up_today = TopUp.where('created_at >= ?', Time.zone.now.beginning_of_day).sum(:amount_cents)
-    @total_top_up_week = TopUp.where('created_at >= ?', 1.week.ago).sum(:amount_cents)
-    @total_top_up_month = TopUp.where('created_at >= ?', 1.month.ago).sum(:amount_cents)
+    @total_credit_today = Receipt.where("DATE(timestamp) = ?", Date.today).sum(:credit_amount)
+    @total_credit_week = Receipt.where("timestamp >= ? AND timestamp <= ?", Date.today.beginning_of_week, Date.today.end_of_week).sum(:credit_amount)
+    @total_credit_month = Receipt.where("DATE_PART('month', timestamp) = ? AND DATE_PART('year', timestamp) = ?", Date.today.month, Date.today.year).sum(:credit_amount)
 
-    # Debugging statements
-    puts "Total Top Up Today: #{@total_top_up_today}"
-    puts "Total Top Up Week: #{@total_top_up_week}"
-    puts "Total Top Up Month: #{@total_top_up_month}"
 
     render :index
   end

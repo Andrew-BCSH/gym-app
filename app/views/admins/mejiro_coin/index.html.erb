@@ -201,21 +201,22 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_today %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_today, @total_top_up_today_prev) %></td>
-      </tr>
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_week %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_week, @total_top_up_week_prev) %></td>
-      </tr>
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_top_up_month %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_top_up_month, @total_top_up_month_prev) %></td>
-      </tr>
+     <tr>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_credit_today %></td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_credit_today, @total_credit_today_prev) %></td>
+    </tr>
+    <tr>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_credit_week %></td>
+      <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_credit_week, @total_credit_week_prev) %></td>
+    </tr>
+    <tr>
+     <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
+     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= @total_credit_month %></td>
+     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_credit_month, @total_credit_month_prev) %></td>
+   </tr>
+
     </tbody>
   </table>
 </div>
