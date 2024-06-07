@@ -97,21 +97,15 @@ class Admins::MembershipsController < AdminController
         membership_log.amount = params[:order_amount].to_i
         membership_log.total_cost = params[:total_cost].to_i
         membership_log.operation = params[:action_type]
-        if user.membership_days_remaining ==0
-          user.last_membership_start_date =DateTime.now
-        end
-
+        user.last_membership_start_date = DateTime.now if user.membership_days_remaining == 0
         user.membership_days = new_days
-
         user.membership_name = membership.name
 
-        if user.save()
+        if user.save
           membership_log.save!
-          # You can optionally set a flash message here if needed
-           flash[:success] = "#{days_to_modify} days #{params[:action_type]}ed successfully."
+          flash[:success] = "#{days_to_modify} days #{params[:action_type]}ed successfully."
         else
-          # You can optionally set a flash message here if needed
-           flash[:error] = "Failed to #{params[:action_type]} days."
+          flash[:error] = "Failed to #{params[:action_type]} days."
         end
       end
 
