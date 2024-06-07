@@ -1,5 +1,3 @@
-
-
 class User < ApplicationRecord
   has_one :credit, dependent: :destroy
   has_many :membership_logs
