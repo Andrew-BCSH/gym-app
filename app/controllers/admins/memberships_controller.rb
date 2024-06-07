@@ -103,6 +103,8 @@ class Admins::MembershipsController < AdminController
 
         user.membership_days = new_days
 
+        user.membership_name = membership.name
+
         if user.save()
           membership_log.save!
           # You can optionally set a flash message here if needed
