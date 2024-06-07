@@ -29,11 +29,9 @@ class User < ApplicationRecord
     total_remaining_days
   end
 
-  def update_last_membership_name(name)
-    last_membership = memberships.last
-    last_membership.update(name: name) if last_membership
+  def membership_name
+    memberships.last&.name
   end
-
 
   def qr_code_data
     {
