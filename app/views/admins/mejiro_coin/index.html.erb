@@ -27,7 +27,7 @@
     <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
       <div>
         <label for="Username" class="block text-xs font-medium text-gray-700">Username</label>
-        <%= form.text_field :username, id: "Username", placeholder: 'Enter Username', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+        <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
       </div>
 
       <div>
