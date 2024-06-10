@@ -1,4 +1,3 @@
-
 class Admins::MejiroCoinController < AdminController
   include Admins::MejiroCoinHelper
 
@@ -22,7 +21,6 @@ class Admins::MejiroCoinController < AdminController
     @total_credit_today = Receipt.where("DATE(timestamp) = ?", Date.today).sum(:credit_amount)
     @total_credit_week = Receipt.where("timestamp >= ? AND timestamp <= ?", Date.today.beginning_of_week, Date.today.end_of_week).sum(:credit_amount)
     @total_credit_month = Receipt.where("DATE_PART('month', timestamp) = ? AND DATE_PART('year', timestamp) = ?", Date.today.month, Date.today.year).sum(:credit_amount)
-
 
     render :index
   end
@@ -56,6 +54,49 @@ class Admins::MejiroCoinController < AdminController
           user_id: @user.id,
           amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
         )
+      else
+        flash[:alert] = 'Credit record not found for the user.'
+      end
+    else
+      flash[:alert] = 'User not found.'
+    end
+
+    # Respond with a redirect or other response if needed
+    redirect_to admins_mejiro_coin_records_path
+  end
+
+  def subtract_credit
+    @user = User.find_by(username: params[:username])
+
+    if @user
+      credit_amount = params[:credit_amount].to_i
+      puts "Params Credit Amount: #{params[:credit_amount]}"
+      puts "Credit Amount: #{credit_amount}"
+
+      @credit = @user.credit
+
+      if @credit
+        # Ensure that the user has enough balance to subtract
+        if @credit.balance >= credit_amount
+          # Update the balance by subtracting the credit amount
+          @credit.update(balance: @credit.balance - credit_amount)
+          flash[:notice] = 'Credit subtracted successfully.'
+
+          # Create a receipt for the Mejiro Coin subtraction
+          Receipt.create(
+            user_id: @user.id,
+            timestamp: Time.now,
+            credit_amount: -credit_amount # Negative amount for subtraction
+          )
+
+          # Create a subtraction record
+          Subtraction.create(
+            user_id: @user.id,
+            amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
+          )
+        else
+          flash[:alert] = 'Insufficient balance for subtraction.'
+        end
       else
         flash[:alert] = 'Credit record not found for the user.'
       end

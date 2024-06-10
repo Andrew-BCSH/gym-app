@@ -23,24 +23,27 @@
     <p class="alert"><%= flash[:alert] %></p>
   <% end %>
 
-  <div class="mb-4">
-    <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
-      <div>
-          <%= form.label :user_id, "User ID:", class: "sr-only" %>
-          <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
-        </div>
-
-      <div>
-        <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
-        <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-      </div>
-
-      <div>
-        <%= form.submit 'Add Credit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2.5 text-sm font-medium transition hover:bg-red-800' %>
-      </div>
-    <% end %>
+ <%= form_with(url: admins_add_credit_to_user_path, method: :post, class: 'flex flex-col gap-4') do |form| %>
+  <div>
+    <%= form.label :user_id, "User ID:", class: "sr-only" %>
+    <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
   </div>
-</div>
+
+  <div>
+    <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
+    <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
+  </div>
+
+  <div>
+    <%= form.label :action_type, "Action Type:", class: "sr-only" %>
+    <%= form.select :action_type, [["Add", "add"], ["Subtract", "subtract"]], {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+  </div>
+
+  <div>
+    <%= form.submit 'Submit', class: 'block w-full bg-red-700 text-white rounded-md px-4 py-2 text-sm font-medium transition hover:bg-red-800' %>
+  </div>
+<% end %>
+
 
 
 
@@ -129,7 +132,7 @@
 <!-- Total Usage Section -->
 <div class="shadow-lg bg-white p-6 rounded-lg">
   <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Usage</h1>
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Total Spend</h1>
   </div>
   <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
