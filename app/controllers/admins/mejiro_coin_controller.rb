@@ -28,48 +28,7 @@ class Admins::MejiroCoinController < AdminController
   end
 
   def add_credit
-    @user = User.find_by(username: params[:username])
-
-    if @user
-      credit_amount = params[:credit_amount].to_i
-      puts "Params Credit Amount: #{params[:credit_amount]}"
-      puts "Credit Amount: #{credit_amount}"
-
-      @credit = @user.credit
-
-      if @credit
-        # Update the balance by adding the credit amount
-        @credit.update(balance: @credit.balance + credit_amount)
-        flash[:notice] = 'Credit added successfully.'
-
-        # Create a receipt for the Mejiro Coin top-up
-        Receipt.create(
-          user_id: @user.id,
-          timestamp: Time.now,
-          credit_amount: credit_amount
-        )
-
-        # Create a top-up record
-        TopUp.create(
-          user_id: @user.id,
-          amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
-        )
-      else
-        flash[:alert] = 'Credit record not found for the user.'
-      end
-    else
-      flash[:alert] = 'User not found.'
-    end
-
-    redirect_to admins_mejiro_coin_records_path
-  end
-end
-
-
-
-
-  def add_credit
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(id: params[:user_id])  # Changed to params[:user_id]
 
     if @user
       credit_amount = params[:credit_amount].to_i
@@ -92,13 +51,14 @@ end
 
         puts "Receipt ID: #{receipt.id}"  # Add this line to check the receipt ID
 
+        # Create a top-up record
+        TopUp.create(
+          user_id: @user.id,
+          amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
+        )
       else
         flash[:alert] = 'Credit record not found for the user.'
       end
     else
       flash[:alert] = 'User not found.'
     end
-
-    # Respond with a redirect or other response if needed
-    redirect_to admins_mejiro_coin_records_path
-  end
