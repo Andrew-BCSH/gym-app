@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_one :credit, dependent: :destroy
   has_many :membership_logs
   has_many :memberships
-  has_one_attached :photo
+  #has_one_attached :photo
   has_many :top_ups, dependent: :destroy
 
   belongs_to :membership, optional: true
