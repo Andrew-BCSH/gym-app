@@ -148,38 +148,37 @@
         <tr>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">Today</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(@total_spend_day || 0) %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(number_with_delimiter(@total_spend_day || 0), number_with_delimiter(@total_spend_day_prev || 0)) %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_day, @total_spend_day_prev) %></td>
         </tr>
         <tr>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Week</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(@total_spend_week || 0) %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(number_with_delimiter(@total_spend_week || 0), number_with_delimiter(@total_spend_week_prev || 0)) %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_week, @total_spend_week_prev) %></td>
         </tr>
         <tr>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Month</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(@total_spend_month || 0) %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(number_with_delimiter(@total_spend_month || 0), number_with_delimiter(@total_spend_month_prev || 0)) %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_month, @total_spend_month_prev) %></td>
         </tr>
         <!-- Add the following rows -->
         <tr>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">Last Month</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(@total_spend_last_month || 0) %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(number_with_delimiter(@total_spend_last_month || 0), number_with_delimiter(@total_spend_last_month_prev || 0)) %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_last_month, @total_spend_last_month_prev) %></td>
         </tr>
         <tr>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">This Year</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(@total_spend_year || 0) %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(number_with_delimiter(@total_spend_year || 0), number_with_delimiter(@total_spend_year_prev || 0)) %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_year, @total_spend_year_prev) %></td>
         </tr>
         <tr>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">Last Year</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(@total_spend_last_year || 0) %></td>
-          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(number_with_delimiter(@total_spend_last_year || 0), number_with_delimiter(@total_spend_last_year_prev || 0)) %></td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= compare_to_previous(@total_spend_last_year, @total_spend_last_year_prev) %></td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
 </div>
 
 <% def compare_to_previous(current, previous) %>
@@ -264,6 +263,7 @@
     </table>
   </div>
 </div>
+
 <%= will_paginate @receipts %>
 <div>
 </div>
