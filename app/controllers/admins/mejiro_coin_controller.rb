@@ -26,76 +26,56 @@ class Admins::MejiroCoinController < AdminController
   end
 
   def add_credit
-    @user = User.find_by(id: params[:user_id])  # Changed to params[:user_id]
+    @user = User.find_by(id: params[:user_id])
 
     if @user
       credit_amount = params[:credit_amount].to_i
+      action_type = params[:action_type]
       puts "Params Credit Amount: #{params[:credit_amount]}"
       puts "Credit Amount: #{credit_amount}"
+      puts "Action Type: #{action_type}"
 
       @credit = @user.credit
 
       if @credit
-        # Update the balance by adding the credit amount
-        @credit.update(balance: @credit.balance + credit_amount)
-        flash[:notice] = 'Credit added successfully.'
+        if action_type == "add"
+          @credit.update(balance: @credit.balance + credit_amount)
+          flash[:notice] = 'Credit added successfully.'
 
-        # Create a receipt for the Mejiro Coin top-up
-        receipt = Receipt.create(
-          user_id: @user.id,
-          timestamp: Time.now,
-          credit_amount: credit_amount
-        )
-
-        puts "Receipt ID: #{receipt.id}"  # Add this line to check the receipt ID
-
-        # Create a top-up record
-        TopUp.create(
-          user_id: @user.id,
-          amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
-        )
-      else
-        flash[:alert] = 'Credit record not found for the user.'
-      end
-    else
-      flash[:alert] = 'User not found.'
-    end
-
-    # Respond with a redirect or other response if needed
-    redirect_to admins_mejiro_coin_records_path
-  end
-
-  def subtract_credit
-    @user = User.find_by(username: params[:username])
-
-    if @user
-      credit_amount = params[:credit_amount].to_i
-      puts "Params Credit Amount: #{params[:credit_amount]}"
-      puts "Credit Amount: #{credit_amount}"
-
-      @credit = @user.credit
-
-      if @credit
-        # Ensure that the user has enough balance to subtract
-        if @credit.balance >= credit_amount
-          # Update the balance by subtracting the credit amount
-          @credit.update(balance: @credit.balance - credit_amount)
-          flash[:notice] = 'Credit subtracted successfully.'
-
-          # Create a receipt for the Mejiro Coin subtraction
+          # Create a receipt for the Mejiro Coin top-up
           Receipt.create(
             user_id: @user.id,
             timestamp: Time.now,
-            credit_amount: -credit_amount # Negative amount for subtraction
+            credit_amount: credit_amount
           )
 
-          # Create a subtraction record
-          Subtraction.create(
+          # Create a top-up record
+          TopUp.create(
             user_id: @user.id,
             amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
           )
+        elsif action_type == "subtract"
+          if @credit.balance >= credit_amount
+            @credit.update(balance: @credit.balance - credit_amount)
+            flash[:notice] = 'Credit subtracted successfully.'
+
+            # Create a receipt for the Mejiro Coin subtraction
+            Receipt.create(
+              user_id: @user.id,
+              timestamp: Time.now,
+              credit_amount: -credit_amount # Negative amount for subtraction
+            )
+
+            # Create a subtraction record
+            Subtraction.create(
+              user_id: @user.id,
+              amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
+            )
+          else
+            flash[:alert] = 'Insufficient balance for subtraction.'
+          end
         else
-          flash[:alert] = 'Insufficient balance for subtraction.'
+          flash[:alert] = 'Invalid action type.'
         end
       else
         flash[:alert] = 'Credit record not found for the user.'
@@ -104,7 +84,6 @@ class Admins::MejiroCoinController < AdminController
       flash[:alert] = 'User not found.'
     end
 
-    # Respond with a redirect or other response if needed
     redirect_to admins_mejiro_coin_records_path
   end
 end
