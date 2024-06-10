@@ -52,16 +52,17 @@
           </div>
 
           <!-- Code snippet for displaying the user's photo -->
-          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-            <dt class="font-medium text-gray-900">Photo</dt>
-            <dd class="text-gray-700 sm:col-span-2">
-              <% if @decoded_data[:user].photo.attached? %>
-                <%= image_tag @decoded_data[:user].photo.url, alt: 'User Photo', class: 'h-20 w-20 rounded-full object-cover' %>
-              <% else %>
-                <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 80, height: 80, crop: "fill", class: 'h-20 w-20 rounded-full object-cover') %>
-              <% end %>
-            </dd>
-          </div>
+         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Photo</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+    <!-- <% if @decoded_data[:user].photo.attached? %> -->
+           <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 80, height: 80, crop: "fill", class: 'h-20 w-20 rounded-full object-cover') %>
+    <!-- <% else %> -->
+      <!-- <%= image_tag @decoded_data[:user].photo.url, alt: 'User Photo', class: 'h-20 w-20 rounded-full object-cover' %> -->
+    <!-- <% end %> -->
+         </dd>
+        </div>
+
           <!-- End of code snippet for displaying the user's photo -->
 
         </dl>
