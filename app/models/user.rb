@@ -2,12 +2,18 @@ class User < ApplicationRecord
   has_one :credit, dependent: :destroy
   has_many :membership_logs
   has_many :memberships
-  has_one_attached :photo
+  #has_one_attached :photo
   has_many :top_ups, dependent: :destroy
 
   belongs_to :membership, optional: true
 
   after_create :initialize_user_credit
+
+  def default_photo_url
+    def default_photo_url
+      'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png'
+    end
+  end
 
   def initialize_user_credit
     Credit.create(user: self, balance: 0)

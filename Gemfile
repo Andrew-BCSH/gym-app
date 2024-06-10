@@ -6,7 +6,8 @@ ruby "3.1.2"
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.8"
+gem 'rails', '7.0.8.3'
+
 gem "devise"
 
 gem 'font-awesome-rails'
@@ -35,7 +36,12 @@ gem 'rqrcode', '~> 2.2'
 
 gem 'will_paginate', '~> 4.0'
 
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.0'
+
+gem 'activestorage', require: false
+
+
+
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]

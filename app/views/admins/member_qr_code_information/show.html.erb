@@ -6,6 +6,13 @@
     <div class="flex flex-col rounded-lg border border-red-900 px-4 py-8 text-center">
       <% if @decoded_data.present? %>
       <div class="flow-root">
+        <div class="flex justify-center mb-4">
+          <% if @decoded_data[:user].photo.attached? %>
+            <%= image_tag @decoded_data[:user].photo.url, alt: 'User Photo', class: 'h-40 w-40 rounded-full object-cover' %>
+          <% else %>
+            <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 160, height: 160, crop: "fill", class: 'h-40 w-40 rounded-full object-cover') %>
+          <% end %>
+        </div>
         <dl class="-my-3 divide-y divide-gray-100 text-sm">
           <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
             <dt class="font-medium text-gray-900">Username</dt>
@@ -43,6 +50,20 @@
             <dt class="font-medium text-gray-900">Credit Balance</dt>
             <dd class="text-gray-700 sm:col-span-2"><%= @decoded_data[:credit].balance %></dd>
           </div>
+
+          <!-- Code snippet for displaying the user's photo -->
+          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+            <dt class="font-medium text-gray-900">Photo</dt>
+            <dd class="text-gray-700 sm:col-span-2">
+              <% if @decoded_data[:user].photo.attached? %>
+                <%= image_tag @decoded_data[:user].photo.url, alt: 'User Photo', class: 'h-20 w-20 rounded-full object-cover' %>
+              <% else %>
+                <%= cl_image_tag("https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png", width: 80, height: 80, crop: "fill", class: 'h-20 w-20 rounded-full object-cover') %>
+              <% end %>
+            </dd>
+          </div>
+          <!-- End of code snippet for displaying the user's photo -->
+
         </dl>
       </div>
       <% else %>
