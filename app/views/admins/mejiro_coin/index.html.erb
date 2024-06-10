@@ -30,9 +30,10 @@
   </div>
 
   <div>
-    <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
-    <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm' %>
-  </div>
+  <label for="CreditAmount" class="block text-xs font-medium text-gray-700">Credit Amount</label>
+  <%= form.text_field :credit_amount, id: "CreditAmount", placeholder: 'Enter Credit Amount', class: 'mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm', oninput: 'formatWithCommas(this)' %>
+</div>
+
 
   <div>
     <%= form.label :action_type, "Action Type:", class: "sr-only" %>
@@ -268,3 +269,21 @@
 <div>
 </div>
 </section>
+
+<script>
+  function formatWithCommas(input) {
+    // Remove all non-digit characters except for the decimal point
+    let value = input.value.replace(/[^0-9.]/g, '');
+
+    // Split the input value into integer and decimal parts
+    let parts = value.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+
+    // Add commas to the integer part
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    // Combine the formatted integer part with the decimal part
+    input.value = integerPart + decimalPart;
+  }
+</script>
