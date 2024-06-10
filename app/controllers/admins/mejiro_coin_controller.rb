@@ -62,3 +62,8 @@ class Admins::MejiroCoinController < AdminController
     else
       flash[:alert] = 'User not found.'
     end
+
+    # Respond with a redirect or other response if needed
+    redirect_to admins_mejiro_coin_records_path
+  end
+end
