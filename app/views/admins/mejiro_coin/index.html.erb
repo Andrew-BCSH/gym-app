@@ -71,7 +71,7 @@
               <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user_id %></td>
              <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.user&.username %></td>
               <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.to_date %></td>
-              <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.credit_amount.inspect %></td>
+              <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= number_with_delimiter(receipt.credit_amount || 0) %></td>
               <td class="whitespace-nowrap px-4 py-2 text-gray-700"><%= receipt.timestamp.strftime("%H:%M:%S") %></td>
             </tr>
           <% end %>
