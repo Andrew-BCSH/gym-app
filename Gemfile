@@ -35,6 +35,8 @@ gem 'rqrcode', '~> 2.2'
 
 gem 'will_paginate', '~> 4.0'
 
+gem 'image_processing', '~> 1.2'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

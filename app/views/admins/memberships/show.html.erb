@@ -35,50 +35,90 @@
   </section>
 
   <section class="shadow-lg bg-white p-6 rounded-lg mt-8">
-    <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
-      <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Update a Membership</h1>
-    </div>
+  <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
+    <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Update a Membership</h1>
+  </div>
 
-    <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4 pb-6") do |form| %>
-      <div class="grid grid-cols-1 gap-4 p-6">
-        <!-- Select dropdown for User ID -->
-        <div>
-          <%= form.label :user_id, "User ID:", class: "sr-only" %>
-          <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
-        </div>
+  <%= form_with(url: add_days_admins_membership_path, method: :post, class: "mt-6 space-y-4 pb-6", multipart: true) do |form| %>
+    <div class="grid grid-cols-1 gap-4 p-6">
+      <!-- Select dropdown for User ID -->
+      <div>
+        <%= form.label :user_id, "User ID:", class: "sr-only" %>
+        <%= form.select :user_id, User.all.map { |user| [user.username, user.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+      </div>
 
-        <!-- Select dropdown for Membership Type -->
-         <div>
+      <!-- Select dropdown for Membership Type -->
+      <div>
         <%= form.label :membership_id, "Membership Type:", class: "sr-only" %>
         <%= form.select :membership_id, Membership.all.map { |membership| [membership.name, membership.id] }, {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
       </div>
 
-
-        <!-- Input field for Order Amount -->
-        <div>
-          <%= form.label :order_amount, "Order Amount:", class: "sr-only" %>
-          <div class="relative">
-            <%= form.number_field :order_amount, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Total amount" %>
-          </div>
-        </div>
-
-        <!-- Input field for Total Cost -->
-        <div>
-          <%= form.label :total_cost, "Total  Cost:", class: "sr-only" %>
-          <%= form.number_field :total_cost, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Enter price" %>
-        </div>
-
-        <!-- Select dropdown for Action Type -->
-        <div>
-          <%= form.label :action_type, "Action:", class: "sr-only" %>
-          <%= form.select :action_type, [["Add", "add"], ["Subtract", "subtract"]], {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+      <!-- Input field for Order Amount -->
+      <div>
+        <%= form.label :order_amount, "Order Amount:", class: "sr-only" %>
+        <div class="relative">
+          <%= form.number_field :order_amount, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Total amount" %>
         </div>
       </div>
 
-      <!-- Submit button -->
-      <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
-    <% end %>
-  </section>
+      <!-- Input field for Total Cost -->
+      <div>
+        <%= form.label :total_cost, "Total Cost:", class: "sr-only" %>
+        <%= form.number_field :total_cost, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm", placeholder: "Enter price" %>
+      </div>
+
+      <!-- Select dropdown for Action Type -->
+      <div>
+        <%= form.label :action_type, "Action:", class: "sr-only" %>
+        <%= form.select :action_type, [["Add", "add"], ["Subtract", "subtract"]], {}, class: "rounded-lg border-gray-200 p-4 w-full text-sm shadow-sm" %>
+      </div>
+
+      <!-- Image Uploader -->
+      <div>
+        <%= form.label :photo, "Take Photo:", class: "sr-only" %>
+        <div class="flex flex-col items-center">
+          <video id="video" width="320" height="240" autoplay class="rounded-lg border-gray-200"></video>
+          <button type="button" id="snap" class="mt-2 rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white">Snap Photo</button>
+          <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+          <%= form.file_field :photo, id: 'photo-input', accept: 'image/*', style: 'display:none;' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <%= form.submit "Submit", class: "block rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white mt-4 mx-auto mb-4" %>
+  <% end %>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var video = document.getElementById('video');
+    var canvas = document.getElementById('canvas');
+    var snap = document.getElementById('snap');
+    var photoInput = document.getElementById('photo-input');
+
+    // Get access to the camera
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+      });
+    }
+
+    // Trigger photo take
+    snap.addEventListener("click", function() {
+      var context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, 320, 240);
+      canvas.toBlob(function(blob) {
+        var file = new File([blob], "photo.png", { type: 'image/png' });
+        var dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        photoInput.files = dataTransfer.files;
+      }, 'image/png');
+    });
+  });
+</script>
+
 
   <section class="shadow-lg bg-white p-6 rounded-lg mt-8">
     <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
