@@ -65,12 +65,6 @@ class Admins::MejiroCoinController < AdminController
               timestamp: Time.now,
               credit_amount: -credit_amount # Negative amount for subtraction
             )
-
-            # Create a subtraction record
-            Subtraction.create(
-              user_id: @user.id,
-              amount_cents: credit_amount * 100  # Assuming amount_cents is in cents
-            )
           else
             flash[:alert] = 'Insufficient balance for subtraction.'
           end
