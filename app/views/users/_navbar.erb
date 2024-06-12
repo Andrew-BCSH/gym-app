@@ -21,10 +21,12 @@
           </ul>
         </nav>
 
-        <div class="flex items-center gap-4">
-          <% if current_user.photo.attached? %>
-            <%= image_tag current_user.photo, width: 50, height: 50, class: "rounded-full" %>
-          <% end %>
+        <% if current_user.photo.attached? %>
+          <%= image_tag current_user.photo, width: 50, height: 50, class: "rounded-full" %>
+          <% else %>
+          <span>Please add a photo</span>
+       <% end %>
+
 
           <div class="sm:flex sm:gap-4">
             <%= link_to destroy_user_session_path, method: :delete, class: "block rounded-md bg-red-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700" do %>
