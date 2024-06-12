@@ -1,49 +1,46 @@
 <div class="max-w-screen-md mx-auto">
   <section class="mx-auto rounded-lg border px-4 py-4 sm:px-6 lg:px-8 bg-red-700">
     <div class="shadow-lg bg-white p-6 rounded-lg">
-      <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8"> <!-- Added mb-8 for margin bottom -->
+      <div class="flex flex-col rounded-lg border border-red-900 px-4 py-2 text-center mb-8">
         <h1 class="text-2xl text-center py-2 font-bold text-gray-900 sm:text-3xl">Mejiro Gym Bali</h1>
-    <p class="text-gray-500 sm:text-xl">
-       The Home of Dutch Style Kickboxing!
-      </p>
-  </div>
+        <p class="text-gray-500 sm:text-xl">The Home of Dutch Style Kickboxing!</p>
+      </div>
 
-  <%= link_to memberships_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700 mt-8" do %> <!-- Added mt-8 for margin top -->
-    <%= heroicon "finger-print", options: { class: "w-6 h-6"} %>
-    <span class="text-sm font-medium"> Memberships </span>
-  <% end %>
+<%= link_to memberships_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700 mt-8" do %>
+  <%= heroicon "finger-print", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium">Memberships</span>
+<% end %>
 
 <%= link_to users_qr_code_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
   <%= heroicon "qr-code", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Your Checkin QR Code </span>
+  <span class="text-sm font-medium">Your Checkin QR Code</span>
 <% end %>
-
-<!-- <%= link_to book_a_private_class_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
-  <%= heroicon "bookmark", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Private Classes </span>
-<% end %>-->
 
 <%= link_to mejiro_coin_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
   <%= heroicon "currency-dollar", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Your Mejiro Coin </span>
+  <span class="text-sm font-medium">Your Mejiro Coin</span>
 <% end %>
 
 <%= link_to payment_scanner_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
   <%= heroicon "wallet", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Payment Scanner </span>
+  <span class="text-sm font-medium">Payment Scanner</span>
 <% end %>
 
 <%= link_to weekly_class_schedule_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
   <%= heroicon "calendar-days", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Weekly Class Schedule </span>
+  <span class="text-sm font-medium">Weekly Class Schedule</span>
 <% end %>
 
 <%= link_to events_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
   <%= heroicon "star", options: { class: "w-6 h-6"} %>
-  <span class="text-sm font-medium"> Events Information </span>
+  <span class="text-sm font-medium">Events Information</span>
 <% end %>
 
-  </li>
-</ul>
+<%= link_to edit_user_registration_path, class: "flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700" do %>
+  <%= heroicon "user-circle", options: { class: "w-6 h-6"} %>
+  <span class="text-sm font-medium">Edit Profile</span>
+<% end %>
 
-</section>
+    </div>
+  </section>
+</div>

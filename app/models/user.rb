@@ -2,17 +2,16 @@ class User < ApplicationRecord
   has_one :credit, dependent: :destroy
   has_many :membership_logs
   has_many :memberships
-  #has_one_attached :photo
+  has_one_attached :photo
   has_many :top_ups, dependent: :destroy
 
   belongs_to :membership, optional: true
 
   after_create :initialize_user_credit
+  before_save :set_cloudinary_folder
 
   def default_photo_url
-    def default_photo_url
-      'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png'
-    end
+    'https://res.cloudinary.com/dh8uxggfc/image/upload/v1695016725/Mejiro/Logo_4_edn8nr.png'
   end
 
   def initialize_user_credit
@@ -50,4 +49,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: true
+
+  private
+
+  def set_cloudinary_folder
+    if photo.attached? && !photo.blob.key.starts_with?("Mejiro Bali User Pics/")
+      photo.blob.update(key: "Mejiro Bali User Pics/#{SecureRandom.uuid}/#{photo.blob.filename}")
+    end
+  end
 end

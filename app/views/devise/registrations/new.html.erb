@@ -1,55 +1,55 @@
 <body>
-    <section class="bg-white">
-        <div class="container mx-auto py-8">
-                </section>
+  <section class="bg-white">
+    <div class="container mx-auto py-8">
+      <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+        <div class="max-w-xl lg:max-w-3xl">
+          <div class="relative -mt-16 block lg:hidden">
+            <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+              Sign Up🥊
+            </h1>
+            <p class="mt-4 leading-relaxed text-gray-500">
+              Mejiro Gym Bali, the Home of Dutch Style Kickboxing in Bali.
+            </p>
+          </div>
 
-                <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-                    <div class="max-w-xl lg:max-w-3xl">
-                        <div class="relative -mt-16 block lg:hidden">
-                            <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                                Sign Up🥊
-                            </h1>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-8 grid grid-cols-6 gap-6", multipart: true, data: { controller: "photo-preview" } }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-                            <p class="mt-4 leading-relaxed text-gray-500">
-                                Mejiro Gym Bali, the Home of Dutch Style Kickboxing in Bali.
-                            </p>
-                        </div>
-
-                        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-8 grid grid-cols-6 gap-6" }) do |f| %>
-                            <%= render "devise/shared/error_messages", resource: resource %>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <%= f.label :username %><br />
-                                <%= f.text_field :username, autofocus: true, class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <%= f.label :email %><br />
-                                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
-                            </div>
-
-                            <div class="col-span-6">
-                                <%= f.label :password %>
-                                <% if @minimum_password_length %>
-                                    <em>(<%= @minimum_password_length %> characters minimum)</em>
-                                <% end %><br />
-                                <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
-                            </div>
-
-                            <div class="col-span-6">
-                                <%= f.label :password_confirmation %><br />
-                                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <%= f.submit "Sign up", class: "inline-block shrink-0 rounded-md border border-red-800 bg-red-700 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500" %>
-                            </div>
-                        <% end %>
-                    </div>
-                </main>
+            <div class="col-span-6 sm:col-span-3">
+              <%= f.label :username %><br />
+              <%= f.text_field :username, autofocus: true, class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
             </div>
-        </div>
-    </section>
-</body>
 
-</html>
+            <div class="col-span-6 sm:col-span-3">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
+            </div>
+
+            <div class="col-span-6">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
+            </div>
+
+            <div class="col-span-6">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" %>
+            </div>
+
+            <div class="col-span-6">
+              <%= f.label :photo, "Upload Profile Photo" %><br />
+              <%= f.file_field :photo, class: "mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm", data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
+              <%= image_tag "", width: 50, height: 50, class: "hidden mt-4 rounded-full", data: { photo_preview_target: "preview" } %>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <%= f.submit "Sign up", class: "inline-block shrink-0 rounded-md border border-red-800 bg-red-700 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500" %>
+            </div>
+          <% end %>
+        </div>
+      </main>
+    </div>
+  </section>
+</body>

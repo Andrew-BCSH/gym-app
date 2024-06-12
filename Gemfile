@@ -3,73 +3,52 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-
-
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+# Rails and necessary gems
 gem 'rails', '7.0.8.3'
-
-gem "devise"
-
+gem 'devise'
 gem 'font-awesome-rails'
-
 gem 'cloudinary'
-
 gem 'font-awesome-sass', '~> 5.0'
-
 gem 'money-rails'
-
 gem 'stripe'
-
 gem 'monetize'
-
 gem 'stripe_event'
-
 gem 'jquery-rails'
-
 gem 'simple_form'
-
 gem 'pg'
-
 gem 'heroicon'
-
 gem 'rqrcode', '~> 2.2'
-
 gem 'will_paginate', '~> 4.0'
-
-gem 'image_processing', '~> 1.0'
-
-gem 'activestorage', require: false
+gem "image_processing", "~> 1.2"
+gem 'activestorage'
 
 
-
-
-
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+# The original asset pipeline for Rails
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
-# Use the Puma web server [https://github.com/puma/puma]
+# Use the Puma web server
 gem "puma", "~> 5.0"
 
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+# Use JavaScript with ESM import maps
 gem "importmap-rails"
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+# Hotwire's SPA-like page accelerator
 gem "turbo-rails"
 
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+# Hotwire's modest JavaScript framework
 gem "stimulus-rails"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+# Build JSON APIs with ease
 gem "jbuilder"
 
+# Tailwind CSS integration
 gem "tailwindcss-rails", "~> 2.0"
 
 group :development, :test do
   gem 'pry-rails'
-
 end
 
 

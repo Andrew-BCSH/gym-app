@@ -276,7 +276,7 @@ DEPENDENCIES
   font-awesome-rails
   font-awesome-sass (~> 5.0)
   heroicon
-  image_processing (~> 1.0)
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   jquery-rails
