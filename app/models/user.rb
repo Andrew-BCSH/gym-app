@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   belongs_to :membership, optional: true
 
+  attr_accessor :whatsapp_number
+
   after_create :initialize_user_credit
   before_save :set_cloudinary_folder
 
