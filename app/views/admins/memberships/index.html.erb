@@ -1,0 +1,14 @@
+<h1>Memberships Index</h1>
+<% if @memberships.present? %>
+  <% @memberships.each do |membership| %>
+    <p>Membership Name: <%= membership.name %></p>
+    <p>SKU: <%= membership.sku %></p>
+    <p>Category: <%= membership.category.name %></p> <!-- Access category name -->
+    <p>Price (in cents): <%= membership.price_cents %></p>
+    <p>Days of Membership: <%= membership.days_of_membership %></p>
+    <p>Created At: <%= membership.created_at %></p>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No memberships found.</p>
+<% end %>

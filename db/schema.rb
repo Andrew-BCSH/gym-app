@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_11_092226) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_12_083409) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -149,7 +149,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_11_092226) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.integer "membership_days"
-    t.string "whatsapp_number"
     t.date "last_membership_start_date"
     t.integer "membership_id"
     t.string "photo"
@@ -159,12 +158,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_11_092226) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  create_table "whatsapp_numbers", force: :cascade do |t|
+    t.string "number"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_whatsapp_numbers_on_user_id"
+  end
+
   add_foreign_key "credits", "users"
   add_foreign_key "mejiro_coin_transactions", "users"
   add_foreign_key "memberships", "categories"
   add_foreign_key "memberships", "users"
   add_foreign_key "top_ups", "users"
   add_foreign_key "users", "memberships"
+  add_foreign_key "whatsapp_numbers", "users"
 end

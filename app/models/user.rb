@@ -47,7 +47,9 @@ class User < ApplicationRecord
     }
   end
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
+         authentication_keys: [:username]
+
   validates :username, presence: true, uniqueness: true
 
   private
